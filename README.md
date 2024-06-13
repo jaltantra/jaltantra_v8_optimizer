@@ -1,3 +1,6 @@
+#Initial setup and run script
+Please ensure you are connected to IIT-B network and have access to license server.
+
 # Project Deployment and Monitoring Guide
 
 This document provides instructions on configuring and running the deployment and monitoring scripts for your application.
@@ -72,7 +75,21 @@ This section details the configuration parameters for setting up monitoring of y
 - **Description**: A list of email addresses that will receive monitoring notifications.
 - **Example**: `["22m0759@iitb.ac.in", "22m0796@iitb.ac.in"]`
 
-## Running the Monitoring Script
+## Example Configuration
+
+Here is an example `monitor_config.json` file with sample values filled in:
+
+```json
+{
+  "host_ip": "localhost",
+  "host_port": "8099",
+  "application_context": "jaltantra_loop_dev_v7",
+  "solver_directory": "/home/hkshenoy/Desktop/Jaltantra_loop/JalTantra-Code-and-Scripts/NetworkResults/",
+  "sender_email": "22m0759@iitb.ac.in",
+  "sender_token": "6a853780b90d30aac01a7d6d48b36a0c",
+  "receiver_email_list": ["22m0759@iitb.ac.in", "22m0796@iitb.ac.in"]
+}
+```
 
 After configuring `monitor_config.json` with the appropriate values, execute the monitoring script using the following command:
 
