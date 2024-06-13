@@ -1,4 +1,4 @@
-#Initial setup and run script
+# Initial setup and run script
 Please ensure you are connected to IIT-B network and have access to license server.
 
 # Project Deployment and Monitoring Guide
