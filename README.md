@@ -84,8 +84,8 @@ Here is an example `monitor_config.json` file with sample values filled in:
   "host_port": "8099",
   "application_context": "jaltantra_loop_dev_v7",
   "solver_directory": "/home/hkshenoy/Desktop/Jaltantra_loop/JalTantra-Code-and-Scripts/NetworkResults/",
-  "sender_email": "22m0759@iitb.ac.in",
-  "sender_token": "6a853780b90d30aac01a7d6d48b36a0c",
+  "sender_email": "24m709@iitb.ac.in",
+  "sender_token": "6a853780b90d30aac01a7dummy6d58b36a06",
   "receiver_email_list": ["22m0759@iitb.ac.in", "22m0796@iitb.ac.in"]
 }
 ```
