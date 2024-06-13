@@ -1,5 +1,7 @@
 # Initial setup and run script
-Please ensure you are connected to IIT-B network and have access to license server.
+Please ensure you are connected to IIT-B network and have access to license server , then run the below scripts in order
+bash inital_setup.sh ,then bash run.sh
+
 
 # Project Deployment and Monitoring Guide
 
