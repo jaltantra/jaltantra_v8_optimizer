@@ -18,7 +18,7 @@ This configuration file contains parameters required for deploying your applicat
   - **Example**: `"deploy"`
 
 - **remote_ip**: The IP address of the remote server where the deployment will occur.
-  - **Example**: `"10.129.6.131"`
+  - **Example**: `"10.192.6.131"`
 
 - **remote_folder**: The directory path on the remote server where the Python scripts will be stored.
   - **Example**: `"/home/deploy/Jaltantra_v2_3_0_0"`
@@ -28,7 +28,7 @@ This configuration file contains parameters required for deploying your applicat
 ```json
 {
   "host_name": "deploy",
-  "remote_ip": "10.129.6.131",
+  "remote_ip": "10.192.6.131",
   "remote_folder": "/home/deploy/Jaltantra_v2_3_0_0"
 }
 ```
@@ -62,12 +62,12 @@ This section details the configuration parameters for setting up monitoring of y
 ### sender_email
 
 - **Description**: The email address used for sending notifications.
-- **Example**: `"22m0759@iitb.ac.in"`
+- **Example**: `"24m709@iitb.ac.in"`
 
 ### sender_token
 
 - **Description**: The authentication token for the sender's email account.
-- **Example**: `"6a853780b90d30aac01a7d6d48b36a0c"`
+- **Example**: `"6a853780b90d30aac01a7dummy6d58b36a06"`
 
 ### receiver_email_list
 
