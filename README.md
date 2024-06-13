@@ -1,40 +1,80 @@
-Filling the deploy_config.json
-host_name: The name of the host to which the deployment will be made.
-Example: "deploy"
+# Project Deployment and Monitoring Guide
 
-remote_ip: The IP address of the remote server where the deployment will occur.
-Example: "10.129.6.131"
+This document provides instructions on configuring and running the deployment and monitoring scripts for your application.
 
-remote_folder: The directory path on the remote server where the python scripts will be stored 
-Example: "/home/deploy/Jaltantra_v2_3_0_0"
+## Configuration Files
 
-Running the deploy script after filling the config file
-bash deploy.sh
+There are two configuration files you need to fill out: `deploy_config.json` and `monitor_config.json`.
 
-Filling the monitor_config.json
-host_ip:The IP address of the host server.
-Example: "localhost"
+### deploy_config.json
 
-host_port: The port number on which the host server will listen.
-Example: "8099"
+This configuration file contains parameters required for deploying your application.
 
-application_context: The context path of the application.
-Example: "jaltantra_loop_dev_v7"
+#### Parameters
 
-solver_directory: he directory path on the remote server where the python scripts will be stored 
-Example: "/home/hkshenoy/Desktop/Jaltantra_loop/JalTantra-Code-and-Scripts/NetworkResults/"
+- **host_name**: The name of the host to which the deployment will be made.
+  - **Example**: `"deploy"`
 
-sender_email: The email address of the sender used for notifications.
-Example: "22m0759@iitb.ac.in"
+- **remote_ip**: The IP address of the remote server where the deployment will occur.
+  - **Example**: `"10.129.6.131"`
 
-sender_token:The authentication token for the sender's email.
-Example: "6a853780b90d30aac01a7d6d48b36a0c"
+- **remote_folder**: The directory path on the remote server where the Python scripts will be stored.
+  - **Example**: `"/home/deploy/Jaltantra_v2_3_0_0"`
 
-receiver_email_list: A list of email addresses that will receive notifications.
-Example: ["22m0759@iitb.ac.in", "22m0796@iitb.ac.in"]
+#### Example Configuration
 
-Running the monitoring script after filling config
+```json
+{
+  "host_name": "deploy",
+  "remote_ip": "10.129.6.131",
+  "remote_folder": "/home/deploy/Jaltantra_v2_3_0_0"
+}
+```
+
+# Monitoring Configuration Guide
+
+This section details the configuration parameters for setting up monitoring of your application using `monitor_config.json`.
+
+## Configuration Parameters
+
+### host_ip
+
+- **Description**: The IP address of the host server where your application is deployed.
+- **Example**: `"localhost"`
+
+### host_port
+
+- **Description**: The port number on which the host server listens for incoming requests.
+- **Example**: `"8099"`
+
+### application_context
+
+- **Description**: The context path of your application.
+- **Example**: `"jaltantra_loop_dev_v7"`
+
+### solver_directory
+
+- **Description**: The directory path on the remote server where the Python scripts are stored.
+- **Example**: `"/home/hkshenoy/Desktop/Jaltantra_loop/JalTantra-Code-and-Scripts/NetworkResults/"`
+
+### sender_email
+
+- **Description**: The email address used for sending notifications.
+- **Example**: `"22m0759@iitb.ac.in"`
+
+### sender_token
+
+- **Description**: The authentication token for the sender's email account.
+- **Example**: `"6a853780b90d30aac01a7d6d48b36a0c"`
+
+### receiver_email_list
+
+- **Description**: A list of email addresses that will receive monitoring notifications.
+- **Example**: `["22m0759@iitb.ac.in", "22m0796@iitb.ac.in"]`
+
+## Running the Monitoring Script
+
+After configuring `monitor_config.json` with the appropriate values, execute the monitoring script using the following command:
+
+```sh
 bash monitor_app.sh monitor_config.json
-
-
-
