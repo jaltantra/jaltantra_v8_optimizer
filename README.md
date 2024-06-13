@@ -3,7 +3,6 @@ Please ensure you are connected to IIT-B network and have access to license serv
 
 # Project Deployment and Monitoring Guide
 
-This document provides instructions on configuring and running the deployment and monitoring scripts for your application.
 
 ## Configuration Files
 
