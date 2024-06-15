@@ -4,7 +4,18 @@ sudo apt update
 sudo apt install tmux -y
 
 #scp ampl from jaltantra server
-scp -r deploy@10.129.6.131:/home/deploy/ampl.linux-intel64/ JalTantra-Code-and-Scripts
+#scp -r deploy@10.129.6.131:/home/deploy/ampl.linux-intel64/ JalTantra-Code-and-Scripts
+# Define the target directory
+TARGET_DIR="JalTantra-Code-and-Scripts/ampl.linux-intel64"
+
+# Check if the directory does not exist
+if [ ! -d "$TARGET_DIR" ]; then
+    # Run the scp command to copy the files
+    scp -r deploy@10.129.6.131:/home/deploy/ampl.linux-intel64/ JalTantra-Code-and-Scripts
+else
+    echo "Directory $TARGET_DIR already exists. Skipping scp."
+fi
+
 
 #change permissions for ampl
 chmod 777 -R JalTantra-Code-and-Scripts/ampl.linux-intel64
