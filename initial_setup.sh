@@ -62,37 +62,51 @@ rm $MINICONDA_INSTALLER
 
 
 
+# ------------------------- MYSQL setup --------------------------------------------------------------------------------------------
+# Function to check if MySQL is installed
+is_mysql_installed() {
+    dpkg -l | grep -q mysql-server
+}
 
-echo "Installing MySQL server and open JDK 17"
-# sudo apt-get update
-sudo apt-get install -y mysql-server
+# Function to check if a MySQL user exists
+does_mysql_user_exist() {
+    sudo mysql -e "SELECT EXISTS(SELECT 1 FROM mysql.user WHERE user = 'dev')" | grep -q 1
+}
 
+# Install MySQL server if not installed
+if ! is_mysql_installed; then
+    echo "Installing MySQL server"
+    sudo apt-get update
+    sudo apt-get install -y mysql-server
+else
+    echo "MySQL server is already installed"
+fi
 
 # Start MySQL service
-echo "Starting MySql server"
+echo "Starting MySQL server"
 sudo systemctl start mysql
 
-
-
-
-
-echo "Creating user dev with password dev on MySQL"
-sudo mysql <<MYSQL_SCRIPT
+# Create MySQL user 'dev' if it does not exist
+if ! does_mysql_user_exist; then
+    echo "Creating user 'dev' with password 'dev' on MySQL"
+    sudo mysql <<MYSQL_SCRIPT
 CREATE USER 'dev'@'localhost' IDENTIFIED BY 'dev';
 GRANT ALL PRIVILEGES ON *.* TO 'dev'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
-exit;
 MYSQL_SCRIPT
-echo "MySQL user 'dev' created with password 'dev'"
+    echo "MySQL user 'dev' created with password 'dev'"
+else
+    echo "MySQL user 'dev' already exists"
+fi
 
-
+# Create database if it does not exist
 echo "Creating jaltantra_users_database"
-sudo mysql -u dev -p'dev' <<MYSQL_SCRIPT
-create database jaltantra_users;
-exit;
+sudo mysql -u dev -pdev <<MYSQL_SCRIPT
+CREATE DATABASE IF NOT EXISTS jaltantra_users;
 MYSQL_SCRIPT
-echo "Created jaltantra_users_database"
+echo "Database 'jaltantra_users' created or already exists"
 
+# -------------------------------------------------------------------------------------------------------------------------------
 
 current_dir=$(pwd)
 properties_file="$current_dir/src/main/resources/application-dev.properties"
