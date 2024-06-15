@@ -92,7 +92,12 @@ Here is an example `monitor_config.json` file with sample values filled in:
 }
 ```
 
+
 After configuring `monitor_config.json` with the appropriate values, execute the monitoring script using the following command:
 
 ```sh
 bash monitor_app.sh monitor_config.json
+
+
+# Documentation
+- Refere Documentation.zip for Java class documentation
