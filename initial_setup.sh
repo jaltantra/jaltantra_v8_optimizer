@@ -2,6 +2,7 @@
 sudo apt update
 #install tmux
 sudo apt install tmux -y
+sudo apt install -y openjdk-17-jdk
 
 #scp ampl from jaltantra server
 #scp -r deploy@10.129.6.131:/home/deploy/ampl.linux-intel64/ JalTantra-Code-and-Scripts
@@ -65,7 +66,7 @@ rm $MINICONDA_INSTALLER
 echo "Installing MySQL server and open JDK 17"
 # sudo apt-get update
 sudo apt-get install -y mysql-server
-sudo apt install -y openjdk-17-jdk
+
 
 # Start MySQL service
 echo "Starting MySql server"
