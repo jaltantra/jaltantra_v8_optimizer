@@ -61,6 +61,10 @@ This section details the configuration parameters for setting up monitoring of y
 - **Description**: The directory path on the remote server where the Python scripts are stored.
 - **Example**: `"/home/hkshenoy/Desktop/Jaltantra_loop/JalTantra-Code-and-Scripts/NetworkResults/"`
 
+### license_directory
+- **Description**: The directory path on the remote server which contains the AMPL license.
+- **Example**: `"/home/deploy/Jaltantra_v2_3_0_0/JalTantra-Code-and-Scripts/ampl.linux-intel64"`
+
 ### sender_email
 
 - **Description**: The email address used for sending notifications.
@@ -86,6 +90,7 @@ Here is an example `monitor_config.json` file with sample values filled in:
   "host_port": "8099",
   "application_context": "jaltantra_loop_dev_v7",
   "solver_directory": "/home/hkshenoy/Desktop/Jaltantra_loop/JalTantra-Code-and-Scripts/NetworkResults/",
+  "license_directory":"/home/deploy/Jaltantra_v2_3_0_0/JalTantra-Code-and-Scripts/ampl.linux-intel64",
   "sender_email": "24m709@iitb.ac.in",
   "sender_token": "6a853780b90d30aac01a7dummy6d58b36a06",
   "receiver_email_list": ["22m0759@iitb.ac.in", "22m0796@iitb.ac.in"]
