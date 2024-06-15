@@ -16,6 +16,7 @@ host_port=$(jq -r '.host_port' $JSON_FILE)
 application_context=$(jq -r '.application_context' $JSON_FILE)
 
 SUMMARY_FOLDER=$(jq -r '.solver_directory' $JSON_FILE)
+LICENSE_FOLDER=$(jq -r '.license_directory' $JSON_FILE)
 sender_email=$(jq -r '.sender_email' $JSON_FILE)
 sender_token=$(jq -r '.sender_token' $JSON_FILE)
 receiver_email_list=$(jq -r '.receiver_email_list | join(" ")' "$JSON_FILE")
@@ -23,7 +24,7 @@ receiver_email_list=$(jq -r '.receiver_email_list | join(" ")' "$JSON_FILE")
 
 STATUS_FILE="summary.txt"
 EMAIL_FILE="email.txt"
-WEB_APP_URL=$host_ip:$host_port/$application_context
+WEB_APP_URL=$host_ip:$host_port/$application_context/
 
 set_ssmtp(){
 
@@ -64,6 +65,13 @@ check_web_app_status() {
     else
         echo "Web application is DOWN (Status: $HTTP_STATUS)" >> $STATUS_FILE
     fi
+}
+
+check_license(){
+	echo "">> $STATUS_FILE
+	echo "License Status" >> $STATUS_FILE 
+	$LICENSE_FOLDER/ampl_lic netstatus >> $STATUS_FILE
+	
 }
 
 
@@ -112,6 +120,7 @@ send_email() {
 # Main script execution
 set_ssmtp
 check_web_app_status
+check_license
 gather_summary
 send_email
 
