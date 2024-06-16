@@ -1,5 +1,5 @@
 # Initial setup and run script
-Please ensure you are connected to IIT-B network and have access to license server , then run the below scripts in order:
+Please ensure you are connected to IIT-B network and have access to license server , then run the below scripts in order:-
 -bash inital_setup.sh
 -bash run.sh
 
