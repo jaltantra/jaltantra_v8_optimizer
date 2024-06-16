@@ -113,4 +113,4 @@ bash monitor_app.sh monitor_config.json
 - Please keep the API key secret and dont expose it to public/external users.
 
 # Properties file
--Refer application-dev.properties and application-deploy.properties file for making changes to configurations
+-Refer application-dev.properties and application-deploy.properties file fin src/main/resources folder for making changes to configurations
