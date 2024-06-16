@@ -108,5 +108,6 @@ bash monitor_app.sh monitor_config.json
 - Refere Documentation.zip for Java class documentation
 
 # Google MAP API KEY
-- in the file src/main/resources/static/system.html please add your google map api key at line 51:
+- In the file src/main/resources/static/system.html please add your google map api key at line 51:
 - <script type="text/javascript" src="//maps.google.com/maps/api/js?key=Add_KEY_HERE&libraries=geometry,places"></script>
+- Please keep the API key secret and dont expose it to public/external users.
