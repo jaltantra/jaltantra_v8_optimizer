@@ -169,6 +169,8 @@ public class BranchController
 
 			boolean solved = opt.Optimize();
 
+			Network network = new Network(request);
+
 			String message;
 			if(solved)
 			{
