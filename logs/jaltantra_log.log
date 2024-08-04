@@ -1,306 +1,552 @@
-2024-06-13 21:46:15.564 [main] ERROR com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Exception during pool initialization.
-java.sql.SQLNonTransientConnectionException: Public Key Retrieval is not allowed
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:111)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:815)
-	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:438)
-	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241)
-	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:189)
-	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
-	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
-	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
-	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
-	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
-	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100)
-	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
-	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428)
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61)
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276)
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107)
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
-	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130)
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238)
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215)
-	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45)
-	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223)
-	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191)
-	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170)
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432)
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503)
-	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:388)
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:364)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
-	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137)
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
-	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1454)
-	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
-	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191)
-	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
-	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:378)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:383)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:378)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
-	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
-	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
-	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:377)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:290)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:289)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:279)
-	at java.base/java.util.Optional.orElseGet(Optional.java:364)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:278)
-	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
-	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
-	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184)
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148)
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
-	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-Caused by: com.mysql.cj.exceptions.UnableToConnectException: Public Key Retrieval is not allowed
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:85)
-	at com.mysql.cj.protocol.a.authentication.Sha256PasswordPlugin.nextAuthenticationStep(Sha256PasswordPlugin.java:147)
-	at com.mysql.cj.protocol.a.authentication.Sha256PasswordPlugin.nextAuthenticationStep(Sha256PasswordPlugin.java:59)
-	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.proceedHandshakeWithPluggableAuthentication(NativeAuthenticationProvider.java:446)
-	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.connect(NativeAuthenticationProvider.java:215)
-	at com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1428)
-	at com.mysql.cj.NativeSession.connect(NativeSession.java:133)
-	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:935)
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:805)
-	... 127 common frames omitted
-2024-06-13 21:46:17.580 [main] ERROR com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Exception during pool initialization.
-java.sql.SQLNonTransientConnectionException: Public Key Retrieval is not allowed
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:111)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:815)
-	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:438)
-	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241)
-	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:189)
-	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
-	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
-	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
-	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
-	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
-	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100)
-	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
-	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428)
-	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:46)
-	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:39)
-	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63)
-	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcDatabaseMetaData(ImprovedExtractionContextImpl.java:70)
-	at org.hibernate.tool.schema.extract.internal.InformationExtractorJdbcDatabaseMetaDataImpl.processTableResultSet(InformationExtractorJdbcDatabaseMetaDataImpl.java:64)
-	at org.hibernate.tool.schema.extract.internal.AbstractInformationExtractorImpl.getTables(AbstractInformationExtractorImpl.java:570)
-	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.getTablesInformation(DatabaseInformationImpl.java:122)
-	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:72)
-	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:232)
-	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:117)
-	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286)
-	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145)
-	at java.base/java.util.HashMap.forEach(HashMap.java:1421)
-	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142)
-	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
-	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
-	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315)
-	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450)
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507)
-	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:388)
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:364)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
-	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137)
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
-	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1454)
-	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137)
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
-	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191)
-	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
-	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:378)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:383)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:378)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
-	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
-	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
-	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:377)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:290)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:289)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:279)
-	at java.base/java.util.Optional.orElseGet(Optional.java:364)
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:278)
-	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
-	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
-	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184)
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148)
-	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
-	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-Caused by: com.mysql.cj.exceptions.UnableToConnectException: Public Key Retrieval is not allowed
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:85)
-	at com.mysql.cj.protocol.a.authentication.Sha256PasswordPlugin.nextAuthenticationStep(Sha256PasswordPlugin.java:147)
-	at com.mysql.cj.protocol.a.authentication.Sha256PasswordPlugin.nextAuthenticationStep(Sha256PasswordPlugin.java:59)
-	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.proceedHandshakeWithPluggableAuthentication(NativeAuthenticationProvider.java:446)
-	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.connect(NativeAuthenticationProvider.java:215)
-	at com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1428)
-	at com.mysql.cj.NativeSession.connect(NativeSession.java:133)
-	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:935)
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:805)
-	... 132 common frames omitted
-2024-06-13 21:46:17.589 [main] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Public Key Retrieval is not allowed
-2024-06-13 21:46:17.593 [main] ERROR o.s.o.j.LocalContainerEntityManagerFactoryBean - Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [Public Key Retrieval is not allowed] [n/a]
-2024-06-13 21:46:17.594 [main] WARN  o.s.w.c.s.GenericWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [Public Key Retrieval is not allowed] [n/a]
+2024-08-02 01:43:42.520 [main] DEBUG org.hibernate.SQL - create table users (id bigint not null auto_increment, country varchar(255) not null, designation varchar(255) not null, email varchar(255) not null, enabled bit, name varchar(255) not null, organization varchar(255) not null, password varchar(255) not null, state varchar(255), verification_code varchar(255), primary key (id)) engine=InnoDB
+2024-08-02 01:43:43.352 [main] DEBUG org.hibernate.SQL - create table users_request_details (id bigint not null auto_increment, request_datetime varchar(255) not null, request_url varchar(255) not null, session_id varchar(255) not null, user_id bigint, primary key (id)) engine=InnoDB
+2024-08-02 01:43:45.297 [main] DEBUG org.hibernate.SQL - create table users_session_details (id bigint not null auto_increment, client_ip_address varchar(255) not null, login_datetime varchar(255) not null, session_id varchar(255) not null, user_id bigint, primary key (id)) engine=InnoDB
+2024-08-02 01:43:46.211 [main] DEBUG org.hibernate.SQL - alter table users drop index UK_6dotkott2kjsp8vw4d0m25fb7
+2024-08-02 01:43:46.229 [main] DEBUG org.hibernate.SQL - alter table users add constraint UK_6dotkott2kjsp8vw4d0m25fb7 unique (email)
+2024-08-02 01:43:46.568 [main] DEBUG org.hibernate.SQL - alter table users_request_details add constraint FKh15dndawc9re52q9o6cbiuf8b foreign key (user_id) references users (id)
+2024-08-02 01:43:47.850 [main] DEBUG org.hibernate.SQL - alter table users_session_details add constraint FKo74wpu1jjjpinb4arybtkhfmv foreign key (user_id) references users (id)
+2024-08-02 01:43:50.542 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-02 01:43:51.622 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-02 01:43:52.332 [Attach Listener] ERROR c.h.j.logging.ConsoleInterceptor - WARNING: A Java agent has been loaded dynamically (/home/cse/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.12/byte-buddy-agent-1.14.12.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2024-08-02 01:44:05.395 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-02 01:44:06.211 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-02 01:45:04.861 [http-nio-8090-exec-6] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-02 01:45:10.995 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-02 01:45:11.107 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - insert into users (country,designation,email,enabled,name,organization,password,state,verification_code) values (?,?,?,?,?,?,?,?,?)
+2024-08-02 01:45:22.105 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-02 01:45:29.907 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-02 01:45:41.868 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-02 01:46:16.430 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-02 01:46:16.440 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-02 01:46:16.443 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-02 01:46:16.501 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-02 01:46:16.502 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-02 01:46:16.503 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-02 01:46:16.511 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code,rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users u1_0 left join users_request_details rd1_0 on u1_0.id=rd1_0.user_id where u1_0.id=?
+2024-08-02 01:46:16.514 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-02 01:46:16.515 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - insert into users_session_details (client_ip_address,login_datetime,session_id) values (?,?,?)
+2024-08-02 01:46:16.519 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - update users_session_details set user_id=? where id=?
+2024-08-02 01:46:43.890 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-02 01:46:43.896 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-02 01:46:43.899 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-02 01:46:43.903 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-02 01:46:43.909 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-02 02:14:43.687 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: doPost() called
+2024-08-02 02:14:43.700 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-02 02:14:43.704 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-02 02:14:43.706 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-02 02:14:43.709 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-02 02:14:43.713 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-02 02:14:43.857 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: doPost() action=null
+2024-08-02 02:14:43.858 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: cmd: [save-record]
+2024-08-02 02:14:43.858 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: recid: [0]
+2024-08-02 02:14:43.858 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: general: [{"name_project":" Sample ","name_organization":"IIT Bombay","def_pipe_roughness":110,"max_hl_perkm":100,"supply_hours":24,"source_nodeid":1,"source_nodename":"Node0","source_elevation":14,"source_head":45}]
+2024-08-02 02:14:43.858 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: nodes: [[{"recid":1,"nodeid":2,"nodename":"Node1","elevation":13,"demand":0.0111},{"recid":2,"nodeid":3,"nodename":"Node2","elevation":10,"demand":0.0322},{"recid":3,"nodeid":4,"nodename":"Node3","elevation":18,"demand":0.0406},{"recid":4,"nodeid":5,"nodename":"Node4","elevation":14,"demand":0.0524},{"recid":5,"nodeid":6,"nodename":"Node5","elevation":11,"demand":0.0276},{"recid":6,"nodeid":7,"nodename":"Node6","elevation":16,"demand":0.0301},{"recid":7,"nodeid":8,"nodename":"Node7","elevation":23,"demand":0.0215},{"recid":8,"nodeid":9,"nodename":"Node8","elevation":18,"demand":0.0141},{"recid":9,"nodeid":10,"nodename":"Node9","elevation":6,"demand":0.024},{"recid":10,"nodeid":11,"nodename":"Node10","elevation":13,"demand":0.0442},{"recid":11,"nodeid":12,"nodename":"Node11","elevation":9,"demand":0.0541},{"recid":12,"nodeid":13,"nodename":"Node12","elevation":8,"demand":0.0242},{"recid":13,"nodeid":14,"nodename":"Node13","elevation":18,"demand":0.029},{"recid":14,"nodeid":15,"nodename":"Node14","elevation":15,"demand":0.0216},{"recid":15,"nodeid":16,"nodename":"Node15","elevation":14,"demand":0.0847},{"recid":16,"nodeid":17,"nodename":"Node16","elevation":11,"demand":0.0315},{"recid":17,"nodeid":18,"nodename":"Node17","elevation":17,"demand":0.0177},{"recid":18,"nodeid":19,"nodename":"Node18","elevation":19,"demand":0.0292},{"recid":19,"nodeid":20,"nodename":"Node19","elevation":16,"demand":0.0537},{"recid":20,"nodeid":21,"nodename":"Node20","elevation":23,"demand":0.0448},{"recid":21,"nodeid":22,"nodename":"Node21","elevation":15,"demand":0.00547},{"recid":22,"nodeid":23,"nodename":"Node22","elevation":10,"demand":0.143},{"recid":23,"nodeid":24,"nodename":"Node23","elevation":13,"demand":0.00339},{"recid":24,"nodeid":25,"nodename":"Node24","elevation":14,"demand":0.0645},{"recid":25,"nodeid":26,"nodename":"Node25","elevation":19,"demand":0.00448},{"recid":26,"nodeid":27,"nodename":"Node26","elevation":19,"demand":0.0138},{"recid":27,"nodeid":28,"nodename":"Node27","elevation":21,"demand":0.0372},{"recid":28,"nodeid":29,"nodename":"Node28","elevation":19,"demand":0.0441},{"recid":29,"nodeid":30,"nodename":"Node29","elevation":17,"demand":0.0246},{"recid":30,"nodeid":31,"nodename":"Node30","elevation":12,"demand":0.0293},{"recid":31,"nodeid":32,"nodename":"Node31","elevation":14,"demand":0.114},{"recid":32,"nodeid":33,"nodename":"Node32","elevation":9,"demand":0.101},{"recid":33,"nodeid":34,"nodename":"Node33","elevation":18,"demand":0.0131},{"recid":34,"nodeid":35,"nodename":"Node34","elevation":18,"demand":0.0826},{"recid":35,"nodeid":36,"nodename":"Node35","elevation":13,"demand":0.0255},{"recid":36,"nodeid":37,"nodename":"Node36","elevation":13,"demand":0.0209},{"recid":37,"nodeid":38,"nodename":"Node37","elevation":12,"demand":0.0218},{"recid":38,"nodeid":39,"nodename":"Node38","elevation":8,"demand":0.0727},{"recid":39,"nodeid":40,"nodename":"Node39","elevation":11,"demand":0.0464},{"recid":40,"nodeid":41,"nodename":"Node40","elevation":21,"demand":0.0124},{"recid":41,"nodeid":42,"nodename":"Node41","elevation":11,"demand":0.046},{"recid":42,"nodeid":43,"nodename":"Node42","elevation":15,"demand":0.0763},{"recid":43,"nodeid":44,"nodename":"Node43","elevation":15,"demand":0.0185},{"recid":44,"nodeid":45,"nodename":"Node44","elevation":13,"demand":0.0298},{"recid":45,"nodeid":46,"nodename":"Node45","elevation":11,"demand":0.0175},{"recid":46,"nodeid":47,"nodename":"Node46","elevation":17,"demand":0.0131},{"recid":47,"nodeid":48,"nodename":"Node47","elevation":20,"demand":0.0158},{"recid":48,"nodeid":49,"nodename":"Node48","elevation":14,"demand":0.0231},{"recid":49,"nodeid":50,"nodename":"Node49","elevation":22,"demand":0.0565},{"recid":50,"nodeid":51,"nodename":"Node50","elevation":14,"demand":0.00647},{"recid":51,"nodeid":52,"nodename":"Node51","elevation":9,"demand":0.0446},{"recid":52,"nodeid":53,"nodename":"Node52","elevation":13,"demand":0.0215},{"recid":53,"nodeid":54,"nodename":"Node53","elevation":14,"demand":0.0287},{"recid":54,"nodeid":55,"nodename":"Node54","elevation":16,"demand":0.0972},{"recid":55,"nodeid":56,"nodename":"Node55","elevation":17,"demand":0.115},{"recid":56,"nodeid":57,"nodename":"Node56","elevation":15},{"recid":57,"nodeid":58,"nodename":"Node57","elevation":6,"demand":0.17},{"recid":58,"nodeid":59,"nodename":"Node58","elevation":13,"demand":0.17},{"recid":59,"nodeid":60,"nodename":"Node59","elevation":19,"demand":0.17},{"recid":60,"nodeid":61,"nodename":"Node60","elevation":17,"demand":0.17},{"recid":61,"nodeid":62,"nodename":"Node61","elevation":15,"demand":0.58},{"recid":62,"nodeid":63,"nodename":"Node62","elevation":18,"demand":0.0752},{"recid":63,"nodeid":64,"nodename":"Node63","elevation":19,"demand":0.685},{"recid":64,"nodeid":65,"nodename":"Node64","elevation":20,"demand":1.34},{"recid":65,"nodeid":66,"nodename":"Node65","elevation":12,"demand":0.248},{"recid":66,"nodeid":67,"nodename":"Node66","elevation":18,"demand":0.405},{"recid":67,"nodeid":68,"nodename":"Node67","elevation":16,"demand":0.436},{"recid":68,"nodeid":69,"nodename":"Node68","elevation":19,"demand":0.631},{"recid":69,"nodeid":70,"nodename":"Node69","elevation":17,"demand":122},{"recid":70,"nodeid":71,"nodename":"Node70","elevation":14,"demand":122},{"recid":71,"nodeid":72,"nodename":"Node71","elevation":14,"demand":122},{"recid":72,"nodeid":73,"nodename":"Node72","elevation":14,"demand":122}]]
+2024-08-02 02:14:43.859 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: pipes: [[{"recid":1,"pipeid":1,"length":10.91,"startnode":2,"endnode":51},{"recid":2,"pipeid":2,"length":43.56,"startnode":3,"endnode":18},{"recid":3,"pipeid":3,"length":129.1,"startnode":4,"endnode":64},{"recid":4,"pipeid":4,"length":70.29,"startnode":5,"endnode":68},{"recid":5,"pipeid":5,"length":35.81,"startnode":6,"endnode":27},{"recid":6,"pipeid":6,"length":66.65,"startnode":7,"endnode":50},{"recid":7,"pipeid":7,"length":42.45,"startnode":8,"endnode":53},{"recid":8,"pipeid":8,"length":49.58,"startnode":9,"endnode":49},{"recid":9,"pipeid":9,"length":38.01,"startnode":10,"endnode":28},{"recid":10,"pipeid":10,"length":35.55,"startnode":11,"endnode":6},{"recid":11,"pipeid":11,"length":93.68,"startnode":12,"endnode":32},{"recid":12,"pipeid":12,"length":14.05,"startnode":13,"endnode":10},{"recid":13,"pipeid":13,"length":31.32,"startnode":14,"endnode":52},{"recid":14,"pipeid":14,"length":34.66,"startnode":15,"endnode":11},{"recid":15,"pipeid":15,"length":58.67,"startnode":16,"endnode":20},{"recid":16,"pipeid":16,"length":73.3,"startnode":17,"endnode":7},{"recid":17,"pipeid":17,"length":38.87,"startnode":18,"endnode":41},{"recid":18,"pipeid":18,"length":23.72,"startnode":19,"endnode":14},{"recid":19,"pipeid":19,"length":26.87,"startnode":20,"endnode":21},{"recid":20,"pipeid":20,"length":15.87,"startnode":21,"endnode":9},{"recid":21,"pipeid":21,"length":25.45,"startnode":22,"endnode":49},{"recid":22,"pipeid":22,"length":146,"startnode":23,"endnode":62},{"recid":23,"pipeid":23,"length":15.75,"startnode":24,"endnode":34},{"recid":24,"pipeid":24,"length":112.7,"startnode":25,"endnode":39},{"recid":25,"pipeid":25,"length":11.9,"startnode":26,"endnode":44},{"recid":26,"pipeid":26,"length":28.31,"startnode":27,"endnode":19},{"recid":27,"pipeid":27,"length":43.36,"startnode":31,"endnode":28},{"recid":28,"pipeid":28,"length":73.16,"startnode":29,"endnode":17},{"recid":29,"pipeid":29,"length":39.49,"startnode":30,"endnode":36},{"recid":30,"pipeid":30,"length":42.49,"startnode":1,"endnode":31},{"recid":31,"pipeid":31,"length":105.5,"startnode":32,"endnode":16},{"recid":32,"pipeid":32,"length":59.9,"startnode":33,"endnode":4},{"recid":33,"pipeid":33,"length":8.927,"startnode":34,"endnode":26},{"recid":34,"pipeid":34,"length":66.01,"startnode":35,"endnode":15},{"recid":35,"pipeid":35,"length":21.77,"startnode":36,"endnode":48},{"recid":36,"pipeid":36,"length":87.8,"startnode":37,"endnode":57},{"recid":37,"pipeid":37,"length":13.23,"startnode":38,"endnode":30},{"recid":38,"pipeid":38,"length":20.83,"startnode":39,"endnode":54},{"recid":39,"pipeid":39,"length":34.95,"startnode":40,"endnode":11},{"recid":40,"pipeid":40,"length":18.94,"startnode":41,"endnode":66},{"recid":41,"pipeid":41,"length":29,"startnode":42,"endnode":40},{"recid":42,"pipeid":42,"length":245.3,"startnode":43,"endnode":72},{"recid":43,"pipeid":43,"length":21.47,"startnode":44,"endnode":45},{"recid":44,"pipeid":44,"length":19.76,"startnode":45,"endnode":47},{"recid":45,"pipeid":45,"length":81.33,"startnode":46,"endnode":61},{"recid":46,"pipeid":46,"length":20.08,"startnode":47,"endnode":10},{"recid":47,"pipeid":47,"length":15.46,"startnode":48,"endnode":13},{"recid":48,"pipeid":48,"length":32.31,"startnode":49,"endnode":28},{"recid":49,"pipeid":49,"length":57.89,"startnode":50,"endnode":45},{"recid":50,"pipeid":50,"length":19.19,"startnode":51,"endnode":14},{"recid":51,"pipeid":51,"length":11.22,"startnode":52,"endnode":44},{"recid":52,"pipeid":52,"length":14.94,"startnode":53,"endnode":6},{"recid":53,"pipeid":53,"length":44.83,"startnode":54,"endnode":3},{"recid":54,"pipeid":54,"length":67.89,"startnode":55,"endnode":54},{"recid":55,"pipeid":55,"length":51.55,"startnode":56,"endnode":12},{"recid":56,"pipeid":56,"length":106.4,"startnode":57,"endnode":33},{"recid":57,"pipeid":57,"length":109.4,"startnode":58,"endnode":43},{"recid":58,"pipeid":58,"length":78.61,"startnode":59,"endnode":5},{"recid":59,"pipeid":59,"length":39.42,"startnode":60,"endnode":71},{"recid":60,"pipeid":60,"length":160,"startnode":61,"endnode":23},{"recid":61,"pipeid":61,"length":9.624,"startnode":62,"endnode":37},{"recid":62,"pipeid":62,"length":37.61,"startnode":63,"endnode":62},{"recid":63,"pipeid":63,"length":37.47,"startnode":64,"endnode":38},{"recid":64,"pipeid":64,"length":668.4,"startnode":65,"endnode":73},{"recid":65,"pipeid":65,"length":40.83,"startnode":66,"endnode":2},{"recid":66,"pipeid":66,"length":337.4,"startnode":67,"endnode":58},{"recid":67,"pipeid":67,"length":107.7,"startnode":68,"endnode":35},{"recid":68,"pipeid":68,"length":46.88,"startnode":69,"endnode":25},{"recid":69,"pipeid":69,"length":11.31,"startnode":70,"endnode":69},{"recid":70,"pipeid":70,"length":18.03,"startnode":71,"endnode":59},{"recid":71,"pipeid":71,"length":129,"startnode":72,"endnode":33},{"recid":72,"pipeid":72,"length":132,"startnode":73,"endnode":29},{"recid":73,"pipeid":73,"length":176,"startnode":33,"endnode":64},{"recid":74,"pipeid":74,"length":41.25,"startnode":44,"endnode":19},{"recid":75,"pipeid":75,"length":42.63,"startnode":53,"endnode":19},{"recid":76,"pipeid":76,"length":140.6,"startnode":25,"endnode":55},{"recid":77,"pipeid":77,"length":164.1,"startnode":32,"endnode":20},{"recid":78,"pipeid":78,"length":106.6,"startnode":12,"endnode":16},{"recid":79,"pipeid":79,"length":243.8,"startnode":60,"endnode":55},{"recid":80,"pipeid":80,"length":41.94,"startnode":6,"endnode":40},{"recid":81,"pipeid":81,"length":86.01,"startnode":66,"endnode":52},{"recid":82,"pipeid":82,"length":61.81,"startnode":30,"endnode":13},{"recid":83,"pipeid":83,"length":59.14,"startnode":28,"endnode":50},{"recid":84,"pipeid":84,"length":143.5,"startnode":39,"endnode":69},{"recid":85,"pipeid":85,"length":94.82,"startnode":71,"endnode":5},{"recid":86,"pipeid":86,"length":323.9,"startnode":69,"endnode":60},{"recid":87,"pipeid":87,"length":79.08,"startnode":50,"endnode":52},{"recid":88,"pipeid":88,"length":60.52,"startnode":14,"endnode":66},{"recid":89,"pipeid":89,"length":123.4,"startnode":16,"endnode":56},{"recid":90,"pipeid":90,"length":110.1,"startnode":40,"endnode":35},{"recid":91,"pipeid":91,"length":100.3,"startnode":35,"endnode":11},{"recid":92,"pipeid":92,"length":57.41,"startnode":8,"endnode":36},{"recid":93,"pipeid":93,"length":184.9,"startnode":68,"endnode":42},{"recid":94,"pipeid":94,"length":50.6,"startnode":38,"endnode":31},{"recid":95,"pipeid":95,"length":165.5,"startnode":32,"endnode":21},{"recid":96,"pipeid":96,"length":357.8,"startnode":23,"endnode":56},{"recid":97,"pipeid":97,"length":61.2,"startnode":3,"endnode":39},{"recid":98,"pipeid":98,"length":36.45,"startnode":48,"endnode":34},{"recid":99,"pipeid":99,"length":21.29,"startnode":47,"endnode":13},{"recid":100,"pipeid":100,"length":96.67,"startnode":62,"endnode":57},{"recid":101,"pipeid":101,"length":39.36,"startnode":10,"endnode":45}]]
+2024-08-02 02:14:43.859 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: commercialPipes: [[{"recid":1,"diameter":63,"roughness":140,"cost":116},{"recid":2,"diameter":75,"roughness":140,"cost":172},{"recid":3,"diameter":90,"roughness":140,"cost":231},{"recid":4,"diameter":110,"roughness":140,"cost":340},{"recid":5,"diameter":125,"roughness":140,"cost":461},{"recid":6,"diameter":140,"roughness":140,"cost":576},{"recid":7,"diameter":160,"roughness":140,"cost":750},{"recid":8,"diameter":180,"roughness":140,"cost":945},{"recid":9,"diameter":200,"roughness":140,"cost":1113},{"recid":10,"diameter":250,"roughness":140,"cost":1762},{"recid":11,"diameter":280,"roughness":140,"cost":2210},{"recid":12,"diameter":315,"roughness":140,"cost":2794}]]
+2024-08-02 02:14:43.859 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: esrGeneral: [{"must_esr":[],"must_not_esr":[]}]
+2024-08-02 02:14:43.859 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: esrCost: [[]]
+2024-08-02 02:14:43.859 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: pumpGeneral: [{"must_not_pump":[],"energycost_factor":1}]
+2024-08-02 02:14:43.859 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: pumpManual: [[]]
+2024-08-02 02:14:43.859 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: valves: [[]]
+2024-08-02 02:14:43.859 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: version: [2.3.0.0]
+2024-08-02 02:14:43.860 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: time: [1min]
+2024-08-02 02:14:43.860 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[name_project]: [ Sample ]
+2024-08-02 02:14:43.860 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[name_organization]: [IIT Bombay]
+2024-08-02 02:14:43.860 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[min_node_pressure]: [0]
+2024-08-02 02:14:43.860 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[def_pipe_roughness]: [110]
+2024-08-02 02:14:43.860 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[min_hl_perkm]: [0]
+2024-08-02 02:14:43.860 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[max_hl_perkm]: [100]
+2024-08-02 02:14:43.860 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[supply_hours]: [24]
+2024-08-02 02:14:43.861 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[source_nodeid]: [1]
+2024-08-02 02:14:43.861 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[source_nodename]: [Node0]
+2024-08-02 02:14:43.861 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[source_elevation]: [14]
+2024-08-02 02:14:43.861 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[source_head]: [45]
+2024-08-02 02:14:43.861 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[max_water_speed]: []
+2024-08-02 02:14:43.861 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[min_water_speed]: []
+2024-08-02 02:14:43.861 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[max_pipe_pressure]: []
+2024-08-02 02:14:43.978 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: Network validation started...
+2024-08-02 02:14:43.981 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: Network validation complete..., networkValidationResult = 2
+2024-08-02 02:14:44.066 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: File renamed and moved successfully: '/home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/JalTantra-Code-and-Scripts/./DataNetworkGraphInput/2024-08-02_02-14-43.982_0_1907579.R' -> '/home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/JalTantra-Code-and-Scripts/./DataNetworkGraphInput_hashed/eda0a6c22cc7e6c9f00cd783bfc9b263ceb170c23eaa4b7f2b6cd69a0f3959ce.R'
+2024-08-02 02:14:44.066 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: creating gams m1 and m2 model data file
+2024-08-02 02:14:44.171 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: finished creating gams m1 and m2 model data file
+2024-08-02 02:14:44.172 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: Solver root dir : /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/JalTantra-Code-and-Scripts
+2024-08-02 02:14:44.172 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: Please save the network file, if not, before continuing the optimization
+2024-08-02 02:14:44.172 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: ERROR: Exception e = Please save the network file, if not, before continuing the optimization and click on optimize button again
+2024-08-02 02:14:44.172 [http-nio-8090-exec-4] ERROR c.h.j.logging.ConsoleInterceptor - FM: ERROR: Exception e = java.lang.Exception: Please save the network file, if not, before continuing the optimization and click on optimize button again
+2024-08-02 02:14:52.073 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: doPost() called
+2024-08-02 02:14:52.074 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-02 02:14:52.076 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-02 02:14:52.077 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-02 02:14:52.080 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-02 02:14:52.081 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-02 02:14:52.176 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: doPost() action=null
+2024-08-02 02:14:52.177 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: cmd: [save-record]
+2024-08-02 02:14:52.177 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: recid: [0]
+2024-08-02 02:14:52.177 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: general: [{"name_project":" Sample ","name_organization":"IIT Bombay","def_pipe_roughness":110,"max_hl_perkm":100,"supply_hours":24,"source_nodeid":1,"source_nodename":"Node0","source_elevation":14,"source_head":45}]
+2024-08-02 02:14:52.177 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: nodes: [[{"recid":1,"nodeid":2,"nodename":"Node1","elevation":13,"demand":0.0111},{"recid":2,"nodeid":3,"nodename":"Node2","elevation":10,"demand":0.0322},{"recid":3,"nodeid":4,"nodename":"Node3","elevation":18,"demand":0.0406},{"recid":4,"nodeid":5,"nodename":"Node4","elevation":14,"demand":0.0524},{"recid":5,"nodeid":6,"nodename":"Node5","elevation":11,"demand":0.0276},{"recid":6,"nodeid":7,"nodename":"Node6","elevation":16,"demand":0.0301},{"recid":7,"nodeid":8,"nodename":"Node7","elevation":23,"demand":0.0215},{"recid":8,"nodeid":9,"nodename":"Node8","elevation":18,"demand":0.0141},{"recid":9,"nodeid":10,"nodename":"Node9","elevation":6,"demand":0.024},{"recid":10,"nodeid":11,"nodename":"Node10","elevation":13,"demand":0.0442},{"recid":11,"nodeid":12,"nodename":"Node11","elevation":9,"demand":0.0541},{"recid":12,"nodeid":13,"nodename":"Node12","elevation":8,"demand":0.0242},{"recid":13,"nodeid":14,"nodename":"Node13","elevation":18,"demand":0.029},{"recid":14,"nodeid":15,"nodename":"Node14","elevation":15,"demand":0.0216},{"recid":15,"nodeid":16,"nodename":"Node15","elevation":14,"demand":0.0847},{"recid":16,"nodeid":17,"nodename":"Node16","elevation":11,"demand":0.0315},{"recid":17,"nodeid":18,"nodename":"Node17","elevation":17,"demand":0.0177},{"recid":18,"nodeid":19,"nodename":"Node18","elevation":19,"demand":0.0292},{"recid":19,"nodeid":20,"nodename":"Node19","elevation":16,"demand":0.0537},{"recid":20,"nodeid":21,"nodename":"Node20","elevation":23,"demand":0.0448},{"recid":21,"nodeid":22,"nodename":"Node21","elevation":15,"demand":0.00547},{"recid":22,"nodeid":23,"nodename":"Node22","elevation":10,"demand":0.143},{"recid":23,"nodeid":24,"nodename":"Node23","elevation":13,"demand":0.00339},{"recid":24,"nodeid":25,"nodename":"Node24","elevation":14,"demand":0.0645},{"recid":25,"nodeid":26,"nodename":"Node25","elevation":19,"demand":0.00448},{"recid":26,"nodeid":27,"nodename":"Node26","elevation":19,"demand":0.0138},{"recid":27,"nodeid":28,"nodename":"Node27","elevation":21,"demand":0.0372},{"recid":28,"nodeid":29,"nodename":"Node28","elevation":19,"demand":0.0441},{"recid":29,"nodeid":30,"nodename":"Node29","elevation":17,"demand":0.0246},{"recid":30,"nodeid":31,"nodename":"Node30","elevation":12,"demand":0.0293},{"recid":31,"nodeid":32,"nodename":"Node31","elevation":14,"demand":0.114},{"recid":32,"nodeid":33,"nodename":"Node32","elevation":9,"demand":0.101},{"recid":33,"nodeid":34,"nodename":"Node33","elevation":18,"demand":0.0131},{"recid":34,"nodeid":35,"nodename":"Node34","elevation":18,"demand":0.0826},{"recid":35,"nodeid":36,"nodename":"Node35","elevation":13,"demand":0.0255},{"recid":36,"nodeid":37,"nodename":"Node36","elevation":13,"demand":0.0209},{"recid":37,"nodeid":38,"nodename":"Node37","elevation":12,"demand":0.0218},{"recid":38,"nodeid":39,"nodename":"Node38","elevation":8,"demand":0.0727},{"recid":39,"nodeid":40,"nodename":"Node39","elevation":11,"demand":0.0464},{"recid":40,"nodeid":41,"nodename":"Node40","elevation":21,"demand":0.0124},{"recid":41,"nodeid":42,"nodename":"Node41","elevation":11,"demand":0.046},{"recid":42,"nodeid":43,"nodename":"Node42","elevation":15,"demand":0.0763},{"recid":43,"nodeid":44,"nodename":"Node43","elevation":15,"demand":0.0185},{"recid":44,"nodeid":45,"nodename":"Node44","elevation":13,"demand":0.0298},{"recid":45,"nodeid":46,"nodename":"Node45","elevation":11,"demand":0.0175},{"recid":46,"nodeid":47,"nodename":"Node46","elevation":17,"demand":0.0131},{"recid":47,"nodeid":48,"nodename":"Node47","elevation":20,"demand":0.0158},{"recid":48,"nodeid":49,"nodename":"Node48","elevation":14,"demand":0.0231},{"recid":49,"nodeid":50,"nodename":"Node49","elevation":22,"demand":0.0565},{"recid":50,"nodeid":51,"nodename":"Node50","elevation":14,"demand":0.00647},{"recid":51,"nodeid":52,"nodename":"Node51","elevation":9,"demand":0.0446},{"recid":52,"nodeid":53,"nodename":"Node52","elevation":13,"demand":0.0215},{"recid":53,"nodeid":54,"nodename":"Node53","elevation":14,"demand":0.0287},{"recid":54,"nodeid":55,"nodename":"Node54","elevation":16,"demand":0.0972},{"recid":55,"nodeid":56,"nodename":"Node55","elevation":17,"demand":0.115},{"recid":56,"nodeid":57,"nodename":"Node56","elevation":15},{"recid":57,"nodeid":58,"nodename":"Node57","elevation":6,"demand":0.17},{"recid":58,"nodeid":59,"nodename":"Node58","elevation":13,"demand":0.17},{"recid":59,"nodeid":60,"nodename":"Node59","elevation":19,"demand":0.17},{"recid":60,"nodeid":61,"nodename":"Node60","elevation":17,"demand":0.17},{"recid":61,"nodeid":62,"nodename":"Node61","elevation":15,"demand":0.58},{"recid":62,"nodeid":63,"nodename":"Node62","elevation":18,"demand":0.0752},{"recid":63,"nodeid":64,"nodename":"Node63","elevation":19,"demand":0.685},{"recid":64,"nodeid":65,"nodename":"Node64","elevation":20,"demand":1.34},{"recid":65,"nodeid":66,"nodename":"Node65","elevation":12,"demand":0.248},{"recid":66,"nodeid":67,"nodename":"Node66","elevation":18,"demand":0.405},{"recid":67,"nodeid":68,"nodename":"Node67","elevation":16,"demand":0.436},{"recid":68,"nodeid":69,"nodename":"Node68","elevation":19,"demand":0.631},{"recid":69,"nodeid":70,"nodename":"Node69","elevation":17,"demand":122},{"recid":70,"nodeid":71,"nodename":"Node70","elevation":14,"demand":122},{"recid":71,"nodeid":72,"nodename":"Node71","elevation":14,"demand":122},{"recid":72,"nodeid":73,"nodename":"Node72","elevation":14,"demand":122}]]
+2024-08-02 02:14:52.177 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: pipes: [[{"recid":1,"pipeid":1,"length":10.91,"startnode":2,"endnode":51},{"recid":2,"pipeid":2,"length":43.56,"startnode":3,"endnode":18},{"recid":3,"pipeid":3,"length":129.1,"startnode":4,"endnode":64},{"recid":4,"pipeid":4,"length":70.29,"startnode":5,"endnode":68},{"recid":5,"pipeid":5,"length":35.81,"startnode":6,"endnode":27},{"recid":6,"pipeid":6,"length":66.65,"startnode":7,"endnode":50},{"recid":7,"pipeid":7,"length":42.45,"startnode":8,"endnode":53},{"recid":8,"pipeid":8,"length":49.58,"startnode":9,"endnode":49},{"recid":9,"pipeid":9,"length":38.01,"startnode":10,"endnode":28},{"recid":10,"pipeid":10,"length":35.55,"startnode":11,"endnode":6},{"recid":11,"pipeid":11,"length":93.68,"startnode":12,"endnode":32},{"recid":12,"pipeid":12,"length":14.05,"startnode":13,"endnode":10},{"recid":13,"pipeid":13,"length":31.32,"startnode":14,"endnode":52},{"recid":14,"pipeid":14,"length":34.66,"startnode":15,"endnode":11},{"recid":15,"pipeid":15,"length":58.67,"startnode":16,"endnode":20},{"recid":16,"pipeid":16,"length":73.3,"startnode":17,"endnode":7},{"recid":17,"pipeid":17,"length":38.87,"startnode":18,"endnode":41},{"recid":18,"pipeid":18,"length":23.72,"startnode":19,"endnode":14},{"recid":19,"pipeid":19,"length":26.87,"startnode":20,"endnode":21},{"recid":20,"pipeid":20,"length":15.87,"startnode":21,"endnode":9},{"recid":21,"pipeid":21,"length":25.45,"startnode":22,"endnode":49},{"recid":22,"pipeid":22,"length":146,"startnode":23,"endnode":62},{"recid":23,"pipeid":23,"length":15.75,"startnode":24,"endnode":34},{"recid":24,"pipeid":24,"length":112.7,"startnode":25,"endnode":39},{"recid":25,"pipeid":25,"length":11.9,"startnode":26,"endnode":44},{"recid":26,"pipeid":26,"length":28.31,"startnode":27,"endnode":19},{"recid":27,"pipeid":27,"length":43.36,"startnode":31,"endnode":28},{"recid":28,"pipeid":28,"length":73.16,"startnode":29,"endnode":17},{"recid":29,"pipeid":29,"length":39.49,"startnode":30,"endnode":36},{"recid":30,"pipeid":30,"length":42.49,"startnode":1,"endnode":31},{"recid":31,"pipeid":31,"length":105.5,"startnode":32,"endnode":16},{"recid":32,"pipeid":32,"length":59.9,"startnode":33,"endnode":4},{"recid":33,"pipeid":33,"length":8.927,"startnode":34,"endnode":26},{"recid":34,"pipeid":34,"length":66.01,"startnode":35,"endnode":15},{"recid":35,"pipeid":35,"length":21.77,"startnode":36,"endnode":48},{"recid":36,"pipeid":36,"length":87.8,"startnode":37,"endnode":57},{"recid":37,"pipeid":37,"length":13.23,"startnode":38,"endnode":30},{"recid":38,"pipeid":38,"length":20.83,"startnode":39,"endnode":54},{"recid":39,"pipeid":39,"length":34.95,"startnode":40,"endnode":11},{"recid":40,"pipeid":40,"length":18.94,"startnode":41,"endnode":66},{"recid":41,"pipeid":41,"length":29,"startnode":42,"endnode":40},{"recid":42,"pipeid":42,"length":245.3,"startnode":43,"endnode":72},{"recid":43,"pipeid":43,"length":21.47,"startnode":44,"endnode":45},{"recid":44,"pipeid":44,"length":19.76,"startnode":45,"endnode":47},{"recid":45,"pipeid":45,"length":81.33,"startnode":46,"endnode":61},{"recid":46,"pipeid":46,"length":20.08,"startnode":47,"endnode":10},{"recid":47,"pipeid":47,"length":15.46,"startnode":48,"endnode":13},{"recid":48,"pipeid":48,"length":32.31,"startnode":49,"endnode":28},{"recid":49,"pipeid":49,"length":57.89,"startnode":50,"endnode":45},{"recid":50,"pipeid":50,"length":19.19,"startnode":51,"endnode":14},{"recid":51,"pipeid":51,"length":11.22,"startnode":52,"endnode":44},{"recid":52,"pipeid":52,"length":14.94,"startnode":53,"endnode":6},{"recid":53,"pipeid":53,"length":44.83,"startnode":54,"endnode":3},{"recid":54,"pipeid":54,"length":67.89,"startnode":55,"endnode":54},{"recid":55,"pipeid":55,"length":51.55,"startnode":56,"endnode":12},{"recid":56,"pipeid":56,"length":106.4,"startnode":57,"endnode":33},{"recid":57,"pipeid":57,"length":109.4,"startnode":58,"endnode":43},{"recid":58,"pipeid":58,"length":78.61,"startnode":59,"endnode":5},{"recid":59,"pipeid":59,"length":39.42,"startnode":60,"endnode":71},{"recid":60,"pipeid":60,"length":160,"startnode":61,"endnode":23},{"recid":61,"pipeid":61,"length":9.624,"startnode":62,"endnode":37},{"recid":62,"pipeid":62,"length":37.61,"startnode":63,"endnode":62},{"recid":63,"pipeid":63,"length":37.47,"startnode":64,"endnode":38},{"recid":64,"pipeid":64,"length":668.4,"startnode":65,"endnode":73},{"recid":65,"pipeid":65,"length":40.83,"startnode":66,"endnode":2},{"recid":66,"pipeid":66,"length":337.4,"startnode":67,"endnode":58},{"recid":67,"pipeid":67,"length":107.7,"startnode":68,"endnode":35},{"recid":68,"pipeid":68,"length":46.88,"startnode":69,"endnode":25},{"recid":69,"pipeid":69,"length":11.31,"startnode":70,"endnode":69},{"recid":70,"pipeid":70,"length":18.03,"startnode":71,"endnode":59},{"recid":71,"pipeid":71,"length":129,"startnode":72,"endnode":33},{"recid":72,"pipeid":72,"length":132,"startnode":73,"endnode":29},{"recid":73,"pipeid":73,"length":176,"startnode":33,"endnode":64},{"recid":74,"pipeid":74,"length":41.25,"startnode":44,"endnode":19},{"recid":75,"pipeid":75,"length":42.63,"startnode":53,"endnode":19},{"recid":76,"pipeid":76,"length":140.6,"startnode":25,"endnode":55},{"recid":77,"pipeid":77,"length":164.1,"startnode":32,"endnode":20},{"recid":78,"pipeid":78,"length":106.6,"startnode":12,"endnode":16},{"recid":79,"pipeid":79,"length":243.8,"startnode":60,"endnode":55},{"recid":80,"pipeid":80,"length":41.94,"startnode":6,"endnode":40},{"recid":81,"pipeid":81,"length":86.01,"startnode":66,"endnode":52},{"recid":82,"pipeid":82,"length":61.81,"startnode":30,"endnode":13},{"recid":83,"pipeid":83,"length":59.14,"startnode":28,"endnode":50},{"recid":84,"pipeid":84,"length":143.5,"startnode":39,"endnode":69},{"recid":85,"pipeid":85,"length":94.82,"startnode":71,"endnode":5},{"recid":86,"pipeid":86,"length":323.9,"startnode":69,"endnode":60},{"recid":87,"pipeid":87,"length":79.08,"startnode":50,"endnode":52},{"recid":88,"pipeid":88,"length":60.52,"startnode":14,"endnode":66},{"recid":89,"pipeid":89,"length":123.4,"startnode":16,"endnode":56},{"recid":90,"pipeid":90,"length":110.1,"startnode":40,"endnode":35},{"recid":91,"pipeid":91,"length":100.3,"startnode":35,"endnode":11},{"recid":92,"pipeid":92,"length":57.41,"startnode":8,"endnode":36},{"recid":93,"pipeid":93,"length":184.9,"startnode":68,"endnode":42},{"recid":94,"pipeid":94,"length":50.6,"startnode":38,"endnode":31},{"recid":95,"pipeid":95,"length":165.5,"startnode":32,"endnode":21},{"recid":96,"pipeid":96,"length":357.8,"startnode":23,"endnode":56},{"recid":97,"pipeid":97,"length":61.2,"startnode":3,"endnode":39},{"recid":98,"pipeid":98,"length":36.45,"startnode":48,"endnode":34},{"recid":99,"pipeid":99,"length":21.29,"startnode":47,"endnode":13},{"recid":100,"pipeid":100,"length":96.67,"startnode":62,"endnode":57},{"recid":101,"pipeid":101,"length":39.36,"startnode":10,"endnode":45}]]
+2024-08-02 02:14:52.178 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: commercialPipes: [[{"recid":1,"diameter":63,"roughness":140,"cost":116},{"recid":2,"diameter":75,"roughness":140,"cost":172},{"recid":3,"diameter":90,"roughness":140,"cost":231},{"recid":4,"diameter":110,"roughness":140,"cost":340},{"recid":5,"diameter":125,"roughness":140,"cost":461},{"recid":6,"diameter":140,"roughness":140,"cost":576},{"recid":7,"diameter":160,"roughness":140,"cost":750},{"recid":8,"diameter":180,"roughness":140,"cost":945},{"recid":9,"diameter":200,"roughness":140,"cost":1113},{"recid":10,"diameter":250,"roughness":140,"cost":1762},{"recid":11,"diameter":280,"roughness":140,"cost":2210},{"recid":12,"diameter":315,"roughness":140,"cost":2794}]]
+2024-08-02 02:14:52.178 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: esrGeneral: [{"must_esr":[],"must_not_esr":[]}]
+2024-08-02 02:14:52.178 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: esrCost: [[]]
+2024-08-02 02:14:52.178 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: pumpGeneral: [{"must_not_pump":[],"energycost_factor":1}]
+2024-08-02 02:14:52.179 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: pumpManual: [[]]
+2024-08-02 02:14:52.179 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: valves: [[]]
+2024-08-02 02:14:52.179 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: version: [2.3.0.0]
+2024-08-02 02:14:52.179 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: time: [1min]
+2024-08-02 02:14:52.180 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[name_project]: [ Sample ]
+2024-08-02 02:14:52.180 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[name_organization]: [IIT Bombay]
+2024-08-02 02:14:52.180 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[min_node_pressure]: [0]
+2024-08-02 02:14:52.180 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[def_pipe_roughness]: [110]
+2024-08-02 02:14:52.181 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[min_hl_perkm]: [0]
+2024-08-02 02:14:52.181 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[max_hl_perkm]: [100]
+2024-08-02 02:14:52.181 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[supply_hours]: [24]
+2024-08-02 02:14:52.181 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[source_nodeid]: [1]
+2024-08-02 02:14:52.181 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[source_nodename]: [Node0]
+2024-08-02 02:14:52.182 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[source_elevation]: [14]
+2024-08-02 02:14:52.182 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[source_head]: [45]
+2024-08-02 02:14:52.182 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[max_water_speed]: []
+2024-08-02 02:14:52.182 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[min_water_speed]: []
+2024-08-02 02:14:52.182 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[max_pipe_pressure]: []
+2024-08-02 02:14:52.201 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: Network validation started...
+2024-08-02 02:14:52.201 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: Network validation complete..., networkValidationResult = 2
+2024-08-02 02:14:52.205 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: Request for this network was already submitted in the past: it may be in progress🏃 or finished🏁
+2024-08-02 02:14:52.205 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: Solver root dir : /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/JalTantra-Code-and-Scripts
+2024-08-02 02:14:52.206 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: networkFileHash = eda0a6c22cc7e6c9f00cd783bfc9b263ceb170c23eaa4b7f2b6cd69a0f3959ce1min, statusFileExists = false
+2024-08-02 02:14:52.206 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: Starting the solvers (CalculateNetworkCost.py) for network file '2-eda0a6c22cc7e6c9f00cd783bfc9b263ceb170c23eaa4b7f2b6cd69a0f3959ce.R'
+2024-08-02 02:14:52.206 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: Linux
+2024-08-02 02:14:54.348 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: ERROR: Exception e = The solver is working, refresh the page after 1 minutes to see the results
+2024-08-02 02:14:54.349 [http-nio-8090-exec-8] ERROR c.h.j.logging.ConsoleInterceptor - FM: ERROR: Exception e = java.lang.Exception: The solver is working, refresh the page after 1 minutes to see the results
+2024-08-02 02:16:24.432 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: doPost() called
+2024-08-02 02:16:24.435 [http-nio-8090-exec-6] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-02 02:16:24.440 [http-nio-8090-exec-6] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-02 02:16:24.443 [http-nio-8090-exec-6] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-02 02:16:24.449 [http-nio-8090-exec-6] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-02 02:16:24.453 [http-nio-8090-exec-6] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-02 02:16:24.604 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: doPost() action=null
+2024-08-02 02:16:24.605 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: cmd: [save-record]
+2024-08-02 02:16:24.605 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: recid: [0]
+2024-08-02 02:16:24.606 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: general: [{"name_project":" Sample ","name_organization":"IIT Bombay","def_pipe_roughness":110,"max_hl_perkm":100,"supply_hours":24,"source_nodeid":1,"source_nodename":"Node0","source_elevation":14,"source_head":45}]
+2024-08-02 02:16:24.606 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: nodes: [[{"recid":1,"nodeid":2,"nodename":"Node1","elevation":13,"demand":0.0111},{"recid":2,"nodeid":3,"nodename":"Node2","elevation":10,"demand":0.0322},{"recid":3,"nodeid":4,"nodename":"Node3","elevation":18,"demand":0.0406},{"recid":4,"nodeid":5,"nodename":"Node4","elevation":14,"demand":0.0524},{"recid":5,"nodeid":6,"nodename":"Node5","elevation":11,"demand":0.0276},{"recid":6,"nodeid":7,"nodename":"Node6","elevation":16,"demand":0.0301},{"recid":7,"nodeid":8,"nodename":"Node7","elevation":23,"demand":0.0215},{"recid":8,"nodeid":9,"nodename":"Node8","elevation":18,"demand":0.0141},{"recid":9,"nodeid":10,"nodename":"Node9","elevation":6,"demand":0.024},{"recid":10,"nodeid":11,"nodename":"Node10","elevation":13,"demand":0.0442},{"recid":11,"nodeid":12,"nodename":"Node11","elevation":9,"demand":0.0541},{"recid":12,"nodeid":13,"nodename":"Node12","elevation":8,"demand":0.0242},{"recid":13,"nodeid":14,"nodename":"Node13","elevation":18,"demand":0.029},{"recid":14,"nodeid":15,"nodename":"Node14","elevation":15,"demand":0.0216},{"recid":15,"nodeid":16,"nodename":"Node15","elevation":14,"demand":0.0847},{"recid":16,"nodeid":17,"nodename":"Node16","elevation":11,"demand":0.0315},{"recid":17,"nodeid":18,"nodename":"Node17","elevation":17,"demand":0.0177},{"recid":18,"nodeid":19,"nodename":"Node18","elevation":19,"demand":0.0292},{"recid":19,"nodeid":20,"nodename":"Node19","elevation":16,"demand":0.0537},{"recid":20,"nodeid":21,"nodename":"Node20","elevation":23,"demand":0.0448},{"recid":21,"nodeid":22,"nodename":"Node21","elevation":15,"demand":0.00547},{"recid":22,"nodeid":23,"nodename":"Node22","elevation":10,"demand":0.143},{"recid":23,"nodeid":24,"nodename":"Node23","elevation":13,"demand":0.00339},{"recid":24,"nodeid":25,"nodename":"Node24","elevation":14,"demand":0.0645},{"recid":25,"nodeid":26,"nodename":"Node25","elevation":19,"demand":0.00448},{"recid":26,"nodeid":27,"nodename":"Node26","elevation":19,"demand":0.0138},{"recid":27,"nodeid":28,"nodename":"Node27","elevation":21,"demand":0.0372},{"recid":28,"nodeid":29,"nodename":"Node28","elevation":19,"demand":0.0441},{"recid":29,"nodeid":30,"nodename":"Node29","elevation":17,"demand":0.0246},{"recid":30,"nodeid":31,"nodename":"Node30","elevation":12,"demand":0.0293},{"recid":31,"nodeid":32,"nodename":"Node31","elevation":14,"demand":0.114},{"recid":32,"nodeid":33,"nodename":"Node32","elevation":9,"demand":0.101},{"recid":33,"nodeid":34,"nodename":"Node33","elevation":18,"demand":0.0131},{"recid":34,"nodeid":35,"nodename":"Node34","elevation":18,"demand":0.0826},{"recid":35,"nodeid":36,"nodename":"Node35","elevation":13,"demand":0.0255},{"recid":36,"nodeid":37,"nodename":"Node36","elevation":13,"demand":0.0209},{"recid":37,"nodeid":38,"nodename":"Node37","elevation":12,"demand":0.0218},{"recid":38,"nodeid":39,"nodename":"Node38","elevation":8,"demand":0.0727},{"recid":39,"nodeid":40,"nodename":"Node39","elevation":11,"demand":0.0464},{"recid":40,"nodeid":41,"nodename":"Node40","elevation":21,"demand":0.0124},{"recid":41,"nodeid":42,"nodename":"Node41","elevation":11,"demand":0.046},{"recid":42,"nodeid":43,"nodename":"Node42","elevation":15,"demand":0.0763},{"recid":43,"nodeid":44,"nodename":"Node43","elevation":15,"demand":0.0185},{"recid":44,"nodeid":45,"nodename":"Node44","elevation":13,"demand":0.0298},{"recid":45,"nodeid":46,"nodename":"Node45","elevation":11,"demand":0.0175},{"recid":46,"nodeid":47,"nodename":"Node46","elevation":17,"demand":0.0131},{"recid":47,"nodeid":48,"nodename":"Node47","elevation":20,"demand":0.0158},{"recid":48,"nodeid":49,"nodename":"Node48","elevation":14,"demand":0.0231},{"recid":49,"nodeid":50,"nodename":"Node49","elevation":22,"demand":0.0565},{"recid":50,"nodeid":51,"nodename":"Node50","elevation":14,"demand":0.00647},{"recid":51,"nodeid":52,"nodename":"Node51","elevation":9,"demand":0.0446},{"recid":52,"nodeid":53,"nodename":"Node52","elevation":13,"demand":0.0215},{"recid":53,"nodeid":54,"nodename":"Node53","elevation":14,"demand":0.0287},{"recid":54,"nodeid":55,"nodename":"Node54","elevation":16,"demand":0.0972},{"recid":55,"nodeid":56,"nodename":"Node55","elevation":17,"demand":0.115},{"recid":56,"nodeid":57,"nodename":"Node56","elevation":15},{"recid":57,"nodeid":58,"nodename":"Node57","elevation":6,"demand":0.17},{"recid":58,"nodeid":59,"nodename":"Node58","elevation":13,"demand":0.17},{"recid":59,"nodeid":60,"nodename":"Node59","elevation":19,"demand":0.17},{"recid":60,"nodeid":61,"nodename":"Node60","elevation":17,"demand":0.17},{"recid":61,"nodeid":62,"nodename":"Node61","elevation":15,"demand":0.58},{"recid":62,"nodeid":63,"nodename":"Node62","elevation":18,"demand":0.0752},{"recid":63,"nodeid":64,"nodename":"Node63","elevation":19,"demand":0.685},{"recid":64,"nodeid":65,"nodename":"Node64","elevation":20,"demand":1.34},{"recid":65,"nodeid":66,"nodename":"Node65","elevation":12,"demand":0.248},{"recid":66,"nodeid":67,"nodename":"Node66","elevation":18,"demand":0.405},{"recid":67,"nodeid":68,"nodename":"Node67","elevation":16,"demand":0.436},{"recid":68,"nodeid":69,"nodename":"Node68","elevation":19,"demand":0.631},{"recid":69,"nodeid":70,"nodename":"Node69","elevation":17,"demand":122},{"recid":70,"nodeid":71,"nodename":"Node70","elevation":14,"demand":122},{"recid":71,"nodeid":72,"nodename":"Node71","elevation":14,"demand":122},{"recid":72,"nodeid":73,"nodename":"Node72","elevation":14,"demand":122}]]
+2024-08-02 02:16:24.606 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: pipes: [[{"recid":1,"pipeid":1,"length":10.91,"startnode":2,"endnode":51},{"recid":2,"pipeid":2,"length":43.56,"startnode":3,"endnode":18},{"recid":3,"pipeid":3,"length":129.1,"startnode":4,"endnode":64},{"recid":4,"pipeid":4,"length":70.29,"startnode":5,"endnode":68},{"recid":5,"pipeid":5,"length":35.81,"startnode":6,"endnode":27},{"recid":6,"pipeid":6,"length":66.65,"startnode":7,"endnode":50},{"recid":7,"pipeid":7,"length":42.45,"startnode":8,"endnode":53},{"recid":8,"pipeid":8,"length":49.58,"startnode":9,"endnode":49},{"recid":9,"pipeid":9,"length":38.01,"startnode":10,"endnode":28},{"recid":10,"pipeid":10,"length":35.55,"startnode":11,"endnode":6},{"recid":11,"pipeid":11,"length":93.68,"startnode":12,"endnode":32},{"recid":12,"pipeid":12,"length":14.05,"startnode":13,"endnode":10},{"recid":13,"pipeid":13,"length":31.32,"startnode":14,"endnode":52},{"recid":14,"pipeid":14,"length":34.66,"startnode":15,"endnode":11},{"recid":15,"pipeid":15,"length":58.67,"startnode":16,"endnode":20},{"recid":16,"pipeid":16,"length":73.3,"startnode":17,"endnode":7},{"recid":17,"pipeid":17,"length":38.87,"startnode":18,"endnode":41},{"recid":18,"pipeid":18,"length":23.72,"startnode":19,"endnode":14},{"recid":19,"pipeid":19,"length":26.87,"startnode":20,"endnode":21},{"recid":20,"pipeid":20,"length":15.87,"startnode":21,"endnode":9},{"recid":21,"pipeid":21,"length":25.45,"startnode":22,"endnode":49},{"recid":22,"pipeid":22,"length":146,"startnode":23,"endnode":62},{"recid":23,"pipeid":23,"length":15.75,"startnode":24,"endnode":34},{"recid":24,"pipeid":24,"length":112.7,"startnode":25,"endnode":39},{"recid":25,"pipeid":25,"length":11.9,"startnode":26,"endnode":44},{"recid":26,"pipeid":26,"length":28.31,"startnode":27,"endnode":19},{"recid":27,"pipeid":27,"length":43.36,"startnode":31,"endnode":28},{"recid":28,"pipeid":28,"length":73.16,"startnode":29,"endnode":17},{"recid":29,"pipeid":29,"length":39.49,"startnode":30,"endnode":36},{"recid":30,"pipeid":30,"length":42.49,"startnode":1,"endnode":31},{"recid":31,"pipeid":31,"length":105.5,"startnode":32,"endnode":16},{"recid":32,"pipeid":32,"length":59.9,"startnode":33,"endnode":4},{"recid":33,"pipeid":33,"length":8.927,"startnode":34,"endnode":26},{"recid":34,"pipeid":34,"length":66.01,"startnode":35,"endnode":15},{"recid":35,"pipeid":35,"length":21.77,"startnode":36,"endnode":48},{"recid":36,"pipeid":36,"length":87.8,"startnode":37,"endnode":57},{"recid":37,"pipeid":37,"length":13.23,"startnode":38,"endnode":30},{"recid":38,"pipeid":38,"length":20.83,"startnode":39,"endnode":54},{"recid":39,"pipeid":39,"length":34.95,"startnode":40,"endnode":11},{"recid":40,"pipeid":40,"length":18.94,"startnode":41,"endnode":66},{"recid":41,"pipeid":41,"length":29,"startnode":42,"endnode":40},{"recid":42,"pipeid":42,"length":245.3,"startnode":43,"endnode":72},{"recid":43,"pipeid":43,"length":21.47,"startnode":44,"endnode":45},{"recid":44,"pipeid":44,"length":19.76,"startnode":45,"endnode":47},{"recid":45,"pipeid":45,"length":81.33,"startnode":46,"endnode":61},{"recid":46,"pipeid":46,"length":20.08,"startnode":47,"endnode":10},{"recid":47,"pipeid":47,"length":15.46,"startnode":48,"endnode":13},{"recid":48,"pipeid":48,"length":32.31,"startnode":49,"endnode":28},{"recid":49,"pipeid":49,"length":57.89,"startnode":50,"endnode":45},{"recid":50,"pipeid":50,"length":19.19,"startnode":51,"endnode":14},{"recid":51,"pipeid":51,"length":11.22,"startnode":52,"endnode":44},{"recid":52,"pipeid":52,"length":14.94,"startnode":53,"endnode":6},{"recid":53,"pipeid":53,"length":44.83,"startnode":54,"endnode":3},{"recid":54,"pipeid":54,"length":67.89,"startnode":55,"endnode":54},{"recid":55,"pipeid":55,"length":51.55,"startnode":56,"endnode":12},{"recid":56,"pipeid":56,"length":106.4,"startnode":57,"endnode":33},{"recid":57,"pipeid":57,"length":109.4,"startnode":58,"endnode":43},{"recid":58,"pipeid":58,"length":78.61,"startnode":59,"endnode":5},{"recid":59,"pipeid":59,"length":39.42,"startnode":60,"endnode":71},{"recid":60,"pipeid":60,"length":160,"startnode":61,"endnode":23},{"recid":61,"pipeid":61,"length":9.624,"startnode":62,"endnode":37},{"recid":62,"pipeid":62,"length":37.61,"startnode":63,"endnode":62},{"recid":63,"pipeid":63,"length":37.47,"startnode":64,"endnode":38},{"recid":64,"pipeid":64,"length":668.4,"startnode":65,"endnode":73},{"recid":65,"pipeid":65,"length":40.83,"startnode":66,"endnode":2},{"recid":66,"pipeid":66,"length":337.4,"startnode":67,"endnode":58},{"recid":67,"pipeid":67,"length":107.7,"startnode":68,"endnode":35},{"recid":68,"pipeid":68,"length":46.88,"startnode":69,"endnode":25},{"recid":69,"pipeid":69,"length":11.31,"startnode":70,"endnode":69},{"recid":70,"pipeid":70,"length":18.03,"startnode":71,"endnode":59},{"recid":71,"pipeid":71,"length":129,"startnode":72,"endnode":33},{"recid":72,"pipeid":72,"length":132,"startnode":73,"endnode":29},{"recid":73,"pipeid":73,"length":176,"startnode":33,"endnode":64},{"recid":74,"pipeid":74,"length":41.25,"startnode":44,"endnode":19},{"recid":75,"pipeid":75,"length":42.63,"startnode":53,"endnode":19},{"recid":76,"pipeid":76,"length":140.6,"startnode":25,"endnode":55},{"recid":77,"pipeid":77,"length":164.1,"startnode":32,"endnode":20},{"recid":78,"pipeid":78,"length":106.6,"startnode":12,"endnode":16},{"recid":79,"pipeid":79,"length":243.8,"startnode":60,"endnode":55},{"recid":80,"pipeid":80,"length":41.94,"startnode":6,"endnode":40},{"recid":81,"pipeid":81,"length":86.01,"startnode":66,"endnode":52},{"recid":82,"pipeid":82,"length":61.81,"startnode":30,"endnode":13},{"recid":83,"pipeid":83,"length":59.14,"startnode":28,"endnode":50},{"recid":84,"pipeid":84,"length":143.5,"startnode":39,"endnode":69},{"recid":85,"pipeid":85,"length":94.82,"startnode":71,"endnode":5},{"recid":86,"pipeid":86,"length":323.9,"startnode":69,"endnode":60},{"recid":87,"pipeid":87,"length":79.08,"startnode":50,"endnode":52},{"recid":88,"pipeid":88,"length":60.52,"startnode":14,"endnode":66},{"recid":89,"pipeid":89,"length":123.4,"startnode":16,"endnode":56},{"recid":90,"pipeid":90,"length":110.1,"startnode":40,"endnode":35},{"recid":91,"pipeid":91,"length":100.3,"startnode":35,"endnode":11},{"recid":92,"pipeid":92,"length":57.41,"startnode":8,"endnode":36},{"recid":93,"pipeid":93,"length":184.9,"startnode":68,"endnode":42},{"recid":94,"pipeid":94,"length":50.6,"startnode":38,"endnode":31},{"recid":95,"pipeid":95,"length":165.5,"startnode":32,"endnode":21},{"recid":96,"pipeid":96,"length":357.8,"startnode":23,"endnode":56},{"recid":97,"pipeid":97,"length":61.2,"startnode":3,"endnode":39},{"recid":98,"pipeid":98,"length":36.45,"startnode":48,"endnode":34},{"recid":99,"pipeid":99,"length":21.29,"startnode":47,"endnode":13},{"recid":100,"pipeid":100,"length":96.67,"startnode":62,"endnode":57},{"recid":101,"pipeid":101,"length":39.36,"startnode":10,"endnode":45}]]
+2024-08-02 02:16:24.607 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: commercialPipes: [[{"recid":1,"diameter":63,"roughness":140,"cost":116},{"recid":2,"diameter":75,"roughness":140,"cost":172},{"recid":3,"diameter":90,"roughness":140,"cost":231},{"recid":4,"diameter":110,"roughness":140,"cost":340},{"recid":5,"diameter":125,"roughness":140,"cost":461},{"recid":6,"diameter":140,"roughness":140,"cost":576},{"recid":7,"diameter":160,"roughness":140,"cost":750},{"recid":8,"diameter":180,"roughness":140,"cost":945},{"recid":9,"diameter":200,"roughness":140,"cost":1113},{"recid":10,"diameter":250,"roughness":140,"cost":1762},{"recid":11,"diameter":280,"roughness":140,"cost":2210},{"recid":12,"diameter":315,"roughness":140,"cost":2794}]]
+2024-08-02 02:16:24.607 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: esrGeneral: [{"must_esr":[],"must_not_esr":[]}]
+2024-08-02 02:16:24.607 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: esrCost: [[]]
+2024-08-02 02:16:24.607 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: pumpGeneral: [{"must_not_pump":[],"energycost_factor":1}]
+2024-08-02 02:16:24.607 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: pumpManual: [[]]
+2024-08-02 02:16:24.607 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: valves: [[]]
+2024-08-02 02:16:24.608 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: version: [2.3.0.0]
+2024-08-02 02:16:24.608 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: time: [1min]
+2024-08-02 02:16:24.608 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[name_project]: [ Sample ]
+2024-08-02 02:16:24.608 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[name_organization]: [IIT Bombay]
+2024-08-02 02:16:24.608 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[min_node_pressure]: [0]
+2024-08-02 02:16:24.609 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[def_pipe_roughness]: [110]
+2024-08-02 02:16:24.609 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[min_hl_perkm]: [0]
+2024-08-02 02:16:24.609 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[max_hl_perkm]: [100]
+2024-08-02 02:16:24.609 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[supply_hours]: [24]
+2024-08-02 02:16:24.609 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[source_nodeid]: [1]
+2024-08-02 02:16:24.609 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[source_nodename]: [Node0]
+2024-08-02 02:16:24.610 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[source_elevation]: [14]
+2024-08-02 02:16:24.610 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[source_head]: [45]
+2024-08-02 02:16:24.610 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[max_water_speed]: []
+2024-08-02 02:16:24.610 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[min_water_speed]: []
+2024-08-02 02:16:24.610 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: record[max_pipe_pressure]: []
+2024-08-02 02:16:24.621 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: Network validation started...
+2024-08-02 02:16:24.621 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: Network validation complete..., networkValidationResult = 2
+2024-08-02 02:16:24.625 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: Request for this network was already submitted in the past: it may be in progress🏃 or finished🏁
+2024-08-02 02:16:24.625 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: Solver root dir : /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/JalTantra-Code-and-Scripts
+2024-08-02 02:16:24.626 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: networkFileHash = eda0a6c22cc7e6c9f00cd783bfc9b263ceb170c23eaa4b7f2b6cd69a0f3959ce1min, statusFileExists = true
+2024-08-02 02:16:24.626 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: Extracting the result
+2024-08-02 02:16:24.627 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: 0_result.txt first line = True
+2024-08-02 02:16:24.627 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: Best result found for network with hash = eda0a6c22cc7e6c9f00cd783bfc9b263ceb170c23eaa4b7f2b6cd69a0f3959ce1min
+2024-08-02 02:16:24.627 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: Solver = knitro
+2024-08-02 02:16:24.627 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: Model = m1
+2024-08-02 02:16:24.627 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: INFO: Best result = 3388729.2542070094
+2024-08-02 02:16:24.661 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: *** The solution is ***
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 73
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 1 45.0
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 2 32.6334
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 3 28.7963
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 4 29.6154
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 5 18.4212
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 6 31.8573
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 7 37.1586
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 34.5117
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 9 38.1412
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 10 38.3137
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 11 30.5106
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 12 36.9569
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 13 37.8923
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 14 33.7675
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 15 29.2742
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 16 37.1135
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 17 34.7581
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 18 29.7879
+2024-08-02 02:16:24.713 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 19 33.5526
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 20 37.4378
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 21 37.7473
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 22 39.3805
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 23 29.6672
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 24 36.1171
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 25 21.6693
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 26 35.858
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 27 32.8013
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 28 40.1997
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 29 30.4008
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 30 38.891
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 31 41.3668
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 32 37.2281
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 33 26.0711
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 34 36.1171
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 35 26.9404
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 36 37.1259
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 37 27.3319
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 38 39.5132
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 39 25.7024
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 40 30.6422
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 41 30.6729
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 42 29.4318
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 43 18.227
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 44 35.5134
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 45 36.6137
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 46 29.6511
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 47 37.7454
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 48 37.1829
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 49 39.3805
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 50 38.4988
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 51 33.0438
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 52 34.9501
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 53 32.5793
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 54 27.2566
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 55 24.4874
+2024-08-02 02:16:24.714 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 56 36.5812
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 57 27.0984
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 58 18.1401
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 59 14.7841
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 60 19.0
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 61 29.6512
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 62 27.3584
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 63 27.3577
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 64 37.3522
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 65 20.0
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 66 31.1043
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 67 18.0
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 68 21.8484
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 69 19.0168
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 70 17.0
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 71 14.0
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 72 18.4724
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 73 22.5444
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 101
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 1 31 495.259
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 2 51 -4.61612
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 3 18 -131.994
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 3 39 112.933
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 4 64 -5.93575
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 5 68 -113.324
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 6 27 -3.80971
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 6 40 17.3598
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 7 50 -123.446
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 36 -106.737
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 53 106.715
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 9 49 -3.70195
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 10 28 -111.801
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 10 45 103.733
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 11 6 -96.6413
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 12 16 -0.801328
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 12 32 -1.15572
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 13 10 -4.08506
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 14 52 -11.8159
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 14 66 5.02413
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 15 11 -4.48561
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 16 20 -1.63896
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 16 56 1.43361
+2024-08-02 02:16:24.715 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 17 7 -123.416
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 18 41 -132.012
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 19 14 -2.14016
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 20 21 -2.436
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 21 9 -3.68785
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 22 49 -0.00547
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 23 56 -3.22155
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 23 62 2.89105
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 24 34 -0.00339
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 25 39 -11.479
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 25 55 -3.2858
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 26 44 4.008
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 27 19 -3.82351
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 28 50 149.758
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 29 17 -123.384
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 30 13 2.92489
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 30 36 105.668
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 31 28 265.327
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 32 16 0.680673
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 32 20 -0.743339
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 32 21 -1.20705
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 33 4 -5.89515
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 33 64 -114.642
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 34 26 4.01248
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 35 11 -93.4436
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 35 15 -4.46401
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 36 48 -1.09409
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 37 57 1.10411
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 38 30 108.618
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 38 31 -229.902
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 39 54 -6.68143
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 39 69 108.062
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 40 11 1.33218
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 40 35 11.0986
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 41 66 -132.025
+2024-08-02 02:16:24.716 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 42 40 -4.88262
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 43 72 -0.6513
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 44 19 5.23773
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 44 45 -113.766
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 45 47 -5.7924
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 46 61 -0.0175
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 47 10 -3.95862
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 47 13 -1.84688
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 48 13 -5.13886
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 48 34 4.02897
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 49 28 -3.73052
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 50 45 4.27021
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 50 52 21.9859
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 51 14 -4.62259
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 52 44 -112.518
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 53 6 110.219
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 53 19 -3.52517
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 54 3 -19.0295
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 55 54 -12.3194
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 56 12 -1.90295
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 57 33 2.21495
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 58 43 -0.575
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 59 5 -5.16197
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 60 55 -8.93639
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 60 71 8.89811
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 61 23 -0.1875
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 62 37 1.12501
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 62 57 1.11084
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 63 62 -0.0752
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 64 38 -121.263
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 65 73 -1.34
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 66 2 -4.60502
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 66 52 -122.643
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 67 58 -0.405
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 68 35 -108.924
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 68 42 -4.83662
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 69 25 -14.7003
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 69 60 0.131725
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 70 69 -122.0
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 71 5 -108.11
+2024-08-02 02:16:24.717 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 71 59 -4.99197
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 72 33 -122.651
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 73 29 -123.34
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 101
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 1 31 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 11 42.49
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 2 51 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 10.91
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 3 18 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 9 43.56
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 3 39 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 61.2
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 4 64 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 129.1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 5 68 2
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 65.8684
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 9 4.421600000000008
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 6 27 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 35.81
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 6 40 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 3 41.94
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 7 50 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 9 66.65
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 36 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 57.41
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 53 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 42.45
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 9 49 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 49.58
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 10 28 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 38.01
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 10 45 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 39.36
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 11 6 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 35.55
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 12 16 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 106.6
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 12 32 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 93.68
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 13 10 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 14.05
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 14 52 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 2 31.32
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 14 66 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 60.52
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 15 11 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 34.66
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 16 20 1
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 58.67
+2024-08-02 02:16:24.718 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 16 56 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 123.4
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 17 7 2
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 23.4815
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 9 49.8185
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 18 41 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 9 38.87
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 19 14 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 23.72
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 20 21 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 26.87
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 21 9 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 15.87
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 22 49 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 25.45
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 23 56 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 357.8
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 23 62 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 146.0
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 24 34 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 15.75
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 25 39 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 2 112.7
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 25 55 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 140.6
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 26 44 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 11.9
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 27 19 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 28.31
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 28 50 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 9 59.14
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 29 17 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 73.16
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 30 13 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 61.81
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 30 36 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 39.49
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 31 28 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 11 43.36
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 32 16 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 105.5
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 32 20 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 164.1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 32 21 1
+2024-08-02 02:16:24.719 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 165.5
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 33 4 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 59.9
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 33 64 2
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 7 61.1947
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 114.80529999999999
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 34 26 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 8.927
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 35 11 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 100.3
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 35 15 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 66.01
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 36 48 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 21.77
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 37 57 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 87.8
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 38 30 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 13.23
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 38 31 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 10 50.6
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 39 54 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 20.83
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 39 69 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 143.5
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 40 11 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 34.95
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 40 35 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 2 110.1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 41 66 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 9 18.94
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 42 40 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 29.0
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 43 72 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 245.3
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 44 19 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 41.25
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 44 45 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 21.47
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 45 47 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 19.76
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 46 61 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 81.33
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 47 10 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 20.08
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 47 13 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 21.29
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 48 13 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 15.46
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 48 34 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 36.45
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 49 28 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 32.31
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 50 45 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 57.89
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 50 52 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 3 79.08
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 51 14 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 19.19
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 52 44 1
+2024-08-02 02:16:24.720 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 11.22
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 53 6 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 14.94
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 53 19 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 42.63
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 54 3 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 3 44.83
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 55 54 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 2 67.89
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 56 12 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 51.55
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 57 33 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 106.4
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 58 43 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 109.4
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 59 5 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 78.61
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 60 55 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 2 243.8
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 60 71 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 39.42
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 61 23 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 160.0
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 62 37 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 9.624
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 62 57 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 96.67
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 63 62 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 37.61
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 64 38 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 37.47
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 65 73 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 668.4
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 66 2 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 40.83
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 66 52 2
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 54.7532
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 9 31.256800000000013
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 67 58 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 337.4
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 68 35 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 107.7
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 68 42 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 184.9
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 69 25 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 2 46.88
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 69 60 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 323.9
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 70 69 2
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 5 0.38636
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 6 10.92364
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 71 5 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 94.82
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 71 59 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 0 18.03
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 72 33 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 129.0
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 73 29 1
+2024-08-02 02:16:24.721 [http-nio-8090-exec-6] ERROR c.h.j.logging.ConsoleInterceptor - FM: DEBUG: 8 132.0

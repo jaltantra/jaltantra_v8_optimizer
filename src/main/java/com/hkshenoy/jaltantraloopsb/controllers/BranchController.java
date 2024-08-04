@@ -63,8 +63,7 @@ public class BranchController
 	private String contextPath;
 
 
-
-
+	// "/branch" endpoint returns system.html document after setting the attributes
 	@RequestMapping(value="",method= RequestMethod.GET)
 	public String home(Model model){
 		model.addAttribute("contextPath",contextPath);
@@ -73,7 +72,7 @@ public class BranchController
 	}
 
 
-
+	// "/branch/optimize" endpoint authenticates the user, accepts file uploading and optimizes the uploaded network.
 	@RequestMapping(value="/optimize",method = {RequestMethod.GET, RequestMethod.POST})
     public void doPost(@AuthenticationPrincipal UserDetails user,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{		
@@ -83,7 +82,7 @@ public class BranchController
 		if(user != null){
 			userHistoryTracker.saveUserRequest(user,request);
 		}
-
+		//--------------------------FILE UPLOAD HANDLING:START-----------------------------------
 		String t = request.getParameter("action");
 		if(t!=null)
 		{
@@ -113,7 +112,8 @@ public class BranchController
 				return;
 			}
 		}
-		
+		//--------------------------FILE UPLOAD HANDLING:END----------------------------------
+		//------------------Optimization Process:START----------------------------------------
 		PrintWriter out = response.getWriter();
 		try{
 			String place = request.getParameter("place");
@@ -399,6 +399,7 @@ public class BranchController
 				message="{\"status\":\"error\",\"message\":\"Failed to solve network\"}";
 			}
 			out.print(message);
+			//------------------Optimization Process:END----------------------------------------
 		}
 		catch(Exception e)
 		{
