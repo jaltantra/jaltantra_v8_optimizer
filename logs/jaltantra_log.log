@@ -678,3 +678,1143 @@ WARNING: Dynamic loading of agents will be disallowed by default in a future rel
 2024-08-04 16:48:32.986 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
 2024-08-04 16:48:33.000 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - insert into users_session_details (client_ip_address,login_datetime,session_id) values (?,?,?)
 2024-08-04 16:48:33.074 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - update users_session_details set user_id=? where id=?
+2024-08-04 17:02:52.491 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:02:52.494 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:02:52.497 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:02:52.568 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:02:52.569 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:02:52.570 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:02:52.572 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code,rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users u1_0 left join users_request_details rd1_0 on u1_0.id=rd1_0.user_id where u1_0.id=?
+2024-08-04 17:02:52.573 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:02:52.575 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - insert into users_session_details (client_ip_address,login_datetime,session_id) values (?,?,?)
+2024-08-04 17:02:52.593 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - update users_session_details set user_id=? where id=?
+2024-08-04 17:20:38.208 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 17:20:39.295 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 17:20:39.819 [Attach Listener] ERROR c.h.j.logging.ConsoleInterceptor - WARNING: A Java agent has been loaded dynamically (/home/cse/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.12/byte-buddy-agent-1.14.12.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2024-08-04 17:20:50.068 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 17:20:50.744 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 17:21:15.608 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:21:15.643 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:21:15.663 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:21:15.736 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:21:15.737 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:21:15.738 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:21:15.754 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code,rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users u1_0 left join users_request_details rd1_0 on u1_0.id=rd1_0.user_id where u1_0.id=?
+2024-08-04 17:21:15.756 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:21:15.768 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - insert into users_session_details (client_ip_address,login_datetime,session_id) values (?,?,?)
+2024-08-04 17:21:15.811 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - update users_session_details set user_id=? where id=?
+2024-08-04 17:22:01.851 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:22:01.856 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:22:01.860 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:22:01.866 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-04 17:22:02.047 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-04 17:32:56.667 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 17:32:57.373 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 17:32:57.430 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2024-08-04 17:32:57.548 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8090 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8090 or configure this application to listen on another port.
+
+2024-08-04 17:36:46.927 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 17:36:48.546 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 17:36:49.480 [Attach Listener] ERROR c.h.j.logging.ConsoleInterceptor - WARNING: A Java agent has been loaded dynamically (/home/cse/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.12/byte-buddy-agent-1.14.12.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2024-08-04 17:37:03.522 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 17:37:04.252 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 17:37:04.322 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2024-08-04 17:37:04.363 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8090 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8090 or configure this application to listen on another port.
+
+2024-08-04 17:38:08.671 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 17:38:09.720 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 17:38:10.105 [Attach Listener] ERROR c.h.j.logging.ConsoleInterceptor - WARNING: A Java agent has been loaded dynamically (/home/cse/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.12/byte-buddy-agent-1.14.12.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2024-08-04 17:38:16.594 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 17:38:17.464 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 17:40:13.618 [http-nio-8090-exec-10] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:40:13.643 [http-nio-8090-exec-10] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:40:13.648 [http-nio-8090-exec-10] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:40:13.710 [http-nio-8090-exec-10] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:40:13.712 [http-nio-8090-exec-10] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:40:13.713 [http-nio-8090-exec-10] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:40:13.728 [http-nio-8090-exec-10] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code,rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users u1_0 left join users_request_details rd1_0 on u1_0.id=rd1_0.user_id where u1_0.id=?
+2024-08-04 17:40:13.730 [http-nio-8090-exec-10] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:40:13.745 [http-nio-8090-exec-10] DEBUG org.hibernate.SQL - insert into users_session_details (client_ip_address,login_datetime,session_id) values (?,?,?)
+2024-08-04 17:40:13.790 [http-nio-8090-exec-10] DEBUG org.hibernate.SQL - update users_session_details set user_id=? where id=?
+2024-08-04 17:40:56.784 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:40:56.787 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:40:56.789 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:40:56.792 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-04 17:40:56.840 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-04 17:43:01.466 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - Starting JaltantraLoopSbApplicationTests using Java 22.0.1 with PID 13545 (started by cse in /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3)
+2024-08-04 17:43:01.468 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - The following 1 profile is active: "dev"
+2024-08-04 17:43:02.164 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-04 17:43:02.207 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 36 ms. Found 1 JPA repository interface.
+2024-08-04 17:43:02.927 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-04 17:43:02.944 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-08-04 17:43:03.102 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6475e778
+2024-08-04 17:43:03.103 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-08-04 17:43:03.816 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 17:43:03.832 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelUploader.version
+2024-08-04 17:43:03.834 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelOutputUploader.version
+2024-08-04 17:43:04.056 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-04 17:43:04.432 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 17:43:04.851 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-08-04 17:43:05.303 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 17:43:05.366 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - Started JaltantraLoopSbApplicationTests in 4.164 seconds (process running for 4.849)
+2024-08-04 17:43:05.648 [Attach Listener] ERROR c.h.j.logging.ConsoleInterceptor - WARNING: A Java agent has been loaded dynamically (/home/cse/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.12/byte-buddy-agent-1.14.12.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2024-08-04 17:43:05.901 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 17:43:05.904 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-08-04 17:43:05.910 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-08-04 17:43:07.884 [main] INFO  c.h.j.JaltantraLoopSbApplication - Starting JaltantraLoopSbApplication v0.0.1-SNAPSHOT using Java 22.0.1 with PID 13622 (/home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/target/JaltantraLoopSB-0.0.1-SNAPSHOT.jar started by cse in /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3)
+2024-08-04 17:43:07.886 [main] INFO  c.h.j.JaltantraLoopSbApplication - The following 1 profile is active: "dev"
+2024-08-04 17:43:08.913 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-04 17:43:08.967 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 48 ms. Found 1 JPA repository interface.
+2024-08-04 17:43:09.767 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8090 (http)
+2024-08-04 17:43:09.789 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-08-04 17:43:09.789 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-08-04 17:43:09.820 [main] INFO  o.a.c.c.C.[.[.[/jaltantra_loop_dev_v7] - Initializing Spring embedded WebApplicationContext
+2024-08-04 17:43:09.821 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1880 ms
+2024-08-04 17:43:10.703 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-04 17:43:10.740 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-08-04 17:43:10.958 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@39e7e040
+2024-08-04 17:43:10.961 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-08-04 17:43:12.923 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 17:43:12.950 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelOutputUploader.version
+2024-08-04 17:43:12.959 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelUploader.version
+2024-08-04 17:43:13.312 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-04 17:43:13.962 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 17:43:14.563 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-08-04 17:43:15.085 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 17:43:15.168 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8090 (http) with context path '/jaltantra_loop_dev_v7'
+2024-08-04 17:43:15.181 [main] INFO  c.h.j.JaltantraLoopSbApplication - Started JaltantraLoopSbApplication in 7.812 seconds (process running for 8.303)
+2024-08-04 17:43:15.635 [http-nio-8090-exec-1] INFO  o.a.c.c.C.[.[.[/jaltantra_loop_dev_v7] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-04 17:43:15.636 [http-nio-8090-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-08-04 17:43:15.638 [http-nio-8090-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-08-04 17:43:29.931 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:43:29.996 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:43:30.037 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:43:30.104 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:43:30.106 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:43:30.107 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:43:30.109 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - com.hkshenoy.jaltantraloopsb.security.UserSessionDetail@150c7dc0
+2024-08-04 17:43:30.125 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code,rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users u1_0 left join users_request_details rd1_0 on u1_0.id=rd1_0.user_id where u1_0.id=?
+2024-08-04 17:43:30.127 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:43:30.140 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - insert into users_session_details (client_ip_address,login_datetime,session_id) values (?,?,?)
+2024-08-04 17:43:30.179 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - update users_session_details set user_id=? where id=?
+2024-08-04 17:44:12.513 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 17:44:12.514 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-08-04 17:44:12.519 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-08-04 17:44:22.045 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - Starting JaltantraLoopSbApplicationTests using Java 22.0.1 with PID 13816 (started by cse in /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3)
+2024-08-04 17:44:22.047 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - The following 1 profile is active: "dev"
+2024-08-04 17:44:22.072 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@6ce1f601
+2024-08-04 17:44:22.903 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-04 17:44:22.942 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 34 ms. Found 1 JPA repository interface.
+2024-08-04 17:44:23.795 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-04 17:44:23.818 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-08-04 17:44:23.979 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@31880efa
+2024-08-04 17:44:23.980 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-08-04 17:44:24.742 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 17:44:24.761 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelUploader.version
+2024-08-04 17:44:24.763 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelOutputUploader.version
+2024-08-04 17:44:25.018 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-04 17:44:25.397 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 17:44:25.575 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 11 mappings in 'requestMappingHandlerMapping'
+2024-08-04 17:44:25.687 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /static/**] in 'resourceHandlerMapping'
+2024-08-04 17:44:25.814 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-08-04 17:44:26.056 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-08-04 17:44:26.082 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-08-04 17:44:26.278 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 17:44:26.335 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - Started JaltantraLoopSbApplicationTests in 4.597 seconds (process running for 5.312)
+2024-08-04 17:44:26.653 [Attach Listener] ERROR c.h.j.logging.ConsoleInterceptor - WARNING: A Java agent has been loaded dynamically (/home/cse/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.12/byte-buddy-agent-1.14.12.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2024-08-04 17:44:26.856 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@6ce1f601, started on Sun Aug 04 17:44:22 IST 2024
+2024-08-04 17:44:26.862 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 17:44:26.864 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-08-04 17:44:26.872 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-08-04 17:44:28.698 [main] INFO  c.h.j.JaltantraLoopSbApplication - Starting JaltantraLoopSbApplication v0.0.1-SNAPSHOT using Java 22.0.1 with PID 13893 (/home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/target/JaltantraLoopSB-0.0.1-SNAPSHOT.jar started by cse in /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3)
+2024-08-04 17:44:28.704 [main] INFO  c.h.j.JaltantraLoopSbApplication - The following 1 profile is active: "dev"
+2024-08-04 17:44:29.764 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-04 17:44:29.812 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 40 ms. Found 1 JPA repository interface.
+2024-08-04 17:44:30.611 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8090 (http)
+2024-08-04 17:44:30.626 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-08-04 17:44:30.627 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-08-04 17:44:30.655 [main] INFO  o.a.c.c.C.[.[.[/jaltantra_loop_dev_v7] - Initializing Spring embedded WebApplicationContext
+2024-08-04 17:44:30.656 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1862 ms
+2024-08-04 17:44:30.848 [main] DEBUG o.s.w.f.ServerHttpObservationFilter - Filter 'webMvcObservationFilter' configured for use
+2024-08-04 17:44:31.320 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-04 17:44:31.347 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-08-04 17:44:31.490 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@d2cb2d0
+2024-08-04 17:44:31.493 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-08-04 17:44:32.478 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 17:44:32.497 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelOutputUploader.version
+2024-08-04 17:44:32.502 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelUploader.version
+2024-08-04 17:44:32.791 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-04 17:44:33.351 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 17:44:33.536 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 11 mappings in 'requestMappingHandlerMapping'
+2024-08-04 17:44:33.691 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /static/**] in 'resourceHandlerMapping'
+2024-08-04 17:44:33.890 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-08-04 17:44:34.207 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-08-04 17:44:34.239 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-08-04 17:44:34.457 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 17:44:34.532 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8090 (http) with context path '/jaltantra_loop_dev_v7'
+2024-08-04 17:44:34.545 [main] INFO  c.h.j.JaltantraLoopSbApplication - Started JaltantraLoopSbApplication in 6.317 seconds (process running for 6.762)
+2024-08-04 17:44:36.020 [http-nio-8090-exec-1] INFO  o.a.c.c.C.[.[.[/jaltantra_loop_dev_v7] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-04 17:44:36.020 [http-nio-8090-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-08-04 17:44:36.020 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2024-08-04 17:44:36.020 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2024-08-04 17:44:36.020 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2024-08-04 17:44:36.022 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6e089bcb
+2024-08-04 17:44:36.023 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@265d72fd
+2024-08-04 17:44:36.023 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-08-04 17:44:36.023 [http-nio-8090-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2024-08-04 17:44:36.077 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/login", parameters={}
+2024-08-04 17:44:36.079 [http-nio-8090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.LoginController#login()
+2024-08-04 17:44:36.328 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:36.374 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/w2ui-1.4.2.css", parameters={}
+2024-08-04 17:44:36.374 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 17:44:36.374 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/style.css", parameters={}
+2024-08-04 17:44:36.376 [http-nio-8090-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:36.376 [http-nio-8090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:36.376 [http-nio-8090-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:36.388 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:36.388 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:36.390 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:36.436 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 17:44:36.438 [http-nio-8090-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:36.442 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:45.911 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:44:45.996 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:44:46.070 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:44:46.158 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:44:46.160 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:44:46.161 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:44:46.163 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - com.hkshenoy.jaltantraloopsb.security.UserSessionDetail@6d2f49ad
+2024-08-04 17:44:46.178 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code,rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users u1_0 left join users_request_details rd1_0 on u1_0.id=rd1_0.user_id where u1_0.id=?
+2024-08-04 17:44:46.180 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:44:46.193 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - insert into users_session_details (client_ip_address,login_datetime,session_id) values (?,?,?)
+2024-08-04 17:44:46.236 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - update users_session_details set user_id=? where id=?
+2024-08-04 17:44:46.622 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/", parameters={}
+2024-08-04 17:44:46.625 [http-nio-8090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.JaltantraLoopController#home(UserDetails, Model)
+2024-08-04 17:44:46.646 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:46.685 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/style.css", parameters={}
+2024-08-04 17:44:46.685 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 17:44:46.685 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/w2ui-1.4.2.css", parameters={}
+2024-08-04 17:44:46.686 [http-nio-8090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:46.686 [http-nio-8090-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:46.686 [http-nio-8090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:46.688 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:46.688 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:46.688 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:48.531 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/branch", parameters={}
+2024-08-04 17:44:48.532 [http-nio-8090-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#home(Model)
+2024-08-04 17:44:48.583 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:48.596 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/w2ui-1.4.2.css", parameters={}
+2024-08-04 17:44:48.597 [http-nio-8090-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:48.599 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/jquery-2.1.4.min.js", parameters={}
+2024-08-04 17:44:48.599 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/font-awesome/css/font-awesome.css", parameters={}
+2024-08-04 17:44:48.599 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/w2ui-1.4.2.js", parameters={}
+2024-08-04 17:44:48.599 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:48.600 [http-nio-8090-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:48.600 [http-nio-8090-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:48.601 [http-nio-8090-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:48.602 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:48.602 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/ContextMenu.js", parameters={}
+2024-08-04 17:44:48.599 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/json.2.min.js", parameters={}
+2024-08-04 17:44:48.603 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:48.603 [http-nio-8090-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:48.603 [http-nio-8090-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:48.605 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:48.608 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:48.608 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/markerwithlabel.js", parameters={}
+2024-08-04 17:44:48.608 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:48.609 [http-nio-8090-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:48.615 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:48.616 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/dagre.js", parameters={}
+2024-08-04 17:44:48.616 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/xlsx.full.min.js", parameters={}
+2024-08-04 17:44:48.617 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/map.js", parameters={}
+2024-08-04 17:44:48.617 [http-nio-8090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:48.617 [http-nio-8090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:48.620 [http-nio-8090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:48.621 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/html2canvas.js", parameters={}
+2024-08-04 17:44:48.621 [http-nio-8090-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:48.622 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:48.622 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:48.623 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:48.627 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:48.767 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 17:44:48.767 [http-nio-8090-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:48.769 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:44:48.811 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/font-awesome/fonts/fontawesome-webfont.woff2?v=4.4.0", parameters={masked}
+2024-08-04 17:44:48.812 [http-nio-8090-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:44:48.818 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:45:30.173 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - POST "/jaltantra_loop_dev_v7/branch/optimize", parameters={masked}
+2024-08-04 17:45:30.175 [http-nio-8090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#doPost(UserDetails, HttpServletRequest, HttpServletResponse)
+2024-08-04 17:45:30.182 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - Post request Received
+2024-08-04 17:45:30.186 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - Request Parameters:
+2024-08-04 17:45:30.186 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - cmd: save-record
+2024-08-04 17:45:30.187 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - recid: 0
+2024-08-04 17:45:30.187 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - general: {"name_project":"Sample","min_node_pressure":7,"def_pipe_roughness":140,"max_hl_perkm":10,"max_water_speed":1.5,"supply_hours":12,"source_nodeid":8,"source_nodename":"Node8","source_elevation":505,"source_head":530}
+2024-08-04 17:45:30.187 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - nodes: [{"recid":1,"nodeid":1,"nodename":"Node1","elevation":442,"demand":2.1},{"recid":2,"nodeid":2,"nodename":"Node2","elevation":477,"demand":0.8},{"recid":3,"nodeid":3,"nodename":"Node3","elevation":496,"demand":3.4},{"recid":4,"nodeid":4,"nodename":"Node4","elevation":464,"demand":1.75},{"recid":5,"nodeid":7,"nodename":"Node7","elevation":493,"demand":2.6},{"recid":6,"nodeid":6,"nodename":"Node6","elevation":390,"demand":1.8},{"recid":7,"nodeid":9,"nodename":"Node9","elevation":517},{"recid":8,"nodeid":10,"nodename":"Node10","elevation":509},{"recid":9,"nodeid":11,"nodename":"Node11","elevation":472}]
+2024-08-04 17:45:30.187 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - pipes: [{"recid":1,"pipeid":2,"diameter":110,"length":7345,"startnode":3,"endnode":7,"parallelallowed":true},{"recid":2,"pipeid":3,"length":3491,"startnode":2,"endnode":6},{"recid":3,"pipeid":4,"length":2442,"startnode":2,"endnode":4},{"recid":4,"pipeid":5,"length":1943,"startnode":9,"endnode":3},{"recid":5,"pipeid":6,"length":2686,"startnode":8,"endnode":9},{"recid":6,"pipeid":7,"length":4808,"startnode":10,"endnode":2},{"recid":7,"pipeid":8,"length":924,"startnode":3,"endnode":10},{"recid":8,"pipeid":9,"length":4266,"startnode":11,"endnode":1},{"recid":9,"pipeid":10,"length":485,"startnode":4,"endnode":11}]
+2024-08-04 17:45:30.187 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - commercialPipes: [{"recid":1,"diameter":63,"cost":116},{"recid":2,"diameter":75,"cost":172},{"recid":3,"diameter":90,"cost":231},{"recid":4,"diameter":110,"cost":340},{"recid":5,"diameter":125,"cost":461},{"recid":6,"diameter":140,"cost":576},{"recid":7,"diameter":160,"cost":750},{"recid":8,"diameter":180,"cost":945},{"recid":9,"diameter":200,"cost":1113},{"recid":10,"diameter":225,"cost":1430},{"recid":11,"diameter":250,"cost":1762},{"recid":12,"diameter":280,"cost":2210},{"recid":13,"diameter":315,"cost":2794}]
+2024-08-04 17:45:30.188 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - esrGeneral: {"secondary_supply_hours":6,"esr_capacity_factor":0.5,"max_esr_height":25,"allow_dummy":true,"must_esr":[],"must_not_esr":[7,4],"esr_enabled":true}
+2024-08-04 17:45:30.188 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - esrCost: [{"recid":1,"maxcapacity":25000,"unitcost":24.47},{"recid":2,"mincapacity":25000,"maxcapacity":50000,"basecost":611750,"unitcost":12.96},{"recid":3,"mincapacity":50000,"maxcapacity":75000,"basecost":935750,"unitcost":9.64},{"recid":4,"mincapacity":75000,"maxcapacity":100000,"basecost":1176750,"unitcost":8.64},{"recid":5,"mincapacity":100000,"maxcapacity":150000,"basecost":1392750,"unitcost":7.23},{"recid":6,"mincapacity":150000,"maxcapacity":200000,"basecost":1754250,"unitcost":6.03},{"recid":7,"mincapacity":200000,"maxcapacity":300000,"basecost":2055750,"unitcost":5.4},{"recid":8,"mincapacity":300000,"maxcapacity":400000,"basecost":2595750,"unitcost":5.12},{"recid":9,"mincapacity":400000,"maxcapacity":1500000,"basecost":3107750,"unitcost":4.32},{"recid":10,"mincapacity":1500000,"maxcapacity":2000000,"basecost":7859750,"unitcost":3.92}]
+2024-08-04 17:45:30.188 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - pumpGeneral: {"energycost_factor":1}
+2024-08-04 17:45:30.188 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - pumpManual: []
+2024-08-04 17:45:30.188 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - valves: []
+2024-08-04 17:45:30.188 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - version: 2.3.0.0
+2024-08-04 17:45:30.189 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - record[name_project]: Sample
+2024-08-04 17:45:30.189 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - record[min_node_pressure]: 7
+2024-08-04 17:45:30.189 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - record[def_pipe_roughness]: 140
+2024-08-04 17:45:30.189 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - record[min_hl_perkm]: 0
+2024-08-04 17:45:30.189 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - record[max_hl_perkm]: 10
+2024-08-04 17:45:30.189 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - record[max_water_speed]: 1.5
+2024-08-04 17:45:30.190 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - record[supply_hours]: 12
+2024-08-04 17:45:30.190 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - record[source_nodeid]: 8
+2024-08-04 17:45:30.190 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - record[source_nodename]: Node8
+2024-08-04 17:45:30.190 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - record[source_elevation]: 505
+2024-08-04 17:45:30.190 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - record[source_head]: 530
+2024-08-04 17:45:30.190 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - record[name_organization]: 
+2024-08-04 17:45:30.190 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - record[max_pipe_pressure]: 
+2024-08-04 17:45:30.193 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:45:30.197 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:45:30.199 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:45:30.203 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-04 17:45:30.211 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-04 17:45:30.676 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - After addvariables: 0
+2024-08-04 17:45:30.677 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - After setobjective: 0
+2024-08-04 17:45:30.677 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - After setesroption: 0
+2024-08-04 17:45:30.677 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - After setpumpoption: 0
+2024-08-04 17:45:30.677 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - After setvalveoption: 0
+2024-08-04 17:45:30.679 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - After pipeconstraints: 167
+2024-08-04 17:45:30.681 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - After headlossconstraints: 312
+2024-08-04 17:45:30.682 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - After esrconstraints: 561
+2024-08-04 17:45:30.683 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - After esrpipeconstraints: 570
+2024-08-04 17:45:30.683 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - After pumpconstraints: 570
+2024-08-04 17:45:30.683 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - Constraint count:570
+2024-08-04 17:45:30.794 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - Time taken: 377 milliseconds
+2024-08-04 17:45:30.794 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - Time taken: 121.0 milliseconds
+2024-08-04 17:45:30.794 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - Nodes: 0.0
+2024-08-04 17:45:30.800 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:51:07.477 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 17:51:07.479 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-08-04 17:51:07.483 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-08-04 17:51:17.462 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - Starting JaltantraLoopSbApplicationTests using Java 22.0.1 with PID 14163 (started by cse in /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3)
+2024-08-04 17:51:17.463 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - The following 1 profile is active: "dev"
+2024-08-04 17:51:17.481 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@6ce1f601
+2024-08-04 17:51:18.142 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-04 17:51:18.178 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31 ms. Found 1 JPA repository interface.
+2024-08-04 17:51:18.908 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-04 17:51:18.929 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-08-04 17:51:19.094 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2cadcff6
+2024-08-04 17:51:19.095 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-08-04 17:51:19.816 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 17:51:19.833 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelUploader.version
+2024-08-04 17:51:19.835 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelOutputUploader.version
+2024-08-04 17:51:20.057 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-04 17:51:20.434 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 17:51:20.626 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 11 mappings in 'requestMappingHandlerMapping'
+2024-08-04 17:51:20.786 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /static/**] in 'resourceHandlerMapping'
+2024-08-04 17:51:20.908 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-08-04 17:51:21.174 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-08-04 17:51:21.202 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-08-04 17:51:21.404 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 17:51:21.467 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - Started JaltantraLoopSbApplicationTests in 4.256 seconds (process running for 4.939)
+2024-08-04 17:51:21.783 [Attach Listener] ERROR c.h.j.logging.ConsoleInterceptor - WARNING: A Java agent has been loaded dynamically (/home/cse/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.12/byte-buddy-agent-1.14.12.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2024-08-04 17:51:22.036 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@6ce1f601, started on Sun Aug 04 17:51:17 IST 2024
+2024-08-04 17:51:22.042 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 17:51:22.045 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-08-04 17:51:22.051 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-08-04 17:51:23.734 [main] INFO  c.h.j.JaltantraLoopSbApplication - Starting JaltantraLoopSbApplication v0.0.1-SNAPSHOT using Java 22.0.1 with PID 14238 (/home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/target/JaltantraLoopSB-0.0.1-SNAPSHOT.jar started by cse in /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3)
+2024-08-04 17:51:23.737 [main] INFO  c.h.j.JaltantraLoopSbApplication - The following 1 profile is active: "dev"
+2024-08-04 17:51:24.871 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-04 17:51:24.917 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 1 JPA repository interface.
+2024-08-04 17:51:25.625 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8090 (http)
+2024-08-04 17:51:25.645 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-08-04 17:51:25.645 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-08-04 17:51:25.680 [main] INFO  o.a.c.c.C.[.[.[/jaltantra_loop_dev_v7] - Initializing Spring embedded WebApplicationContext
+2024-08-04 17:51:25.680 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1847 ms
+2024-08-04 17:51:25.863 [main] DEBUG o.s.w.f.ServerHttpObservationFilter - Filter 'webMvcObservationFilter' configured for use
+2024-08-04 17:51:26.342 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-04 17:51:26.374 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-08-04 17:51:26.559 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f122cdc
+2024-08-04 17:51:26.561 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-08-04 17:51:27.525 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 17:51:27.545 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelOutputUploader.version
+2024-08-04 17:51:27.553 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelUploader.version
+2024-08-04 17:51:27.855 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-04 17:51:28.396 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 17:51:28.591 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 11 mappings in 'requestMappingHandlerMapping'
+2024-08-04 17:51:28.711 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /static/**] in 'resourceHandlerMapping'
+2024-08-04 17:51:28.828 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-08-04 17:51:29.032 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-08-04 17:51:29.063 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-08-04 17:51:29.271 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 17:51:29.342 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8090 (http) with context path '/jaltantra_loop_dev_v7'
+2024-08-04 17:51:29.356 [main] INFO  c.h.j.JaltantraLoopSbApplication - Started JaltantraLoopSbApplication in 6.071 seconds (process running for 6.51)
+2024-08-04 17:51:54.012 [http-nio-8090-exec-1] INFO  o.a.c.c.C.[.[.[/jaltantra_loop_dev_v7] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-04 17:51:54.012 [http-nio-8090-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-08-04 17:51:54.012 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2024-08-04 17:51:54.012 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2024-08-04 17:51:54.012 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2024-08-04 17:51:54.013 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@2350e46
+2024-08-04 17:51:54.013 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@19574274
+2024-08-04 17:51:54.014 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-08-04 17:51:54.014 [http-nio-8090-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-08-04 17:51:54.070 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/login", parameters={}
+2024-08-04 17:51:54.072 [http-nio-8090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.LoginController#login()
+2024-08-04 17:51:54.364 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:51:54.400 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 17:51:54.400 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/style.css", parameters={}
+2024-08-04 17:51:54.402 [http-nio-8090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:51:54.402 [http-nio-8090-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:51:54.403 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/w2ui-1.4.2.css", parameters={}
+2024-08-04 17:51:54.404 [http-nio-8090-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:51:54.415 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:51:54.415 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:51:54.416 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:51:54.447 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 17:51:54.449 [http-nio-8090-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:51:54.451 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:03.596 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:52:03.620 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:52:03.668 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:52:03.820 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:52:03.821 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:52:03.823 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:52:03.825 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - com.hkshenoy.jaltantraloopsb.security.UserSessionDetail@34f774fa
+2024-08-04 17:52:03.839 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code,rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users u1_0 left join users_request_details rd1_0 on u1_0.id=rd1_0.user_id where u1_0.id=?
+2024-08-04 17:52:03.841 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:52:03.854 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - insert into users_session_details (client_ip_address,login_datetime,session_id) values (?,?,?)
+2024-08-04 17:52:03.893 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - update users_session_details set user_id=? where id=?
+2024-08-04 17:52:04.201 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/", parameters={}
+2024-08-04 17:52:04.202 [http-nio-8090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.JaltantraLoopController#home(UserDetails, Model)
+2024-08-04 17:52:04.216 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:04.251 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/w2ui-1.4.2.css", parameters={}
+2024-08-04 17:52:04.251 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 17:52:04.251 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/style.css", parameters={}
+2024-08-04 17:52:04.252 [http-nio-8090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:04.252 [http-nio-8090-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:04.252 [http-nio-8090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:04.254 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:04.254 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:04.254 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:09.169 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/branch", parameters={}
+2024-08-04 17:52:09.171 [http-nio-8090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#home(Model)
+2024-08-04 17:52:09.231 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:09.245 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/ContextMenu.js", parameters={}
+2024-08-04 17:52:09.245 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/json.2.min.js", parameters={}
+2024-08-04 17:52:09.245 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/jquery-2.1.4.min.js", parameters={}
+2024-08-04 17:52:09.245 [http-nio-8090-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:09.245 [http-nio-8090-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:09.246 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/w2ui-1.4.2.css", parameters={}
+2024-08-04 17:52:09.246 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/font-awesome/css/font-awesome.css", parameters={}
+2024-08-04 17:52:09.246 [http-nio-8090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:09.246 [http-nio-8090-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:09.247 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:09.247 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:09.246 [http-nio-8090-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:09.248 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:09.248 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/w2ui-1.4.2.js", parameters={}
+2024-08-04 17:52:09.250 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:09.251 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:09.251 [http-nio-8090-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:09.262 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/map.js", parameters={}
+2024-08-04 17:52:09.262 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:09.263 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/html2canvas.js", parameters={}
+2024-08-04 17:52:09.264 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/dagre.js", parameters={}
+2024-08-04 17:52:09.262 [http-nio-8090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:09.265 [http-nio-8090-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:09.264 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/xlsx.full.min.js", parameters={}
+2024-08-04 17:52:09.265 [http-nio-8090-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:09.267 [http-nio-8090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:09.268 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:09.270 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:09.267 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/markerwithlabel.js", parameters={}
+2024-08-04 17:52:09.271 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:09.272 [http-nio-8090-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:09.273 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:09.275 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:09.790 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 17:52:09.791 [http-nio-8090-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:09.792 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:09.834 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/font-awesome/fonts/fontawesome-webfont.woff2?v=4.4.0", parameters={masked}
+2024-08-04 17:52:09.834 [http-nio-8090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 17:52:09.838 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:19.188 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - POST "/jaltantra_loop_dev_v7/branch/optimize", parameters={masked}
+2024-08-04 17:52:19.189 [http-nio-8090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#doPost(UserDetails, HttpServletRequest, HttpServletResponse)
+2024-08-04 17:52:19.190 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - Post request Received
+2024-08-04 17:52:19.191 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - Request Parameters:
+2024-08-04 17:52:19.191 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - action: saveInputExcel
+2024-08-04 17:52:19.191 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - general: {}
+2024-08-04 17:52:19.191 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - nodes: []
+2024-08-04 17:52:19.191 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - pipes: []
+2024-08-04 17:52:19.191 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - commercialpipes: []
+2024-08-04 17:52:19.191 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - esrGeneral: {}
+2024-08-04 17:52:19.191 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - esrCost: []
+2024-08-04 17:52:19.191 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - pumpGeneral: {"energycost_factor":1}
+2024-08-04 17:52:19.191 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - pumpManual: []
+2024-08-04 17:52:19.191 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - valves: []
+2024-08-04 17:52:19.191 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - mapnodes: []
+2024-08-04 17:52:19.191 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - mappipes: []
+2024-08-04 17:52:19.191 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - mapsource: 
+2024-08-04 17:52:19.192 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:52:19.194 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:52:19.195 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:52:19.198 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-04 17:52:19.208 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-04 17:52:19.380 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - POST "/jaltantra_loop_dev_v7/branch/optimize", parameters={masked}
+2024-08-04 17:52:19.380 [http-nio-8090-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#doPost(UserDetails, HttpServletRequest, HttpServletResponse)
+2024-08-04 17:52:19.381 [http-nio-8090-exec-6] INFO  c.h.j.logging.ConsoleInterceptor - Post request Received
+2024-08-04 17:52:19.381 [http-nio-8090-exec-6] INFO  c.h.j.logging.ConsoleInterceptor - Request Parameters:
+2024-08-04 17:52:19.381 [http-nio-8090-exec-6] INFO  c.h.j.logging.ConsoleInterceptor - action: saveInputExcel
+2024-08-04 17:52:19.381 [http-nio-8090-exec-6] INFO  c.h.j.logging.ConsoleInterceptor - general: {}
+2024-08-04 17:52:19.382 [http-nio-8090-exec-6] INFO  c.h.j.logging.ConsoleInterceptor - nodes: []
+2024-08-04 17:52:19.382 [http-nio-8090-exec-6] INFO  c.h.j.logging.ConsoleInterceptor - pipes: []
+2024-08-04 17:52:19.382 [http-nio-8090-exec-6] INFO  c.h.j.logging.ConsoleInterceptor - commercialpipes: []
+2024-08-04 17:52:19.382 [http-nio-8090-exec-6] INFO  c.h.j.logging.ConsoleInterceptor - esrGeneral: {}
+2024-08-04 17:52:19.382 [http-nio-8090-exec-6] INFO  c.h.j.logging.ConsoleInterceptor - esrCost: []
+2024-08-04 17:52:19.382 [http-nio-8090-exec-6] INFO  c.h.j.logging.ConsoleInterceptor - pumpGeneral: {"energycost_factor":1}
+2024-08-04 17:52:19.382 [http-nio-8090-exec-6] INFO  c.h.j.logging.ConsoleInterceptor - pumpManual: []
+2024-08-04 17:52:19.382 [http-nio-8090-exec-6] INFO  c.h.j.logging.ConsoleInterceptor - valves: []
+2024-08-04 17:52:19.382 [http-nio-8090-exec-6] INFO  c.h.j.logging.ConsoleInterceptor - mapnodes: []
+2024-08-04 17:52:19.382 [http-nio-8090-exec-6] INFO  c.h.j.logging.ConsoleInterceptor - mappipes: []
+2024-08-04 17:52:19.382 [http-nio-8090-exec-6] INFO  c.h.j.logging.ConsoleInterceptor - mapsource: 
+2024-08-04 17:52:19.384 [http-nio-8090-exec-6] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:52:19.405 [http-nio-8090-exec-6] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:52:19.485 [http-nio-8090-exec-6] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:52:19.488 [http-nio-8090-exec-6] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-04 17:52:19.585 [http-nio-8090-exec-6] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-04 17:52:21.077 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - POST "/jaltantra_loop_dev_v7/branch/optimize", parameters={masked}
+2024-08-04 17:52:21.078 [http-nio-8090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#doPost(UserDetails, HttpServletRequest, HttpServletResponse)
+2024-08-04 17:52:21.079 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - Post request Received
+2024-08-04 17:52:21.080 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - Request Parameters:
+2024-08-04 17:52:21.080 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - action: saveInputExcel
+2024-08-04 17:52:21.080 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - general: {}
+2024-08-04 17:52:21.080 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - nodes: []
+2024-08-04 17:52:21.081 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - pipes: []
+2024-08-04 17:52:21.081 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - commercialpipes: []
+2024-08-04 17:52:21.081 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - esrGeneral: {}
+2024-08-04 17:52:21.082 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - esrCost: []
+2024-08-04 17:52:21.082 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - pumpGeneral: {"energycost_factor":1}
+2024-08-04 17:52:21.082 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - pumpManual: []
+2024-08-04 17:52:21.082 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - valves: []
+2024-08-04 17:52:21.082 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - mapnodes: []
+2024-08-04 17:52:21.083 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - mappipes: []
+2024-08-04 17:52:21.083 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - mapsource: 
+2024-08-04 17:52:21.086 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:52:21.091 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:52:21.097 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:52:21.103 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-04 17:52:21.108 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-04 17:52:21.955 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - POST "/jaltantra_loop_dev_v7/branch/optimize", parameters={masked}
+2024-08-04 17:52:21.955 [http-nio-8090-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#doPost(UserDetails, HttpServletRequest, HttpServletResponse)
+2024-08-04 17:52:21.956 [http-nio-8090-exec-1] INFO  c.h.j.logging.ConsoleInterceptor - Post request Received
+2024-08-04 17:52:21.957 [http-nio-8090-exec-1] INFO  c.h.j.logging.ConsoleInterceptor - Request Parameters:
+2024-08-04 17:52:21.957 [http-nio-8090-exec-1] INFO  c.h.j.logging.ConsoleInterceptor - action: saveInputExcel
+2024-08-04 17:52:21.957 [http-nio-8090-exec-1] INFO  c.h.j.logging.ConsoleInterceptor - general: {}
+2024-08-04 17:52:21.957 [http-nio-8090-exec-1] INFO  c.h.j.logging.ConsoleInterceptor - nodes: []
+2024-08-04 17:52:21.957 [http-nio-8090-exec-1] INFO  c.h.j.logging.ConsoleInterceptor - pipes: []
+2024-08-04 17:52:21.957 [http-nio-8090-exec-1] INFO  c.h.j.logging.ConsoleInterceptor - commercialpipes: []
+2024-08-04 17:52:21.958 [http-nio-8090-exec-1] INFO  c.h.j.logging.ConsoleInterceptor - esrGeneral: {}
+2024-08-04 17:52:21.958 [http-nio-8090-exec-1] INFO  c.h.j.logging.ConsoleInterceptor - esrCost: []
+2024-08-04 17:52:21.958 [http-nio-8090-exec-1] INFO  c.h.j.logging.ConsoleInterceptor - pumpGeneral: {"energycost_factor":1}
+2024-08-04 17:52:21.958 [http-nio-8090-exec-1] INFO  c.h.j.logging.ConsoleInterceptor - pumpManual: []
+2024-08-04 17:52:21.958 [http-nio-8090-exec-1] INFO  c.h.j.logging.ConsoleInterceptor - valves: []
+2024-08-04 17:52:21.958 [http-nio-8090-exec-1] INFO  c.h.j.logging.ConsoleInterceptor - mapnodes: []
+2024-08-04 17:52:21.958 [http-nio-8090-exec-1] INFO  c.h.j.logging.ConsoleInterceptor - mappipes: []
+2024-08-04 17:52:21.958 [http-nio-8090-exec-1] INFO  c.h.j.logging.ConsoleInterceptor - mapsource: 
+2024-08-04 17:52:21.960 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:52:22.027 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:52:22.101 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:52:22.161 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-04 17:52:22.175 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - POST "/jaltantra_loop_dev_v7/branch/optimize", parameters={masked}
+2024-08-04 17:52:22.175 [http-nio-8090-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#doPost(UserDetails, HttpServletRequest, HttpServletResponse)
+2024-08-04 17:52:22.176 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - Post request Received
+2024-08-04 17:52:22.176 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - Request Parameters:
+2024-08-04 17:52:22.176 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - action: saveInputExcel
+2024-08-04 17:52:22.176 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - general: {}
+2024-08-04 17:52:22.176 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - nodes: []
+2024-08-04 17:52:22.176 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - pipes: []
+2024-08-04 17:52:22.176 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - commercialpipes: []
+2024-08-04 17:52:22.176 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - esrGeneral: {}
+2024-08-04 17:52:22.176 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - esrCost: []
+2024-08-04 17:52:22.176 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - pumpGeneral: {"energycost_factor":1}
+2024-08-04 17:52:22.176 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - pumpManual: []
+2024-08-04 17:52:22.176 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - valves: []
+2024-08-04 17:52:22.176 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - mapnodes: []
+2024-08-04 17:52:22.176 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - mappipes: []
+2024-08-04 17:52:22.176 [http-nio-8090-exec-8] INFO  c.h.j.logging.ConsoleInterceptor - mapsource: 
+2024-08-04 17:52:22.178 [http-nio-8090-exec-1] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-04 17:52:22.178 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:52:22.188 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:52:22.190 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:52:22.217 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-04 17:52:22.372 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - POST "/jaltantra_loop_dev_v7/branch/optimize", parameters={masked}
+2024-08-04 17:52:22.372 [http-nio-8090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#doPost(UserDetails, HttpServletRequest, HttpServletResponse)
+2024-08-04 17:52:22.373 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - Post request Received
+2024-08-04 17:52:22.374 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - Request Parameters:
+2024-08-04 17:52:22.374 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - action: saveInputExcel
+2024-08-04 17:52:22.375 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - general: {}
+2024-08-04 17:52:22.375 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - nodes: []
+2024-08-04 17:52:22.375 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - pipes: []
+2024-08-04 17:52:22.375 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - commercialpipes: []
+2024-08-04 17:52:22.375 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - esrGeneral: {}
+2024-08-04 17:52:22.375 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - esrCost: []
+2024-08-04 17:52:22.376 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - pumpGeneral: {"energycost_factor":1}
+2024-08-04 17:52:22.376 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - pumpManual: []
+2024-08-04 17:52:22.376 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - valves: []
+2024-08-04 17:52:22.376 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - mapnodes: []
+2024-08-04 17:52:22.376 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - mappipes: []
+2024-08-04 17:52:22.376 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - mapsource: 
+2024-08-04 17:52:22.380 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:52:22.439 [http-nio-8090-exec-8] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-04 17:52:22.538 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:52:22.560 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:52:22.614 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-04 17:52:22.663 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-04 17:52:25.142 [http-nio-8090-exec-4] WARN  org.apache.poi.POIDocument - DocumentSummaryInformation property set came back as null
+2024-08-04 17:52:25.142 [http-nio-8090-exec-6] WARN  org.apache.poi.POIDocument - DocumentSummaryInformation property set came back as null
+2024-08-04 17:52:25.142 [http-nio-8090-exec-7] WARN  org.apache.poi.POIDocument - DocumentSummaryInformation property set came back as null
+2024-08-04 17:52:25.142 [http-nio-8090-exec-3] WARN  org.apache.poi.POIDocument - DocumentSummaryInformation property set came back as null
+2024-08-04 17:52:25.142 [http-nio-8090-exec-4] WARN  org.apache.poi.POIDocument - SummaryInformation property set came back as null
+2024-08-04 17:52:25.142 [http-nio-8090-exec-6] WARN  org.apache.poi.POIDocument - SummaryInformation property set came back as null
+2024-08-04 17:52:25.142 [http-nio-8090-exec-8] WARN  org.apache.poi.POIDocument - DocumentSummaryInformation property set came back as null
+2024-08-04 17:52:25.142 [http-nio-8090-exec-1] WARN  org.apache.poi.POIDocument - DocumentSummaryInformation property set came back as null
+2024-08-04 17:52:25.142 [http-nio-8090-exec-7] WARN  org.apache.poi.POIDocument - SummaryInformation property set came back as null
+2024-08-04 17:52:25.142 [http-nio-8090-exec-3] WARN  org.apache.poi.POIDocument - SummaryInformation property set came back as null
+2024-08-04 17:52:25.142 [http-nio-8090-exec-8] WARN  org.apache.poi.POIDocument - SummaryInformation property set came back as null
+2024-08-04 17:52:25.142 [http-nio-8090-exec-1] WARN  org.apache.poi.POIDocument - SummaryInformation property set came back as null
+2024-08-04 17:52:25.160 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:25.160 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:25.160 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:25.160 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:25.160 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:25.160 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 17:52:42.085 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - POST "/jaltantra_loop_dev_v7/branch/optimize", parameters={masked}
+2024-08-04 17:52:42.086 [http-nio-8090-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#doPost(UserDetails, HttpServletRequest, HttpServletResponse)
+2024-08-04 17:52:42.087 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - Post request Received
+2024-08-04 17:52:42.090 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - Request Parameters:
+2024-08-04 17:52:42.090 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - cmd: save-record
+2024-08-04 17:52:42.090 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - recid: 0
+2024-08-04 17:52:42.090 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - general: {"name_project":"Sample","min_node_pressure":7,"def_pipe_roughness":140,"max_hl_perkm":10,"max_water_speed":1.5,"supply_hours":12,"source_nodeid":8,"source_nodename":"Node8","source_elevation":505,"source_head":530}
+2024-08-04 17:52:42.091 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - nodes: [{"recid":1,"nodeid":1,"nodename":"Node1","elevation":442,"demand":2.1},{"recid":2,"nodeid":2,"nodename":"Node2","elevation":477,"demand":0.8},{"recid":3,"nodeid":3,"nodename":"Node3","elevation":496,"demand":3.4},{"recid":4,"nodeid":4,"nodename":"Node4","elevation":464,"demand":1.75},{"recid":5,"nodeid":7,"nodename":"Node7","elevation":493,"demand":2.6},{"recid":6,"nodeid":6,"nodename":"Node6","elevation":390,"demand":1.8},{"recid":7,"nodeid":9,"nodename":"Node9","elevation":517},{"recid":8,"nodeid":10,"nodename":"Node10","elevation":509},{"recid":9,"nodeid":11,"nodename":"Node11","elevation":472}]
+2024-08-04 17:52:42.091 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - pipes: [{"recid":1,"pipeid":2,"diameter":110,"length":7345,"startnode":3,"endnode":7,"parallelallowed":true},{"recid":2,"pipeid":3,"length":3491,"startnode":2,"endnode":6},{"recid":3,"pipeid":4,"length":2442,"startnode":2,"endnode":4},{"recid":4,"pipeid":5,"length":1943,"startnode":9,"endnode":3},{"recid":5,"pipeid":6,"length":2686,"startnode":8,"endnode":9},{"recid":6,"pipeid":7,"length":4808,"startnode":10,"endnode":2},{"recid":7,"pipeid":8,"length":924,"startnode":3,"endnode":10},{"recid":8,"pipeid":9,"length":4266,"startnode":11,"endnode":1},{"recid":9,"pipeid":10,"length":485,"startnode":4,"endnode":11}]
+2024-08-04 17:52:42.091 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - commercialPipes: [{"recid":1,"diameter":63,"cost":116},{"recid":2,"diameter":75,"cost":172},{"recid":3,"diameter":90,"cost":231},{"recid":4,"diameter":110,"cost":340},{"recid":5,"diameter":125,"cost":461},{"recid":6,"diameter":140,"cost":576},{"recid":7,"diameter":160,"cost":750},{"recid":8,"diameter":180,"cost":945},{"recid":9,"diameter":200,"cost":1113},{"recid":10,"diameter":225,"cost":1430},{"recid":11,"diameter":250,"cost":1762},{"recid":12,"diameter":280,"cost":2210},{"recid":13,"diameter":315,"cost":2794}]
+2024-08-04 17:52:42.091 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - esrGeneral: {"secondary_supply_hours":6,"esr_capacity_factor":0.5,"max_esr_height":25,"allow_dummy":true,"must_esr":[],"must_not_esr":[7,4],"esr_enabled":true}
+2024-08-04 17:52:42.091 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - esrCost: [{"recid":1,"maxcapacity":25000,"unitcost":24.47},{"recid":2,"mincapacity":25000,"maxcapacity":50000,"basecost":611750,"unitcost":12.96},{"recid":3,"mincapacity":50000,"maxcapacity":75000,"basecost":935750,"unitcost":9.64},{"recid":4,"mincapacity":75000,"maxcapacity":100000,"basecost":1176750,"unitcost":8.64},{"recid":5,"mincapacity":100000,"maxcapacity":150000,"basecost":1392750,"unitcost":7.23},{"recid":6,"mincapacity":150000,"maxcapacity":200000,"basecost":1754250,"unitcost":6.03},{"recid":7,"mincapacity":200000,"maxcapacity":300000,"basecost":2055750,"unitcost":5.4},{"recid":8,"mincapacity":300000,"maxcapacity":400000,"basecost":2595750,"unitcost":5.12},{"recid":9,"mincapacity":400000,"maxcapacity":1500000,"basecost":3107750,"unitcost":4.32},{"recid":10,"mincapacity":1500000,"maxcapacity":2000000,"basecost":7859750,"unitcost":3.92}]
+2024-08-04 17:52:42.091 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - pumpGeneral: {"energycost_factor":1}
+2024-08-04 17:52:42.092 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - pumpManual: []
+2024-08-04 17:52:42.092 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - valves: []
+2024-08-04 17:52:42.092 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - version: 2.3.0.0
+2024-08-04 17:52:42.092 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - record[name_project]: Sample
+2024-08-04 17:52:42.093 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - record[min_node_pressure]: 7
+2024-08-04 17:52:42.093 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - record[def_pipe_roughness]: 140
+2024-08-04 17:52:42.093 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - record[min_hl_perkm]: 0
+2024-08-04 17:52:42.093 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - record[max_hl_perkm]: 10
+2024-08-04 17:52:42.094 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - record[max_water_speed]: 1.5
+2024-08-04 17:52:42.094 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - record[supply_hours]: 12
+2024-08-04 17:52:42.094 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - record[source_nodeid]: 8
+2024-08-04 17:52:42.094 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - record[source_nodename]: Node8
+2024-08-04 17:52:42.095 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - record[source_elevation]: 505
+2024-08-04 17:52:42.095 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - record[source_head]: 530
+2024-08-04 17:52:42.095 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - record[name_organization]: 
+2024-08-04 17:52:42.095 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - record[max_pipe_pressure]: 
+2024-08-04 17:52:42.100 [http-nio-8090-exec-10] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 17:52:42.106 [http-nio-8090-exec-10] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 17:52:42.110 [http-nio-8090-exec-10] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 17:52:42.115 [http-nio-8090-exec-10] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-04 17:52:42.139 [http-nio-8090-exec-10] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-04 17:52:42.477 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - After addvariables: 0
+2024-08-04 17:52:42.478 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - After setobjective: 0
+2024-08-04 17:52:42.479 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - After setesroption: 0
+2024-08-04 17:52:42.479 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - After setpumpoption: 0
+2024-08-04 17:52:42.479 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - After setvalveoption: 0
+2024-08-04 17:52:42.482 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - After pipeconstraints: 167
+2024-08-04 17:52:42.484 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - After headlossconstraints: 312
+2024-08-04 17:52:42.486 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - After esrconstraints: 561
+2024-08-04 17:52:42.486 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - After esrpipeconstraints: 570
+2024-08-04 17:52:42.486 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - After pumpconstraints: 570
+2024-08-04 17:52:42.486 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - Constraint count:570
+2024-08-04 17:52:42.604 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - Time taken: 356 milliseconds
+2024-08-04 17:52:42.604 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - Time taken: 129.0 milliseconds
+2024-08-04 17:52:42.604 [http-nio-8090-exec-10] INFO  c.h.j.logging.ConsoleInterceptor - Nodes: 0.0
+2024-08-04 17:52:42.613 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:13:07.537 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - Starting JaltantraLoopSbApplicationTests using Java 22.0.1 with PID 14793 (started by cse in /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3)
+2024-08-04 18:13:07.575 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - The following 1 profile is active: "dev"
+2024-08-04 18:13:07.639 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@6ce1f601
+2024-08-04 18:13:09.678 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-04 18:13:09.785 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 91 ms. Found 1 JPA repository interface.
+2024-08-04 18:13:11.263 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-04 18:13:11.320 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-08-04 18:13:12.577 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@76dc36e5
+2024-08-04 18:13:12.581 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-08-04 18:13:14.605 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 18:13:14.643 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelUploader.version
+2024-08-04 18:13:14.644 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelOutputUploader.version
+2024-08-04 18:13:15.239 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-04 18:13:15.831 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 18:13:16.206 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 11 mappings in 'requestMappingHandlerMapping'
+2024-08-04 18:13:16.490 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /static/**] in 'resourceHandlerMapping'
+2024-08-04 18:13:16.677 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-08-04 18:13:16.962 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-08-04 18:13:16.986 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-08-04 18:13:17.341 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 18:13:17.438 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - Started JaltantraLoopSbApplicationTests in 10.385 seconds (process running for 12.953)
+2024-08-04 18:13:18.484 [Attach Listener] ERROR c.h.j.logging.ConsoleInterceptor - WARNING: A Java agent has been loaded dynamically (/home/cse/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.12/byte-buddy-agent-1.14.12.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2024-08-04 18:13:19.158 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@6ce1f601, started on Sun Aug 04 18:13:07 IST 2024
+2024-08-04 18:13:19.163 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 18:13:19.165 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-08-04 18:13:19.187 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-08-04 18:13:35.601 [main] INFO  c.h.j.JaltantraLoopSbApplication - Starting JaltantraLoopSbApplication v0.0.1-SNAPSHOT using Java 22.0.1 with PID 14879 (/home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/target/JaltantraLoopSB-0.0.1-SNAPSHOT.jar started by cse in /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3)
+2024-08-04 18:13:35.603 [main] INFO  c.h.j.JaltantraLoopSbApplication - The following 1 profile is active: "dev"
+2024-08-04 18:13:36.738 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-04 18:13:36.795 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 50 ms. Found 1 JPA repository interface.
+2024-08-04 18:13:37.541 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8090 (http)
+2024-08-04 18:13:37.566 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-08-04 18:13:37.566 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-08-04 18:13:37.594 [main] INFO  o.a.c.c.C.[.[.[/jaltantra_loop_dev_v7] - Initializing Spring embedded WebApplicationContext
+2024-08-04 18:13:37.594 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1895 ms
+2024-08-04 18:13:37.756 [main] DEBUG o.s.w.f.ServerHttpObservationFilter - Filter 'webMvcObservationFilter' configured for use
+2024-08-04 18:13:38.205 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-04 18:13:38.230 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-08-04 18:13:38.369 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f122cdc
+2024-08-04 18:13:38.371 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-08-04 18:13:39.343 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 18:13:39.366 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelOutputUploader.version
+2024-08-04 18:13:39.373 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelUploader.version
+2024-08-04 18:13:39.636 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-04 18:13:40.124 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 18:13:40.313 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 11 mappings in 'requestMappingHandlerMapping'
+2024-08-04 18:13:40.414 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /static/**] in 'resourceHandlerMapping'
+2024-08-04 18:13:40.532 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-08-04 18:13:40.699 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-08-04 18:13:40.735 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-08-04 18:13:40.990 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 18:13:41.079 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2024-08-04 18:13:41.082 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 18:13:41.084 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-08-04 18:13:41.089 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-08-04 18:13:41.109 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-08-04 18:13:41.120 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8090 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8090 or configure this application to listen on another port.
+
+2024-08-04 18:15:12.951 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 18:15:12.974 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-08-04 18:15:13.000 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-08-04 18:15:27.859 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - Starting JaltantraLoopSbApplicationTests using Java 22.0.1 with PID 15157 (started by cse in /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3)
+2024-08-04 18:15:27.861 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - The following 1 profile is active: "dev"
+2024-08-04 18:15:27.890 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@6ce1f601
+2024-08-04 18:15:28.653 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-04 18:15:28.691 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 1 JPA repository interface.
+2024-08-04 18:15:29.534 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-04 18:15:29.556 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-08-04 18:15:29.721 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2cadcff6
+2024-08-04 18:15:29.723 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-08-04 18:15:30.510 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 18:15:30.530 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelUploader.version
+2024-08-04 18:15:30.532 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelOutputUploader.version
+2024-08-04 18:15:30.777 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-04 18:15:31.210 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 18:15:31.490 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 11 mappings in 'requestMappingHandlerMapping'
+2024-08-04 18:15:31.614 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /static/**] in 'resourceHandlerMapping'
+2024-08-04 18:15:31.745 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-08-04 18:15:32.052 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-08-04 18:15:32.083 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-08-04 18:15:32.319 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 18:15:32.388 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - Started JaltantraLoopSbApplicationTests in 4.829 seconds (process running for 5.609)
+2024-08-04 18:15:32.686 [Attach Listener] ERROR c.h.j.logging.ConsoleInterceptor - WARNING: A Java agent has been loaded dynamically (/home/cse/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.12/byte-buddy-agent-1.14.12.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2024-08-04 18:15:32.854 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@6ce1f601, started on Sun Aug 04 18:15:27 IST 2024
+2024-08-04 18:15:32.861 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 18:15:32.863 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-08-04 18:15:32.868 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-08-04 18:15:34.605 [main] INFO  c.h.j.JaltantraLoopSbApplication - Starting JaltantraLoopSbApplication v0.0.1-SNAPSHOT using Java 22.0.1 with PID 15234 (/home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/target/JaltantraLoopSB-0.0.1-SNAPSHOT.jar started by cse in /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3)
+2024-08-04 18:15:34.609 [main] INFO  c.h.j.JaltantraLoopSbApplication - The following 1 profile is active: "dev"
+2024-08-04 18:15:35.609 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-04 18:15:35.654 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 1 JPA repository interface.
+2024-08-04 18:15:36.409 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8090 (http)
+2024-08-04 18:15:36.419 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-08-04 18:15:36.419 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-08-04 18:15:36.444 [main] INFO  o.a.c.c.C.[.[.[/jaltantra_loop_dev_v7] - Initializing Spring embedded WebApplicationContext
+2024-08-04 18:15:36.444 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1780 ms
+2024-08-04 18:15:36.623 [main] DEBUG o.s.w.f.ServerHttpObservationFilter - Filter 'webMvcObservationFilter' configured for use
+2024-08-04 18:15:37.101 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-04 18:15:37.129 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-08-04 18:15:37.320 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@420b55ed
+2024-08-04 18:15:37.322 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-08-04 18:15:38.300 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 18:15:38.321 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelOutputUploader.version
+2024-08-04 18:15:38.329 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelUploader.version
+2024-08-04 18:15:38.665 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-04 18:15:39.442 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 18:15:39.664 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 11 mappings in 'requestMappingHandlerMapping'
+2024-08-04 18:15:39.790 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /static/**] in 'resourceHandlerMapping'
+2024-08-04 18:15:39.909 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-08-04 18:15:40.147 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-08-04 18:15:40.183 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-08-04 18:15:40.441 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 18:15:40.675 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8090 (http) with context path '/jaltantra_loop_dev_v7'
+2024-08-04 18:15:40.693 [main] INFO  c.h.j.JaltantraLoopSbApplication - Started JaltantraLoopSbApplication in 6.546 seconds (process running for 6.97)
+2024-08-04 18:15:46.570 [http-nio-8090-exec-1] INFO  o.a.c.c.C.[.[.[/jaltantra_loop_dev_v7] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-04 18:15:46.570 [http-nio-8090-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-08-04 18:15:46.571 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2024-08-04 18:15:46.571 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2024-08-04 18:15:46.571 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2024-08-04 18:15:46.571 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@4483e237
+2024-08-04 18:15:46.572 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@7aac05e2
+2024-08-04 18:15:46.572 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-08-04 18:15:46.572 [http-nio-8090-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-08-04 18:15:46.663 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/login", parameters={}
+2024-08-04 18:15:46.665 [http-nio-8090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.LoginController#login()
+2024-08-04 18:15:46.929 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:46.959 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 18:15:46.959 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/w2ui-1.4.2.css", parameters={}
+2024-08-04 18:15:46.960 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/style.css", parameters={}
+2024-08-04 18:15:46.961 [http-nio-8090-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:46.961 [http-nio-8090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:46.961 [http-nio-8090-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:47.089 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:47.089 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:47.092 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:47.242 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 18:15:47.248 [http-nio-8090-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:47.256 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:54.204 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 18:15:54.228 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 18:15:54.233 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 18:15:54.296 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 18:15:54.298 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 18:15:54.300 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 18:15:54.302 [http-nio-8090-exec-7] INFO  c.h.j.logging.ConsoleInterceptor - com.hkshenoy.jaltantraloopsb.security.UserSessionDetail@3b832cab
+2024-08-04 18:15:54.316 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code,rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users u1_0 left join users_request_details rd1_0 on u1_0.id=rd1_0.user_id where u1_0.id=?
+2024-08-04 18:15:54.319 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 18:15:54.333 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - insert into users_session_details (client_ip_address,login_datetime,session_id) values (?,?,?)
+2024-08-04 18:15:54.360 [http-nio-8090-exec-7] DEBUG org.hibernate.SQL - update users_session_details set user_id=? where id=?
+2024-08-04 18:15:54.704 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/", parameters={}
+2024-08-04 18:15:54.707 [http-nio-8090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.JaltantraLoopController#home(UserDetails, Model)
+2024-08-04 18:15:54.732 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:54.770 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/style.css", parameters={}
+2024-08-04 18:15:54.770 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/w2ui-1.4.2.css", parameters={}
+2024-08-04 18:15:54.770 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 18:15:54.771 [http-nio-8090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:54.771 [http-nio-8090-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:54.771 [http-nio-8090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:54.773 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:54.773 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:54.774 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:56.591 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/branch", parameters={}
+2024-08-04 18:15:56.592 [http-nio-8090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#home(Model)
+2024-08-04 18:15:56.643 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:56.662 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/w2ui-1.4.2.css", parameters={}
+2024-08-04 18:15:56.663 [http-nio-8090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:56.666 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:56.667 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/jquery-2.1.4.min.js", parameters={}
+2024-08-04 18:15:56.667 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/font-awesome/css/font-awesome.css", parameters={}
+2024-08-04 18:15:56.667 [http-nio-8090-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:56.667 [http-nio-8090-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:56.667 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/ContextMenu.js", parameters={}
+2024-08-04 18:15:56.667 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/w2ui-1.4.2.js", parameters={}
+2024-08-04 18:15:56.668 [http-nio-8090-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:56.668 [http-nio-8090-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:56.669 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:56.669 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:56.670 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/json.2.min.js", parameters={}
+2024-08-04 18:15:56.671 [http-nio-8090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:56.671 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/markerwithlabel.js", parameters={}
+2024-08-04 18:15:56.672 [http-nio-8090-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:56.669 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:56.675 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:56.676 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:56.676 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:56.681 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/map.js", parameters={}
+2024-08-04 18:15:56.681 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/xlsx.full.min.js", parameters={}
+2024-08-04 18:15:56.683 [http-nio-8090-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:56.683 [http-nio-8090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:56.681 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/dagre.js", parameters={}
+2024-08-04 18:15:56.685 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:56.685 [http-nio-8090-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:56.688 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/html2canvas.js", parameters={}
+2024-08-04 18:15:56.689 [http-nio-8090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:56.691 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:56.692 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:56.691 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:57.523 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 18:15:57.523 [http-nio-8090-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:57.525 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:15:57.563 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/font-awesome/fonts/fontawesome-webfont.woff2?v=4.4.0", parameters={masked}
+2024-08-04 18:15:57.564 [http-nio-8090-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:15:57.569 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:16:36.663 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - POST "/jaltantra_loop_dev_v7/branch/optimize", parameters={masked}
+2024-08-04 18:16:36.665 [http-nio-8090-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#doPost(UserDetails, HttpServletRequest, HttpServletResponse)
+2024-08-04 18:16:36.671 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - Post request Received
+2024-08-04 18:16:36.675 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 18:16:36.679 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 18:16:36.684 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 18:16:36.690 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-04 18:16:36.712 [http-nio-8090-exec-3] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-04 18:16:37.223 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - After addvariables: 0
+2024-08-04 18:16:37.224 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - After setobjective: 0
+2024-08-04 18:16:37.225 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - After setesroption: 0
+2024-08-04 18:16:37.225 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - After setpumpoption: 0
+2024-08-04 18:16:37.225 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - After setvalveoption: 0
+2024-08-04 18:16:37.227 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - After pipeconstraints: 167
+2024-08-04 18:16:37.229 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - After headlossconstraints: 312
+2024-08-04 18:16:37.231 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - After esrconstraints: 561
+2024-08-04 18:16:37.231 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - After esrpipeconstraints: 570
+2024-08-04 18:16:37.231 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - After pumpconstraints: 570
+2024-08-04 18:16:37.231 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - Constraint count:570
+2024-08-04 18:16:37.300 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - Time taken: 328 milliseconds
+2024-08-04 18:16:37.300 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - Time taken: 79.0 milliseconds
+2024-08-04 18:16:37.300 [http-nio-8090-exec-3] INFO  c.h.j.logging.ConsoleInterceptor - Nodes: 2.0
+2024-08-04 18:16:37.306 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:17:02.442 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - POST "/jaltantra_loop_dev_v7/branch/optimize", parameters={masked}
+2024-08-04 18:17:02.443 [http-nio-8090-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#doPost(UserDetails, HttpServletRequest, HttpServletResponse)
+2024-08-04 18:17:02.445 [http-nio-8090-exec-2] INFO  c.h.j.logging.ConsoleInterceptor - Post request Received
+2024-08-04 18:17:02.451 [http-nio-8090-exec-2] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 18:17:02.456 [http-nio-8090-exec-2] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 18:17:02.461 [http-nio-8090-exec-2] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 18:17:02.469 [http-nio-8090-exec-2] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-04 18:17:02.492 [http-nio-8090-exec-2] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-04 18:17:02.708 [http-nio-8090-exec-2] INFO  c.h.j.logging.ConsoleInterceptor - Input is not valid. Cycle in the network
+2024-08-04 18:17:02.709 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:05.128 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/branch", parameters={}
+2024-08-04 18:18:05.129 [http-nio-8090-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#home(Model)
+2024-08-04 18:18:05.162 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:05.186 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/font-awesome/css/font-awesome.css", parameters={}
+2024-08-04 18:18:05.186 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/jquery-2.1.4.min.js", parameters={}
+2024-08-04 18:18:05.187 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/w2ui-1.4.2.css", parameters={}
+2024-08-04 18:18:05.187 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/json.2.min.js", parameters={}
+2024-08-04 18:18:05.187 [http-nio-8090-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:05.187 [http-nio-8090-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:05.187 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/w2ui-1.4.2.js", parameters={}
+2024-08-04 18:18:05.187 [http-nio-8090-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:05.187 [http-nio-8090-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:05.187 [http-nio-8090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:05.187 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/ContextMenu.js", parameters={}
+2024-08-04 18:18:05.188 [http-nio-8090-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:05.188 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:05.189 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:05.189 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:05.189 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:05.190 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:05.192 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:05.204 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/markerwithlabel.js", parameters={}
+2024-08-04 18:18:05.204 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/map.js", parameters={}
+2024-08-04 18:18:05.205 [http-nio-8090-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:05.207 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:05.209 [http-nio-8090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:05.210 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/xlsx.full.min.js", parameters={}
+2024-08-04 18:18:05.207 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/html2canvas.js", parameters={}
+2024-08-04 18:18:05.207 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/dagre.js", parameters={}
+2024-08-04 18:18:05.211 [http-nio-8090-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:05.211 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:05.211 [http-nio-8090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:05.214 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:05.211 [http-nio-8090-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:05.217 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:05.221 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:05.376 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 18:18:05.377 [http-nio-8090-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:05.379 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:05.427 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/font-awesome/fonts/fontawesome-webfont.woff2?v=4.4.0", parameters={masked}
+2024-08-04 18:18:05.427 [http-nio-8090-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:05.429 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:05.605 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 18:18:05.607 [http-nio-8090-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:05.610 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:17.781 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - POST "/jaltantra_loop_dev_v7/branch/optimize", parameters={masked}
+2024-08-04 18:18:17.781 [http-nio-8090-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#doPost(UserDetails, HttpServletRequest, HttpServletResponse)
+2024-08-04 18:18:17.782 [http-nio-8090-exec-4] INFO  c.h.j.logging.ConsoleInterceptor - Post request Received
+2024-08-04 18:18:17.783 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 18:18:17.785 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 18:18:17.787 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 18:18:17.793 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-04 18:18:17.807 [http-nio-8090-exec-4] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-04 18:18:22.144 [http-nio-8090-exec-4] WARN  org.apache.poi.POIDocument - DocumentSummaryInformation property set came back as null
+2024-08-04 18:18:22.144 [http-nio-8090-exec-4] WARN  org.apache.poi.POIDocument - SummaryInformation property set came back as null
+2024-08-04 18:18:22.159 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:59.903 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/branch", parameters={}
+2024-08-04 18:18:59.904 [http-nio-8090-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#home(Model)
+2024-08-04 18:18:59.922 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:59.977 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/jquery-2.1.4.min.js", parameters={}
+2024-08-04 18:18:59.977 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/w2ui-1.4.2.css", parameters={}
+2024-08-04 18:18:59.977 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/font-awesome/css/font-awesome.css", parameters={}
+2024-08-04 18:18:59.977 [http-nio-8090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:59.977 [http-nio-8090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:59.978 [http-nio-8090-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:59.979 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/w2ui-1.4.2.js", parameters={}
+2024-08-04 18:18:59.979 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/json.2.min.js", parameters={}
+2024-08-04 18:18:59.979 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:59.979 [http-nio-8090-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:59.979 [http-nio-8090-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:59.979 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:59.980 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/ContextMenu.js", parameters={}
+2024-08-04 18:18:59.981 [http-nio-8090-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:59.981 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:59.981 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:59.982 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:59.983 [http-nio-8090-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:18:59.996 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/markerwithlabel.js", parameters={}
+2024-08-04 18:18:59.997 [http-nio-8090-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:59.999 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/xlsx.full.min.js", parameters={}
+2024-08-04 18:18:59.996 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/map.js", parameters={}
+2024-08-04 18:19:00.000 [http-nio-8090-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:18:59.999 [http-nio-8090-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:19:00.002 [http-nio-8090-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:19:00.000 [http-nio-8090-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:19:00.004 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/html2canvas.js", parameters={}
+2024-08-04 18:19:00.005 [http-nio-8090-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:19:00.007 [http-nio-8090-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:19:00.010 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/js/dagre.js", parameters={}
+2024-08-04 18:19:00.010 [http-nio-8090-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:19:00.011 [http-nio-8090-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:19:00.016 [http-nio-8090-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:19:00.190 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 18:19:00.191 [http-nio-8090-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:19:00.193 [http-nio-8090-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:19:00.218 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/css/font-awesome/fonts/fontawesome-webfont.woff2?v=4.4.0", parameters={masked}
+2024-08-04 18:19:00.219 [http-nio-8090-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:19:00.222 [http-nio-8090-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:19:00.392 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/jaltantra_loop_dev_v7/images/iitb_logo_black_small.png", parameters={}
+2024-08-04 18:19:00.394 [http-nio-8090-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [static/], ServletContext [/]]
+2024-08-04 18:19:00.396 [http-nio-8090-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:19:40.189 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - POST "/jaltantra_loop_dev_v7/branch/optimize", parameters={masked}
+2024-08-04 18:19:40.191 [http-nio-8090-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.hkshenoy.jaltantraloopsb.controllers.BranchController#doPost(UserDetails, HttpServletRequest, HttpServletResponse)
+2024-08-04 18:19:40.192 [http-nio-8090-exec-9] INFO  c.h.j.logging.ConsoleInterceptor - Post request Received
+2024-08-04 18:19:40.199 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.country,u1_0.designation,u1_0.email,u1_0.enabled,u1_0.name,u1_0.organization,u1_0.password,u1_0.state,u1_0.verification_code from users u1_0 where u1_0.email=?
+2024-08-04 18:19:40.205 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - select sd1_0.user_id,sd1_0.id,sd1_0.client_ip_address,sd1_0.login_datetime,sd1_0.session_id from users_session_details sd1_0 where sd1_0.user_id=?
+2024-08-04 18:19:40.212 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - select rd1_0.user_id,rd1_0.id,rd1_0.request_datetime,rd1_0.request_url,rd1_0.session_id from users_request_details rd1_0 where rd1_0.user_id=?
+2024-08-04 18:19:40.221 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - insert into users_request_details (request_datetime,request_url,session_id) values (?,?,?)
+2024-08-04 18:19:40.245 [http-nio-8090-exec-9] DEBUG org.hibernate.SQL - update users_request_details set user_id=? where id=?
+2024-08-04 18:19:40.410 [http-nio-8090-exec-9] INFO  c.h.j.logging.ConsoleInterceptor - After addvariables: 0
+2024-08-04 18:19:40.412 [http-nio-8090-exec-9] INFO  c.h.j.logging.ConsoleInterceptor - After setobjective: 0
+2024-08-04 18:19:40.412 [http-nio-8090-exec-9] INFO  c.h.j.logging.ConsoleInterceptor - After setesroption: 0
+2024-08-04 18:19:40.412 [http-nio-8090-exec-9] INFO  c.h.j.logging.ConsoleInterceptor - After setpumpoption: 0
+2024-08-04 18:19:40.412 [http-nio-8090-exec-9] INFO  c.h.j.logging.ConsoleInterceptor - After setvalveoption: 0
+2024-08-04 18:19:40.415 [http-nio-8090-exec-9] INFO  c.h.j.logging.ConsoleInterceptor - After pipeconstraints: 167
+2024-08-04 18:19:40.417 [http-nio-8090-exec-9] INFO  c.h.j.logging.ConsoleInterceptor - After headlossconstraints: 312
+2024-08-04 18:19:40.419 [http-nio-8090-exec-9] INFO  c.h.j.logging.ConsoleInterceptor - After esrconstraints: 561
+2024-08-04 18:19:40.420 [http-nio-8090-exec-9] INFO  c.h.j.logging.ConsoleInterceptor - After esrpipeconstraints: 570
+2024-08-04 18:19:40.420 [http-nio-8090-exec-9] INFO  c.h.j.logging.ConsoleInterceptor - After pumpconstraints: 570
+2024-08-04 18:19:40.420 [http-nio-8090-exec-9] INFO  c.h.j.logging.ConsoleInterceptor - Constraint count:570
+2024-08-04 18:19:40.543 [http-nio-8090-exec-9] INFO  c.h.j.logging.ConsoleInterceptor - Time taken: 141 milliseconds
+2024-08-04 18:19:40.543 [http-nio-8090-exec-9] INFO  c.h.j.logging.ConsoleInterceptor - Time taken: 141.0 milliseconds
+2024-08-04 18:19:40.543 [http-nio-8090-exec-9] INFO  c.h.j.logging.ConsoleInterceptor - Nodes: 0.0
+2024-08-04 18:19:40.546 [http-nio-8090-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-08-04 18:32:53.070 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 18:32:53.076 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-08-04 18:32:53.089 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-08-04 18:34:01.675 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - Starting JaltantraLoopSbApplicationTests using Java 22.0.1 with PID 16714 (started by cse in /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3)
+2024-08-04 18:34:01.691 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - The following 1 profile is active: "dev"
+2024-08-04 18:34:01.709 [main] DEBUG o.s.w.c.s.GenericWebApplicationContext - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@6ce1f601
+2024-08-04 18:34:02.433 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-04 18:34:02.477 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 1 JPA repository interface.
+2024-08-04 18:34:03.147 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-04 18:34:03.165 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-08-04 18:34:03.347 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6475e778
+2024-08-04 18:34:03.348 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-08-04 18:34:04.217 [main] DEBUG org.hibernate.SQL - alter table water_networks add column user_id bigint
+2024-08-04 18:34:06.963 [main] DEBUG org.hibernate.SQL - alter table water_networks add constraint FKn11m7w028s86pqy427a0t4sh3 foreign key (user_id) references users (id)
+2024-08-04 18:34:11.017 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 18:34:11.063 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelUploader.version
+2024-08-04 18:34:11.066 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelOutputUploader.version
+2024-08-04 18:34:11.469 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-04 18:34:12.833 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 18:34:13.076 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 11 mappings in 'requestMappingHandlerMapping'
+2024-08-04 18:34:13.194 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /static/**] in 'resourceHandlerMapping'
+2024-08-04 18:34:13.306 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-08-04 18:34:13.762 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-08-04 18:34:13.788 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-08-04 18:34:13.987 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 18:34:14.043 [main] INFO  c.h.j.JaltantraLoopSbApplicationTests - Started JaltantraLoopSbApplicationTests in 12.591 seconds (process running for 13.44)
+2024-08-04 18:34:15.111 [Attach Listener] ERROR c.h.j.logging.ConsoleInterceptor - WARNING: A Java agent has been loaded dynamically (/home/cse/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.12/byte-buddy-agent-1.14.12.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2024-08-04 18:34:15.922 [SpringApplicationShutdownHook] DEBUG o.s.w.c.s.GenericWebApplicationContext - Closing org.springframework.web.context.support.GenericWebApplicationContext@6ce1f601, started on Sun Aug 04 18:34:01 IST 2024
+2024-08-04 18:34:15.935 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 18:34:15.937 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-08-04 18:34:15.941 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-08-04 18:34:19.768 [main] INFO  c.h.j.JaltantraLoopSbApplication - Starting JaltantraLoopSbApplication v0.0.1-SNAPSHOT using Java 22.0.1 with PID 16788 (/home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/target/JaltantraLoopSB-0.0.1-SNAPSHOT.jar started by cse in /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3)
+2024-08-04 18:34:19.773 [main] INFO  c.h.j.JaltantraLoopSbApplication - The following 1 profile is active: "dev"
+2024-08-04 18:34:20.898 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-04 18:34:20.950 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 1 JPA repository interface.
+2024-08-04 18:34:21.799 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8090 (http)
+2024-08-04 18:34:21.845 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-08-04 18:34:21.845 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-08-04 18:34:21.909 [main] INFO  o.a.c.c.C.[.[.[/jaltantra_loop_dev_v7] - Initializing Spring embedded WebApplicationContext
+2024-08-04 18:34:21.910 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2039 ms
+2024-08-04 18:34:22.164 [main] DEBUG o.s.w.f.ServerHttpObservationFilter - Filter 'webMvcObservationFilter' configured for use
+2024-08-04 18:34:22.773 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-04 18:34:22.834 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-08-04 18:34:23.177 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5876bed9
+2024-08-04 18:34:23.181 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-08-04 18:34:24.830 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-04 18:34:24.850 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelOutputUploader.version
+2024-08-04 18:34:24.855 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation is not supported on static fields: private static java.lang.String com.hkshenoy.jaltantraloopsb.helper.ExcelUploader.version
+2024-08-04 18:34:25.124 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-04 18:34:25.591 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-04 18:34:25.767 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 11 mappings in 'requestMappingHandlerMapping'
+2024-08-04 18:34:25.858 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /static/**] in 'resourceHandlerMapping'
+2024-08-04 18:34:25.980 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-08-04 18:34:26.164 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-08-04 18:34:26.192 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-08-04 18:34:26.375 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-08-04 18:34:26.570 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8090 (http) with context path '/jaltantra_loop_dev_v7'
+2024-08-04 18:34:26.582 [main] INFO  c.h.j.JaltantraLoopSbApplication - Started JaltantraLoopSbApplication in 7.222 seconds (process running for 7.677)
