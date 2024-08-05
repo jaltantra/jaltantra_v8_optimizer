@@ -89,10 +89,9 @@ sudo systemctl start mysql
 # Create MySQL user 'dev' if it does not exist
 if ! does_mysql_user_exist; then
     echo "Creating user 'dev' with password 'dev' on MySQL"
-    sudo mysql <<MYSQL_SCRIPT
+    sudo mysql -p <<MYSQL_SCRIPT
 CREATE USER 'dev'@'localhost' IDENTIFIED BY 'dev';
 GRANT ALL PRIVILEGES ON *.* TO 'dev'@'localhost' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
 MYSQL_SCRIPT
     echo "MySQL user 'dev' created with password 'dev'"
 else

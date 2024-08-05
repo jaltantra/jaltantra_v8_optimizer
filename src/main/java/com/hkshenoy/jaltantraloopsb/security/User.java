@@ -77,7 +77,9 @@ public class User
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private List<UserRequestDetail> requestDetail = new ArrayList<>();
 
-
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private List<WaterNetwork> waterNetwork = new ArrayList<>();
 
 
 }

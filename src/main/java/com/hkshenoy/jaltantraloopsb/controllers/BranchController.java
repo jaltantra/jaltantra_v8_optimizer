@@ -3,6 +3,7 @@ package com.hkshenoy.jaltantraloopsb.controllers;
 import com.google.gson.Gson;
 
 import com.hkshenoy.jaltantraloopsb.helper.*;
+import com.hkshenoy.jaltantraloopsb.security.NetworkStorageService;
 import com.hkshenoy.jaltantraloopsb.structs.*;
 import com.hkshenoy.jaltantraloopsb.optimizer.*;
 import com.hkshenoy.jaltantraloopsb.optimizer.Pipe.FlowType;
@@ -15,6 +16,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
+import java.util.Enumeration;
 
 
 @Controller
@@ -59,12 +62,16 @@ public class BranchController
 	@Autowired
 	private UserHistoryTracker userHistoryTracker;
 
+	// Sayantan Biswas -----------------------------------------------
+	@Autowired
+	NetworkStorageService networkss;
+	//For storing the network in Database-----------------------------
+
 	@Value("${server.servlet.context-path}")
 	private String contextPath;
 
 
-
-
+	// "/branch" endpoint returns system.html document after setting the attributes
 	@RequestMapping(value="",method= RequestMethod.GET)
 	public String home(Model model){
 		model.addAttribute("contextPath",contextPath);
@@ -73,17 +80,18 @@ public class BranchController
 	}
 
 
-
+	// "/branch/optimize" endpoint authenticates the user, accepts file uploading and optimizes the uploaded network.
 	@RequestMapping(value="/optimize",method = {RequestMethod.GET, RequestMethod.POST})
     public void doPost(@AuthenticationPrincipal UserDetails user,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{		
     	//action refers to uploading some file or optimization of network
 		System.out.println("Post request Received");
 
+
 		if(user != null){
 			userHistoryTracker.saveUserRequest(user,request);
 		}
-
+		//--------------------------FILE UPLOAD HANDLING:START-----------------------------------
 		String t = request.getParameter("action");
 		if(t!=null)
 		{
@@ -113,7 +121,8 @@ public class BranchController
 				return;
 			}
 		}
-		
+		//--------------------------FILE UPLOAD HANDLING:END----------------------------------
+		//------------------Optimization Process:START----------------------------------------
 		PrintWriter out = response.getWriter();
 		try{
 			String place = request.getParameter("place");
@@ -167,6 +176,9 @@ public class BranchController
 
 			boolean solved = opt.Optimize();
 
+			//Sayantan Biswas-------------------------------------------------
+			Network network = new Network(request);
+			//For storing the network in Database-----------------------------
 			String message;
 			if(solved)
 			{
@@ -398,7 +410,11 @@ public class BranchController
 			{
 				message="{\"status\":\"error\",\"message\":\"Failed to solve network\"}";
 			}
+			// Sayantan Biswas -----------------------------------------------
+			networkss.saveNetwork(network, solved, "BRANCH");
+			//For storing the network in Database-----------------------------
 			out.print(message);
+			//------------------Optimization Process:END----------------------------------------
 		}
 		catch(Exception e)
 		{
