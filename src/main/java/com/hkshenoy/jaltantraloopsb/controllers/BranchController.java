@@ -3,6 +3,7 @@ package com.hkshenoy.jaltantraloopsb.controllers;
 import com.google.gson.Gson;
 
 import com.hkshenoy.jaltantraloopsb.helper.*;
+import com.hkshenoy.jaltantraloopsb.security.NetworkStorageService;
 import com.hkshenoy.jaltantraloopsb.structs.*;
 import com.hkshenoy.jaltantraloopsb.optimizer.*;
 import com.hkshenoy.jaltantraloopsb.optimizer.Pipe.FlowType;
@@ -61,6 +62,11 @@ public class BranchController
 	@Autowired
 	private UserHistoryTracker userHistoryTracker;
 
+	// Sayantan Biswas -----------------------------------------------
+	@Autowired
+	NetworkStorageService networkss;
+	//For storing the network in Database-----------------------------
+
 	@Value("${server.servlet.context-path}")
 	private String contextPath;
 
@@ -80,6 +86,7 @@ public class BranchController
 	{		
     	//action refers to uploading some file or optimization of network
 		System.out.println("Post request Received");
+
 
 		if(user != null){
 			userHistoryTracker.saveUserRequest(user,request);
@@ -169,8 +176,9 @@ public class BranchController
 
 			boolean solved = opt.Optimize();
 
+			//Sayantan Biswas-------------------------------------------------
 			Network network = new Network(request);
-
+			//For storing the network in Database-----------------------------
 			String message;
 			if(solved)
 			{
@@ -402,6 +410,9 @@ public class BranchController
 			{
 				message="{\"status\":\"error\",\"message\":\"Failed to solve network\"}";
 			}
+			// Sayantan Biswas -----------------------------------------------
+			networkss.saveNetwork(network, solved, "BRANCH");
+			//For storing the network in Database-----------------------------
 			out.print(message);
 			//------------------Optimization Process:END----------------------------------------
 		}

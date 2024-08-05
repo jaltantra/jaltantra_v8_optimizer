@@ -22,46 +22,132 @@ public class WaterNetwork implements Serializable {
     @Column(name = "network_id", nullable = false, unique = true)
     private Integer networkId;
 
-    @Column(name = "project_name", nullable = false)
-    private String projectName;
+    @Column(name = "general", columnDefinition = "LONGTEXT", nullable = false)
+    private String general;
 
-    @Column(name = "organization_name")
-    private String organizationName;
+    @Column(name = "nodes", columnDefinition = "LONGTEXT", nullable = false)
+    private String nodes;
 
-    @Column(name = "minimum_node_pressure", nullable = false)
-    private Float minimumNodePressure;
+    @Column(name = "pipes", columnDefinition = "LONGTEXT", nullable = false)
+    private String pipes;
 
-    @Column(name = "default_pipe_roughness", nullable = false)
-    private Float defaultPipeRoughness;
+    @Column(name = "commercialPipes", columnDefinition = "LONGTEXT", nullable = false)
+    private String commercialPipes;
 
-    @Column(name = "minimum_headloss", nullable = false)
-    private Float minimumHeadloss;
+    @Column(name = "esrGeneral", columnDefinition = "LONGTEXT", nullable = false)
+    private String esrGeneral;
 
-    @Column(name = "maximum_headloss", nullable = false)
-    private Float maximumHeadloss;
+    @Column(name = "esrCost", columnDefinition = "LONGTEXT", nullable = false)
+    private String esrCost;
 
-    @Column(name = "maximum_water_speed")
-    private Float maximumWaterSpeed;
+    @Column(name = "pumpGeneral", columnDefinition = "LONGTEXT", nullable = false)
+    private String pumpGeneral;
 
-    @Column(name = "minimum_water_speed")
-    private Float minimumWaterSpeed;
+    @Column(name = "pumpManual", columnDefinition = "LONGTEXT", nullable = false)
+    private String pumpManual;
 
-    @Column(name = "maximum_pipe_pressure")
-    private Float maximumPipePressure;
+    @Column(name = "valves", columnDefinition = "LONGTEXT", nullable = false)
+    private String valves;
 
-    @Column(name = "number_of_supply_hours", nullable = false)
-    private Float numberOfSupplyHours;
+    @Column(name="solved", nullable = false)
+    private boolean solved;
 
-    @Column(name = "source_node_id", nullable = false)
-    private Integer sourceNodeId;
+    @Column(name="type")
+    private String type;
 
-    @Column(name = "source_node_name", nullable = false)
-    private String sourceNodeName;
+    public Integer getNetworkId() {
+        return networkId;
+    }
 
-    @Column(name = "source_head", nullable = false)
-    private Float sourceHead;
+    public void setNetworkId(Integer networkId) {
+        this.networkId = networkId;
+    }
 
-    @Column(name = "source_elevation", nullable = false)
-    private Float sourceElevation;
+    public String getGeneral() {
+        return general;
+    }
 
+    public void setGeneral(String general) {
+        this.general = general;
+    }
+
+    public String getNodes() {
+        return nodes;
+    }
+
+    public void setNodes(String nodes) {
+        this.nodes = nodes;
+    }
+
+    public String getPipes() {
+        return pipes;
+    }
+
+    public void setPipes(String pipes) {
+        this.pipes = pipes;
+    }
+
+    public String getCommercialPipes() {
+        return commercialPipes;
+    }
+
+    public void setCommercialPipes(String commercialPipes) {
+        this.commercialPipes = commercialPipes;
+    }
+
+    public String getEsrGeneral() {
+        return esrGeneral;
+    }
+
+    public void setEsrGeneral(String esrGeneral) {
+        this.esrGeneral = esrGeneral;
+    }
+
+    public String getEsrCost() {
+        return esrCost;
+    }
+
+    public void setEsrCost(String esrCost) {
+        this.esrCost = esrCost;
+    }
+
+    public String getPumpGeneral() {
+        return pumpGeneral;
+    }
+
+    public void setPumpGeneral(String pumpGeneral) {
+        this.pumpGeneral = pumpGeneral;
+    }
+
+    public String getPumpManual() {
+        return pumpManual;
+    }
+
+    public void setPumpManual(String pumpManual) {
+        this.pumpManual = pumpManual;
+    }
+
+    public String getValves() {
+        return valves;
+    }
+
+    public void setValves(String valves) {
+        this.valves = valves;
+    }
+
+    public boolean isSolved() {
+        return solved;
+    }
+
+    public void setSolved(boolean solved) {
+        this.solved = solved;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

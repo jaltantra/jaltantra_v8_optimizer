@@ -1607,3 +1607,15 @@ python3 = '/home/cse/miniconda/bin/python3'
 /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/JalTantra-Code-and-Scripts
 .
 /home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/JalTantra-Code-and-Scripts
+
+date    = 'Monday 05 August 2024 05:22:46 AM IST'
+whoami  = 'cse'
+pwd     = '/home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/JalTantra-Code-and-Scripts'
+$0      = '/home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/JalTantra-Code-and-Scripts/CalculateNetworkCost_JaltantraLauncher.sh'
+$1      = '/home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/JalTantra-Code-and-Scripts/./DataNetworkGraphInput_hashed/ca52c2fe2153adeddb76ea13ac7572991f070b3455d766a21d5f5147bef88cc5.R'
+$2      = '00:01:00'
+python  = '/home/cse/miniconda/bin/python'
+python3 = '/home/cse/miniconda/bin/python3'
+/home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/JalTantra-Code-and-Scripts
+.
+/home/cse/Documents/Jaltantra_MTP/Jaltantra_branch_loop_v_2.3/JalTantra-Code-and-Scripts

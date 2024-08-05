@@ -25,6 +25,8 @@ public class Network {
         this.valves = request.getParameter("valves");
     }
 
+
+
     @Override
     public String toString() {
         return "Network{" +
