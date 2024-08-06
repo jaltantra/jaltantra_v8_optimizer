@@ -5,14 +5,13 @@ package com.hkshenoy.jaltantraloopsb.controllers;
 import com.hkshenoy.jaltantraloopsb.helper.*;
 
 
-import com.hkshenoy.jaltantraloopsb.security.User;
-import com.hkshenoy.jaltantraloopsb.security.UserRepository;
-import com.hkshenoy.jaltantraloopsb.security.UserRequestDetail;
-import com.hkshenoy.jaltantraloopsb.security.UserSessionDetail;
+import com.hkshenoy.jaltantraloopsb.security.*;
+import com.hkshenoy.jaltantraloopsb.structs.Network;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
@@ -44,7 +43,8 @@ public class JaltantraLoopController {
     @Autowired
     private UserHistoryTracker userHistoryTracker;
 
-
+    @Autowired
+    NetworkStorageService networkss;
 
     @Value("${server.servlet.context-path}")
     private String contextPath;
@@ -103,6 +103,9 @@ public class JaltantraLoopController {
 
         final String runTime=request.getParameter("time");
         System.out.println(runTime);
+
+        Network network = new Network(request);
+        networkss.saveNetwork(network, true, "LOOP");
 
         optimizationPerformer.performOptimization(request, response);
     }
