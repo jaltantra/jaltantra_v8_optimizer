@@ -26,6 +26,8 @@ public class UserServiceImpl implements UserService {
 
     private PasswordEncoder passwordEncoder;
 
+    private final JwtTokenUtil jwtTokenUtil;
+
 
     @Value("${spring.mail.username}")
     private String mailSenderUsername;
@@ -36,13 +38,16 @@ public class UserServiceImpl implements UserService {
 
 
     public UserServiceImpl(UserRepository userRepository,
-                           PasswordEncoder passwordEncoder){
+                           PasswordEncoder passwordEncoder,
+                           JwtTokenUtil jwtTokenUtil){
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtTokenUtil = jwtTokenUtil;
     }
 
+
     @Override
-    public void saveUser(UserDto userDto,String siteURL) throws UnsupportedEncodingException {
+    public String registerUser(UserDto userDto,String siteURL) throws UnsupportedEncodingException {
 
         User user = new User();
         //user.setName(userDto.getFirstName() + " " + userDto.getLastName());
@@ -64,10 +69,23 @@ public class UserServiceImpl implements UserService {
         user.setEnabled(true);
 
 
-        //sengridEmailSender(user, siteURL);
-
 
         userRepository.save(user);
+        return jwtTokenUtil.generateToken(user);
+    }
+
+    public User authenticateUser(String email, String password) {
+        // Validate the username and password
+        User user = userRepository.findByEmail(email);
+        System.out.println(password);
+        System.out.println(passwordEncoder.encode(password));
+        System.out.println(user.getPassword());
+        System.out.println(user.getEmail());
+
+        if (user != null && passwordEncoder.matches(password, user.getPassword()) ){
+            return user;
+        }
+        return null;
     }
 
     @Override
