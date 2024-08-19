@@ -76,4 +76,20 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    //Endpoint for logout
+    @DeleteMapping("/logout")
+    public ResponseEntity<?> logout(@RequestHeader("Authorization") String authHeader) {
+        // Extract the token from the Authorization header
+        String token = authHeader.replace("Bearer ", "");
+
+        // Invalidate the token
+        boolean isInvalidated = jwtTokenUtil.invalidateToken(token);
+
+        if (isInvalidated) {
+            return ResponseEntity.ok("Logout successful");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
+        }
+    }
 }

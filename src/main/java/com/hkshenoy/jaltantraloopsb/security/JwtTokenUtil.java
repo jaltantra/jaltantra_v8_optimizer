@@ -5,9 +5,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 @Component
@@ -15,6 +13,7 @@ public class JwtTokenUtil {
 
     @Value("${jwt.secret.key}")
     private String SECRET_KEY;
+    private static Set<String> invalidatedTokens = new HashSet<>();
 
     public String generateToken(User user) {
         Map<String, Object> claims = new HashMap<>();
@@ -62,10 +61,21 @@ public class JwtTokenUtil {
 
     // Validate the token
     public Boolean validateToken(String token, User user) {
+        if (isTokenInvalid(token)) {
+            return false; // Token is invalid
+        }
         final String email = getEmailFromToken(token);
         return (email.equals(user.getEmail()) && !isTokenExpired(token));
     }
 
+    public boolean invalidateToken(String token) {
+        // Add the token to the blacklist
+        return invalidatedTokens.add(token);
+    }
 
+    public boolean isTokenInvalid(String token) {
+        // Check if the token is in the blacklist
+        return invalidatedTokens.contains(token);
+    }
 
 }
