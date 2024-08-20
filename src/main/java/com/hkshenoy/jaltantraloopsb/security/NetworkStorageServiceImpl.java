@@ -29,6 +29,7 @@ public class NetworkStorageServiceImpl implements NetworkStorageService {
         waterNetwork.setPumpGeneral(network.pumpGeneral);
         waterNetwork.setPumpManual(network.pumpManual);
         waterNetwork.setEsrGeneral(network.esrGeneral);
+        waterNetwork.setSolved(solve);
         waterNetwork.setUserid(user_id);
         waterNetworkRepository.save(waterNetwork);
     }
