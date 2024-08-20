@@ -8,7 +8,9 @@ package com.hkshenoy.jaltantraloopsb.structs;
 //allow_dummy: true if nodes with no demand are allowed to have ESRs (will serve downstream nodes with demand)
 //must_esr: array of nodeids representing nodes that must have ESRs
 //must_not_esr: array of nodeids represting nodes that cannot have ESRs
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EsrGeneralStruct
 {
 	public boolean esr_enabled;
@@ -18,11 +20,13 @@ public class EsrGeneralStruct
 	public boolean allow_dummy;
 	public int[] must_esr;
 	public int[] must_not_esr;
-	
-	
-	public EsrGeneralStruct(boolean esr_enabled, double secondary_supply_hours,	
-							double esr_capacity_factor, double max_esr_height, 
-			boolean allow_dummy, int[] must_esr, int[] must_not_esr) {
+
+	public EsrGeneralStruct() {
+	}
+
+	public EsrGeneralStruct(boolean esr_enabled, double secondary_supply_hours,
+							double esr_capacity_factor, double max_esr_height,
+							boolean allow_dummy, int[] must_esr, int[] must_not_esr) {
 		this.esr_enabled = esr_enabled;
 		this.secondary_supply_hours = secondary_supply_hours;
 		this.esr_capacity_factor = esr_capacity_factor;

@@ -2,6 +2,8 @@ package com.hkshenoy.jaltantraloopsb.structs;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.util.Map;
+
 public class Network {
     public String general;
     public String nodes;
@@ -13,16 +15,16 @@ public class Network {
     public String pumpManual;
     public String valves;
 
-    public Network(HttpServletRequest request) {
-        this.general = request.getParameter("general");
-        this.nodes = request.getParameter("nodes");
-        this.pipes = request.getParameter("pipes");
-        this.commercialPipes = request.getParameter("commercialPipes");
-        this.esrGeneral = request.getParameter("esrGeneral");
-        this.esrCost = request.getParameter("esrCost");
-        this.pumpGeneral = request.getParameter("pumpGeneral");
-        this.pumpManual = request.getParameter("pumpManual");
-        this.valves = request.getParameter("valves");
+    public Network(Map<String, Object> requestData) {
+        this.general = requestData.get("general").toString();
+        this.nodes = requestData.get("nodes").toString();
+        this.pipes = requestData.get("pipes").toString();
+        this.commercialPipes = requestData.get("commercialPipes").toString();
+        this.esrGeneral = requestData.get("esrGeneral").toString();
+        this.esrCost = requestData.get("esrCost").toString();
+        this.pumpGeneral = requestData.get("pumpGeneral").toString();
+        this.pumpManual = requestData.get("pumpManual").toString();
+        this.valves = requestData.get("valves").toString();
     }
 
 

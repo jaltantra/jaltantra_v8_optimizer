@@ -11,8 +11,12 @@ package com.hkshenoy.jaltantraloopsb.structs;
 //pressure: water pressure of the ndoe in metres (pressure = head - elevation)
 //esr: node id of the esr serving this node
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NodeStruct
 {
+
 	public int nodeid;
 	public String nodename;
 	public double elevation;
@@ -22,6 +26,10 @@ public class NodeStruct
 	public double head;
 	public double pressure;
 	public int esr;
+
+	public NodeStruct(){
+
+	}
 	
 	public NodeStruct(int nodeid, String nodename, double elevation, double demand,
 			double dailydemand, double minpressure, double head, double pressure, int esr) {

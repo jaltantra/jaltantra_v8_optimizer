@@ -11,7 +11,9 @@ package com.hkshenoy.jaltantraloopsb.structs;
 //inflation_rate: rate by which future energy cost is increased, expressed as a percentage
 //design_lifetime: number of years for which the energy cost is to be considered
 //must_not_pump: list of pipes(represented by their pipe ids) which cannot have pumps installed
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PumpGeneralStruct{
 	
 	public boolean pump_enabled;
@@ -24,13 +26,15 @@ public class PumpGeneralStruct{
 	public double inflation_rate;
 	public int design_lifetime;
 	public int[] must_not_pump;
-	
-	
+
+	public PumpGeneralStruct() {
+	}
+
 	public PumpGeneralStruct(boolean pump_enabled, double minpumpsize,
-							double efficiency, double capitalcost_per_kw, 
-							double energycost_per_kwh, double energycost_factor, 
-							double discount_rate, double inflation_rate, 
-							int design_lifetime, int[] must_not_pump) {
+							 double efficiency, double capitalcost_per_kw,
+							 double energycost_per_kwh, double energycost_factor,
+							 double discount_rate, double inflation_rate,
+							 int design_lifetime, int[] must_not_pump) {
 		this.pump_enabled = pump_enabled;
 		this.minpumpsize = minpumpsize;
 		this.efficiency = efficiency;

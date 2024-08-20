@@ -9,11 +9,16 @@ package com.hkshenoy.jaltantraloopsb.structs;
 // length: length of commercial pipe of certain diameter in metres
 // cumulativecost: cumulative cost of commercial pipes so far in rupees
 // roughness: hazen-williams roughness coefficient of commercial pipe
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CommercialPipeStruct
 {
+	public CommercialPipeStruct() {
+	}
+
 	public CommercialPipeStruct(double diameter, double cost,
-			double length, double cumulativecost, double roughness) {
+								double length, double cumulativecost, double roughness) {
 		this.diameter = diameter;
 		this.cost = cost;
 		this.length = length;

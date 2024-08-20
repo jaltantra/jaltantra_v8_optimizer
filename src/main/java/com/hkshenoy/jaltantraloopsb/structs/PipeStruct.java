@@ -18,9 +18,14 @@ package com.hkshenoy.jaltantraloopsb.structs;
 //pumphead: water head provided by the pump installed in this pipe in metres
 //pumpower: power of the pump installed in this pipe in kW
 //valvesetting: amount of pressure reduced by the pressure reducing valve installed in this pipe in metres
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PipeStruct
-{		
+{
+	public PipeStruct(){
+
+	}
 	public PipeStruct(int pipeid, int startnode, int endnode,
 			double length, double diameter, double roughness, double flow,
 			double headloss, double headlossperkm, double speed, double cost, boolean parallelallowed,

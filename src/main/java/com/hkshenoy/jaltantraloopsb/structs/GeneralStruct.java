@@ -2,6 +2,10 @@ package com.hkshenoy.jaltantraloopsb.structs;
 
 //container for general network information
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
+
 //name_project: name of project
 //name_organization: name of organization
 //min_node_pressure: default minimum pressure in metres that must be maintained at all nodes (can be overridden for individual nodes)
@@ -14,7 +18,11 @@ package com.hkshenoy.jaltantraloopsb.structs;
 //source_head: water head provided by the source in metres
 //source_elevation: elevation of source in metres
 //source_nodeid: unique integer node id of the source
-//source_nodename: node name of the source 
+//source_nodename: node name of the source
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class GeneralStruct
 {
 	public String name_project;
@@ -34,7 +42,11 @@ public class GeneralStruct
 	//public double source_demand;
 	public double min_flow;
 	public double max_flow;
-	
+
+	public GeneralStruct(){
+
+	}
+
 	public GeneralStruct(String name_project, String name_organization, double min_node_pressure,	double def_pipe_roughness, 
 			double min_hl_perkm, double max_hl_perkm, double max_water_speed,double min_water_speed, double max_pipe_pressure, double supply_hours,
 			double source_head, double source_elevation, int source_nodeid,

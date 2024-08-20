@@ -104,8 +104,8 @@ public class JaltantraLoopController {
         final String runTime=request.getParameter("time");
         System.out.println(runTime);
 
-        Network network = new Network(request);
-        networkss.saveNetwork(network, true, "LOOP");
+//        Network network = new Network(request);
+//        networkss.saveNetwork(network, true, "LOOP");
 
         optimizationPerformer.performOptimization(request, response);
     }

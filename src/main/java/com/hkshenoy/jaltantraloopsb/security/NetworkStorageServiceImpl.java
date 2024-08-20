@@ -16,7 +16,7 @@ public class NetworkStorageServiceImpl implements NetworkStorageService {
 
 
     @Override
-    public void saveNetwork(Network network, boolean solve, String type) {
+    public void saveNetwork(Network network, boolean solve, String type, Long user_id) {
         WaterNetwork waterNetwork = new WaterNetwork();
 
         waterNetwork.setGeneral(network.general);
@@ -29,7 +29,7 @@ public class NetworkStorageServiceImpl implements NetworkStorageService {
         waterNetwork.setPumpGeneral(network.pumpGeneral);
         waterNetwork.setPumpManual(network.pumpManual);
         waterNetwork.setEsrGeneral(network.esrGeneral);
-
+        waterNetwork.setUserid(user_id);
         waterNetworkRepository.save(waterNetwork);
     }
 }

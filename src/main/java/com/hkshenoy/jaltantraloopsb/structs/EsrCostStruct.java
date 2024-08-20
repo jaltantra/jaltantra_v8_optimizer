@@ -12,11 +12,16 @@ package com.hkshenoy.jaltantraloopsb.structs;
 //simple example: 
 //sample row:(20,30,100,10)
 //cost of a 25 litre tank = 100 + 10*(25-20) = Rs 150
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EsrCostStruct
 {
+	public EsrCostStruct() {
+	}
+
 	public EsrCostStruct(double mincapacity, double maxcapacity,
-			double basecost, double unitcost) {
+						 double basecost, double unitcost) {
 		this.mincapacity = mincapacity;
 		this.maxcapacity = maxcapacity;
 		this.basecost = basecost;
