@@ -34,7 +34,7 @@ public class UserController {
         if (existingUser != null) {
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)
-                    .body("There is already an account registered with the same email sayantan");
+                    .body("There is already an account registered with the same email");
         }
 
         String jwtToken = userService.registerUser(userDto, getSiteURL(request));
@@ -42,14 +42,14 @@ public class UserController {
     }
 
     //Endpoint for login
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         User user = userService.authenticateUser(loginRequest.getEmail(), loginRequest.getPassword());
         if (user != null) {
             String token = jwtTokenUtil.generateToken(user);
             return ResponseEntity.ok(new JwtResponse(token));
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\": \"Invalid credentials\"}");
         }
     }
 

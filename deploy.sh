@@ -16,11 +16,12 @@ echo "Building Jaltantra"
 echo "Build finished"
 
 echo "Transfering the jar file to deployment machine"
-scp target/JaltantraLoopSB-0.0.1-SNAPSHOT.jar $host_name@$host_ip:$host_folder
+mv target/JaltantraLoopSB-0.0.1-SNAPSHOT.jar target/JaltantraREST-0.0.2-SNAPSHOT.jar
+scp target/JaltantraREST-0.0.2-SNAPSHOT.jar $host_name@$host_ip:$host_folder
 echo "Transferd the jar file to deployment machine"
 
 
-COMMAND="nohup java -jar $host_folder/JaltantraLoopSB-0.0.1-SNAPSHOT.jar --spring.profiles.active=deploy  > /dev/null 2>&1"
+COMMAND="nohup java -jar $host_folder/JaltantraREST-0.0.2-SNAPSHOT.jar --spring.profiles.active=deploy  > /dev/null 2>&1"
 
 ssh $host_name@$host_ip $COMMAND
 

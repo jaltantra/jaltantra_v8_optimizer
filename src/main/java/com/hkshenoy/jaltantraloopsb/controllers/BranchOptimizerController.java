@@ -42,7 +42,7 @@ public class BranchOptimizerController {
     private UserService userService;
 
 
-    @GetMapping("/optimize")
+    @PostMapping("/optimize")
     public ResponseEntity<Map<String, Object>>  optimize(@RequestBody Map<String, Object> requestData, @RequestHeader("Authorization") String authHeader) throws ServletException, IOException {
         System.out.println("Post request Received");
         Map<String, Object> response = new HashMap<>();
@@ -88,7 +88,7 @@ public class BranchOptimizerController {
 
             solved = opt.Optimize();
 
-            Network network = new Network(requestData);
+//            Network network = new Network(requestData);
 
             if(solved) {
                 double secondaryFlowFactor = generalProperties.supply_hours / esrGeneralProperties.secondary_supply_hours;
@@ -303,7 +303,7 @@ public class BranchOptimizerController {
                 response.put("status", "Failure");
                 response.put("data", "Failed to solve Network");
             }
-            networkss.saveNetwork(network, solved, "BRANCH", user.getId());
+//            networkss.saveNetwork(network, solved, "BRANCH", user.getId());
         } catch (Exception e) {
 
             response.put("status", "Failure");

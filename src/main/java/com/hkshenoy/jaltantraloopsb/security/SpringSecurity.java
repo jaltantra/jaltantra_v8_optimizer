@@ -43,15 +43,15 @@ public class SpringSecurity {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((authorize) ->
                         authorize
-                                .requestMatchers("/", "/images/**", "/css/**", "/api/register", "/api/login").permitAll()
+                                .requestMatchers("/", "/images/**", "/css/**", "/api/register", "/api/login", "/api/logout").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .formLogin().disable()
-                .logout().disable();
+                .formLogin(formLogin -> formLogin.disable())
+                .logout(logout -> logout.disable());
 
         // Add JWT authentication filter
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
