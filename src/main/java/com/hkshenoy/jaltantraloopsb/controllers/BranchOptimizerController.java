@@ -1,18 +1,11 @@
 package com.hkshenoy.jaltantraloopsb.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hkshenoy.jaltantraloopsb.helper.UserHistoryTracker;
-import com.hkshenoy.jaltantraloopsb.helper.VersionComparator;
+
 import com.hkshenoy.jaltantraloopsb.optimizer.*;
-import com.hkshenoy.jaltantraloopsb.security.JwtTokenUtil;
-import com.hkshenoy.jaltantraloopsb.security.NetworkStorageService;
-import com.hkshenoy.jaltantraloopsb.security.User;
-import com.hkshenoy.jaltantraloopsb.security.UserService;
 import com.hkshenoy.jaltantraloopsb.structs.*;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,22 +17,19 @@ import java.util.*;
 @RequestMapping("/branchoptimizer")
 @CrossOrigin("*")
 public class BranchOptimizerController {
-    @Autowired
-    NetworkStorageService networkss;
-
-    @Value("${JALTANTRA_VERSION}")
-    private String version;
-
-    @Autowired
-    VersionComparator versionComparator;
-
     ObjectMapper objectMapper = new ObjectMapper();
 
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
-
-    @Autowired
-    private UserService userService;
+    private String extractEmailFromToken(String token) {
+        try {
+            String[] parts = token.split("\\.");
+            if (parts.length < 2) return null;
+            String payload = new String(Base64.getDecoder().decode(parts[1]));
+            // Very basic regex based json extraction for "sub" field
+            return payload.replaceAll(".*\"sub\":\"([^\"]+)\".*", "$1");
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
 
     @PostMapping("/optimize")
@@ -47,17 +37,11 @@ public class BranchOptimizerController {
         System.out.println("Post request Received");
         Map<String, Object> response = new HashMap<>();
         String token = authHeader.replace("Bearer ", "");
-        String email = jwtTokenUtil.getEmailFromToken(token);
-        User user = userService.findUserByEmail(email);
+        String email = extractEmailFromToken(token);
 
         boolean solved=false;
         try {
-            String currVersion = version;
-            String clientVersion = requestData.get("version").toString();
-            boolean clientOld = versionComparator.compareVersion(currVersion,clientVersion) != 0;
-            if(clientOld){
-                throw new Exception("Your browser is running an old JalTantra version.<br> Please save your data and press ctrl+F5 to do a hard refresh and get the latest version.<br> If still facing issues please contact the <a target='_blank' href='https://groups.google.com/forum/#!forum/jaltantra-users/join'>JalTantra Google Group</a>");
-            }
+
 
             GeneralStruct generalProperties = objectMapper.convertValue(requestData.get("general"), GeneralStruct.class);
             String project = generalProperties.name_project;
@@ -303,7 +287,6 @@ public class BranchOptimizerController {
                 response.put("status", "Failure");
                 response.put("data", "Failed to solve Network");
             }
-//            networkss.saveNetwork(network, solved, "BRANCH", user.getId());
         } catch (Exception e) {
 
             response.put("status", "Failure");
