@@ -3,6 +3,7 @@ package com.hkshenoy.jaltantraloopsb.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.hkshenoy.jaltantraloopsb.optimizer.*;
+import com.hkshenoy.jaltantraloopsb.security.JwtTokenUtil;
 import com.hkshenoy.jaltantraloopsb.structs.*;
 import jakarta.servlet.ServletException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +20,9 @@ import java.util.*;
 public class BranchOptimizerController {
     ObjectMapper objectMapper = new ObjectMapper();
 
-    private String extractEmailFromToken(String token) {
-        try {
-            String[] parts = token.split("\\.");
-            if (parts.length < 2) return null;
-            String payload = new String(Base64.getDecoder().decode(parts[1]));
-            // Very basic regex based json extraction for "sub" field
-            return payload.replaceAll(".*\"sub\":\"([^\"]+)\".*", "$1");
-        } catch (Exception e) {
-            return null;
-        }
-    }
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
 
 
     @PostMapping("/optimize")
@@ -37,19 +30,27 @@ public class BranchOptimizerController {
         System.out.println("Post request Received");
         Map<String, Object> response = new HashMap<>();
         String token = authHeader.replace("Bearer ", "");
-        String email = extractEmailFromToken(token);
+        String email = "";
+        try {
+            email = jwtTokenUtil.getEmailFromToken(token);
+        } catch (Exception e) {
+            response.put("status", "Failure");
+            response.put("data", "Invalid or expired token");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
 
         boolean solved=false;
         try {
 
 
             GeneralStruct generalProperties = objectMapper.convertValue(requestData.get("general"), GeneralStruct.class);
-            String project = generalProperties.name_project;
-            String organization = generalProperties.name_organization;
 
             NodeStruct[] nodes = objectMapper.convertValue(requestData.get("nodes"), NodeStruct[].class);
-            if(nodes==null || nodes.length==0)
-                throw new Exception("No node data provided.");
+            if(nodes==null || nodes.length==0) {
+                response.put("status", "Failure");
+                response.put("data", "No node data provided.");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            }
 
             PipeStruct[] pipes = objectMapper.convertValue(requestData.get("pipes"), PipeStruct[].class);
             if(pipes==null || pipes.length==0)
