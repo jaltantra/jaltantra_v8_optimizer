@@ -354,7 +354,6 @@ public class Optimizer {
 
 		Node root = source;
 
-
 		HashSet<Node> seen = new HashSet<>();
 		Stack<Node> left = new Stack<>();
 		left.add(root);
@@ -428,14 +427,14 @@ public class Optimizer {
 	 * @return whether network was solved successfully results are ready (`true`) or not (`false`)
 	 * @throws Exception in case of any error/problem or to convey any status information
 	 */
-	public boolean Optimize(String runTime, String version, String projectName) throws Exception {
+	public boolean Optimize(String runTime, String projectName) throws Exception {
 
 		// Execution flow:
 		//   1. Create the data files for the network
 		//   2. Asynchronously launch `CalculateNetworkCost.py` for the data files
 
 		run_Time=runTime;
-		versionNumber = version;
+		// versionNumber = version;
 		project_Name = projectName;
 
 		if(runTime.equals("1hour")){
@@ -458,7 +457,7 @@ public class Optimizer {
 		final int networkValidationResult = validateNetwork();
 		customLogger.logd("Network validation complete..., networkValidationResult = " + networkValidationResult);
 		if (networkValidationResult == 1 || networkValidationResult == 2) {
-			final String networkFileResult = createNetworkFile();
+			final String networkFileResult = createNetworkFile(); // 0-hashedfilename.R
 			final String networkFileStatus = networkFileResult.substring(0, networkFileResult.indexOf("-"));
 			final String networkFileName = networkFileResult.substring(2);
 			String networkFileHash = networkFileName.substring(0, networkFileName.lastIndexOf("."));
@@ -1158,547 +1157,547 @@ public class Optimizer {
 
 		customLogger.logi(String.format("File renamed and moved successfully: '%s' -> '%s'", pathTo1FreshFile, pathTo2HashedFileName));
 
-		customLogger.logi("creating gams m1 and m2 model data file");
-		String solverToGamsm1=SOLVER_ROOT_DIR + "/" + SOLVER_2_HASH_FILE_DIR + "/"+fileHash+"m1.gms";
-		String solverToGamsm2=SOLVER_ROOT_DIR + "/" + SOLVER_2_HASH_FILE_DIR + "/"+fileHash+"m2.gms";
-		createGamsModel(pathTo2HashedFileName,solverToGamsm1,"m1");
-		createGamsModel(pathTo2HashedFileName,solverToGamsm2,"m2");
-		customLogger.logi("finished creating gams m1 and m2 model data file");
+		// customLogger.logi("creating gams m1 and m2 model data file");
+		// String solverToGamsm1=SOLVER_ROOT_DIR + "/" + SOLVER_2_HASH_FILE_DIR + "/"+fileHash+"m1.gms";
+		// String solverToGamsm2=SOLVER_ROOT_DIR + "/" + SOLVER_2_HASH_FILE_DIR + "/"+fileHash+"m2.gms";
+		// createGamsModel(pathTo2HashedFileName,solverToGamsm1,"m1");
+		// createGamsModel(pathTo2HashedFileName,solverToGamsm2,"m2");
+		// customLogger.logi("finished creating gams m1 and m2 model data file");
 		return "0-" + hashedFileName;
 	}
 
-	public void createGamsModel(String amplFilePath,String gamsFilePath,String modelname) throws IOException {
-		ArrayList<String> nodes=new ArrayList<>();
-		ArrayList<String> pipes=new ArrayList<>();
-		ArrayList<String> arcs=new ArrayList<>();
-		ArrayList<String> F_arcs=new ArrayList<>();
-		ArrayList<String> arcsLength=new ArrayList<>();
-		ArrayList<String> elevation=new ArrayList<>();
-		ArrayList<String> pressure=new ArrayList<>();
-		ArrayList<String> demand=new ArrayList<>();
-		ArrayList<String> diameter=new ArrayList<>();
-		ArrayList<String> pipeCost=new ArrayList<>();
-		ArrayList<String> pipeRoughness=new ArrayList<>();
-		ArrayList<String> F_L=new ArrayList<>();
-		ArrayList<String> F_d=new ArrayList<>();
-		ArrayList<String> F_R=new ArrayList<>();
-		Map<String, Double> arcsMap = new LinkedHashMap<>();
-		Map<String, Double> F_arcsMap = new LinkedHashMap<>();
-		Map<String, Double> F_diameter = new LinkedHashMap<>();
-		Map<String, Double> F_roughness = new LinkedHashMap<>();
-		String source="";
-
-		File file = new File(amplFilePath);
-		Scanner sc = new Scanner(file);
-
-		String data="";
-		while(sc.hasNext()){
-			String input=sc.nextLine();
-			data=data+input+"\n";
-		}
-		printSetsAndParametersAndModels(gamsFilePath,data,nodes,pipes,arcs,F_arcs,arcsLength,elevation,pressure,demand,diameter,pipeCost,pipeRoughness,F_L,F_d,F_R,arcsMap,F_arcsMap,F_diameter,F_roughness,source,modelname);
-		sc.close();
-	}
-
-	private void printSetsAndParametersAndModels(String gamsFilePath,String data, ArrayList<String> nodes, ArrayList<String> pipes, ArrayList<String> arcs, ArrayList<String> f_arcs, ArrayList<String> arcsLength, ArrayList<String> elevation, ArrayList<String> pressure, ArrayList<String> demand, ArrayList<String> diameter, ArrayList<String> pipeCost, ArrayList<String> pipeRoughness, ArrayList<String> f_l, ArrayList<String> f_d, ArrayList<String> f_r, Map<String, Double> arcsMap, Map<String, Double> f_arcsMap, Map<String, Double> f_diameter, Map<String, Double> f_roughness, String source, String modelname) throws IOException {
-		BufferedWriter out = null;
-
-		try {
-			FileWriter fstream = new FileWriter(gamsFilePath, true); //true tells to append data.
-			out = new BufferedWriter(fstream);
-
-			printSets(out,data,nodes,pipes,arcs,f_arcs,arcsMap,f_arcsMap,f_diameter,f_roughness,source);
-			printParameters(out,data,arcsMap,f_arcsMap,f_diameter,f_roughness,arcsLength,diameter,elevation,pressure,demand,pipeCost,pipeRoughness,source);
-			if(modelname.equals("m1")){
-				printModelm1(out);
-			}
-			else printModelm2(out);
-		}
-
-		catch (IOException e) {
-			System.err.println("Error: " + e.getMessage());
-		}
-
-		finally {
-			if(out != null) {
-				out.close();
-			}
-		}
-	}
-
-	private void printSets(BufferedWriter out, String data, ArrayList<String> nodes, ArrayList<String> pipes, ArrayList<String> arcs, ArrayList<String> f_arcs, Map<String, Double> arcsMap, Map<String, Double> f_arcsMap, Map<String, Double> f_diameter, Map<String, Double> f_roughness, String source) throws IOException {
-		out.write("Sets\n");
-		out.write("\t"+"nodes /");
-
-		// Pattern for matching set nodes
-		Pattern nodesPattern = Pattern.compile("set nodes :=\\s+(.*)\\s*;");
-		// Pattern for matching set pipes
-		Pattern pipesPattern = Pattern.compile("set pipes :=\\s+(.*)\\s*;");
-
-		// Find and extract set nodes
-		Matcher nodesMatcher = nodesPattern.matcher(data);
-		if (nodesMatcher.find()) {
-			String nodesStr = nodesMatcher.group(1);
-			String[] nodesArr = nodesStr.split("\\s+");
-			for (String node : nodesArr) {
-				nodes.add(node);
-			}
-		}
-
-		int idx=0;
-		for(String str:nodes){
-			if(idx == nodes.size()-1){
-				out.write(str);
-			}
-			else{
-				out.write(str+",\t");
-			}
-			idx++;
-		}
-		out.write(" /\n");
-
-		// Find and extract set pipes
-		Matcher pipesMatcher = pipesPattern.matcher(data);
-		if (pipesMatcher.find()) {
-			String pipesStr = pipesMatcher.group(1);
-			String[] pipesArr = pipesStr.split("\\s+");
-			for (String pipe : pipesArr) {
-				pipes.add(pipe);
-			}
-		}
-
-		idx=0;
-		out.write("\t"+"pipes /");
-		for(String str:pipes){
-			if(idx == pipes.size()-1){
-				out.write(str);
-			}
-			else out.write(str+",\t");
-			idx++;
-		}
-		out.write(" /\n");
-
-		Pattern patternSource = Pattern.compile("param Source :=\\s*(\\d+)\\s*;");
-		Matcher matcherSource = patternSource.matcher(data);
-		String paramSource="";
-		if (matcherSource.find()) {
-			paramSource = matcherSource.group(1);
-		}
-		out.write("\t"+"src(nodes) /"+paramSource+"/;");
-
-		out.write("\n");
-		out.write("alias (src,srcs);\n");
-		out.write("alias (nodes,j) ;\n");
-
-		out.write("Set "+"arcs(nodes,j) /");
-		// Pattern for matching arcs: L
-		Pattern arcsPattern = Pattern.compile("param : arcs : L :=\\s+([\\d\\s.]+)\\s*;");
-
-		// Find and extract arcs: L values
-		Matcher arcsMatcher = arcsPattern.matcher(data);
-		if (arcsMatcher.find()) {
-			String arcsData = arcsMatcher.group(1);
-			String[] lines = arcsData.split("\\n");
-
-			for (String line : lines) {
-				String[] values = line.trim().split("\\s+");
-				if (values.length == 3) {
-					String arcKey = values[0] + "." + values[1];
-					double arcValue = Double.parseDouble(values[2]);
-					arcsMap.put(arcKey, arcValue);
-				}
-			}
-		}
-
-		// Print the extracted values
-		idx=0;
-		for (Map.Entry<String, Double> entry : arcsMap.entrySet()) {
-			if(idx == arcsMap.size()-1)
-				out.write(entry.getKey());
-			else out.write(entry.getKey()+",  ");
-			idx++;
-		}
-		out.write("/"+";\n");
-
-		out.write("Set "+"F_arcs(nodes,j) /");
-
-		// Pattern for matching arcs: L
-		Pattern fixedArcsPattern = Pattern.compile("param : F_arcs : F_L :=\\s+([\\d\\s.]+)\\s*;");
-
-		// Find and extract F_arcs: F_L values
-		Matcher fixedArcsMatcher = fixedArcsPattern.matcher(data);
-		if (fixedArcsMatcher.find()) {
-			String fixedArcsData = fixedArcsMatcher.group(1);
-			String[] lines = fixedArcsData.split("\\n");
-
-			for (String line : lines) {
-				String[] values = line.trim().split("\\s+");
-				if (values.length == 3) {
-					String arcKey = values[0] + "." + values[1];
-					double arcValue = Double.parseDouble(values[2]);
-					f_arcsMap.put(arcKey, arcValue);
-				}
-			}
-		}
-
-		// Print the extracted values of F_arcs: F_L
-		idx = 0;
-		for (Map.Entry<String, Double> entry : f_arcsMap.entrySet()) {
-			if (idx == f_arcsMap.size() - 1)
-				out.write(entry.getKey());
-			else
-				out.write(entry.getKey() + ",  ");
-			idx++;
-		}
-		out.write("/" + ";\n");
-
-		// Pattern for matching arcs: diameter
-		Pattern fixed_diameterPattern = Pattern.compile("param F_d :=\\s+([\\d\\s.]+)\\s*;");
-
-		// Find and extract F_d values
-		Matcher fixed_diameterMatcher = fixed_diameterPattern.matcher(data);
-		if (fixed_diameterMatcher.find()) {
-			String fixed_diameterData = fixed_diameterMatcher.group(1);
-			String[] lines = fixed_diameterData.split("\\n");
-
-			for (String line : lines) {
-				String[] values = line.trim().split("\\s+");
-				if (values.length == 3) {
-					String arcKey = values[0] + "." + values[1];
-					double arcValue = Double.parseDouble(values[2]);
-					f_diameter.put(arcKey, arcValue);
-				}
-			}
-		}
-
-		// Pattern for matching arcs: roughness
-		Pattern fixed_roughnessPattern = Pattern.compile("param F_R :=\\s+([\\d\\s.]+)\\s*;");
-
-		// Find and extract F_d values
-		Matcher fixed_roughnessMatcher = fixed_roughnessPattern.matcher(data);
-		if (fixed_roughnessMatcher.find()) {
-			String fixed_roughnessData = fixed_roughnessMatcher.group(1);
-			String[] lines = fixed_roughnessData.split("\\n");
-
-			for (String line : lines) {
-				String[] values = line.trim().split("\\s+");
-				if (values.length == 3) {
-					String arcKey = values[0] + "." + values[1];
-					double arcValue = Double.parseDouble(values[2]);
-					f_roughness.put(arcKey, arcValue);
-				}
-			}
-		}
-
-		out.write("\n");
-	}
-
-	private void printParameters(BufferedWriter out, String data, Map<String, Double> arcsMap, Map<String, Double> f_arcsMap, Map<String, Double> f_diameter, Map<String, Double> f_roughness, ArrayList<String> arcsLength, ArrayList<String> diameter, ArrayList<String> elevation, ArrayList<String> pressure, ArrayList<String> demand, ArrayList<String> pipeCost, ArrayList<String> pipeRoughness, String source) throws IOException {
-
-		out.write("Parameters\n");
-		out.write("\t"+"Len(nodes,j) /");
-		int idx=0;
-		for (Map.Entry<String, Double> entry : arcsMap.entrySet()) {
-			String str=entry.getKey();
-			String len[]=str.split("\\.");
-			if(idx == arcsMap.size()-1)
-				out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue());
-			else out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue()+",  ");
-			idx++;
-		}
-		out.write("/"+"\n");
-
-		out.write("\t"+"F_L(nodes,j) /");
-		idx=0;
-		for (Map.Entry<String, Double> entry : f_arcsMap.entrySet()) {
-			String str=entry.getKey();
-			String len[]=str.split("\\.");
-			if(idx == f_arcsMap.size()-1)
-				out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue());
-			else out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue()+",  ");
-			idx++;
-		}
-		out.write("/"+"\n");
-
-		out.write("\t"+"E(nodes) /");
-		// Extract values of param E
-		String regexE = "param E :=\\s*((?:\\d+\\s+\\d+\\.\\d+\\s*)+);";
-		Pattern patternE = Pattern.compile(regexE);
-		Matcher matcherE = patternE.matcher(data);
-
-		if (matcherE.find()) {
-			String paramEValues = matcherE.group(1);
-			String[] eValues = paramEValues.split("\\s+");
-			for (int i = 0; i < eValues.length; i += 2) {
-				String node = eValues[i];
-				String value = eValues[i + 1];
-				out.write(node + "  " + value);
-				if(i != eValues.length-2) out.write(", ");
-			}
-		}
-		out.write("/\n");
-
-		out.write("\t"+"P(nodes) /");
-		String regexP = "param P :=\\s*([\\s\\S]*?);";
-		Pattern patternP = Pattern.compile(regexP);
-		Matcher matcherP = patternP.matcher(data);
-
-		if (matcherP.find()) {
-			String paramPValues = matcherP.group(1);
-			String[] pValues = paramPValues.split("\\s+");
-			for (int i = 0; i < pValues.length; i += 2) {
-				String node = pValues[i];
-				String value = pValues[i + 1];
-				out.write(node + "  "+value);
-				if(i != pValues.length-2) out.write(", ");
-			}
-		}
-		out.write("/\n");
-
-		out.write("\t"+"D(nodes) /");
-		// Extract values of param D
-		String regexD = "param D :=\\s*((?:\\d+\\s+-?\\d+\\.\\d+\\s*)+);";
-		Pattern patternD = Pattern.compile(regexD);
-		Matcher matcherD = patternD.matcher(data);
-
-		if (matcherD.find()) {
-			String paramDValues = matcherD.group(1);
-			String[] dValues = paramDValues.split("\\s+");
-			for (int i = 0; i < dValues.length; i += 2) {
-				String node = dValues[i];
-				String value = dValues[i + 1];
-				out.write(node + "  "+value);
-				if(i != dValues.length-2) out.write(", ");
-			}
-		}
-		out.write("/\n");
-
-		out.write("\t"+"dia(pipes) /");
-		// Extract values of param d
-		String regexd = "param d :=\\s*((?:\\d+\\s+\\d+\\.\\d+\\s*)+);";
-		Pattern patternd = Pattern.compile(regexd);
-		Matcher matcherd = patternd.matcher(data);
-
-		if (matcherd.find()) {
-			String paramDValues = matcherd.group(1);
-			String[] dValues = paramDValues.split("\\s+");
-			for (int i = 0; i < dValues.length; i += 2) {
-				String node = dValues[i];
-				String value = dValues[i + 1];
-				out.write(node + "  "+value);
-				if(i != dValues.length-2) out.write(", ");
-			}
-		}
-		out.write("/\n");
-
-		out.write("\t"+"C(pipes) /");
-		String regexC = "param C :=\\s*((?:\\d+\\s+\\d+\\.\\d+\\s*)+);";
-		Pattern patternC = Pattern.compile(regexC);
-		Matcher matcherC = patternC.matcher(data);
-
-		if (matcherC.find()) {
-			String paramCValues = matcherC.group(1);
-			String[] cValues = paramCValues.split("\\s+");
-			for (int i = 0; i < cValues.length; i += 2) {
-				String node = cValues[i];
-				String value = cValues[i + 1];
-				out.write(node + "  "+value);
-				if(i != cValues.length-2) out.write(", ");
-			}
-		}
-		out.write("/\n");
-
-		out.write("\t"+"R(pipes) /");
-		String regexR = "param R :=\\s*([\\s\\S]*?);";
-		Pattern patternR = Pattern.compile(regexR);
-		Matcher matcherR = patternR.matcher(data);
-
-		if (matcherR.find()) {
-			String paramRValues = matcherR.group(1);
-			String[] rValues = paramRValues.split("\\s+");
-			for (int i = 0; i < rValues.length; i += 2) {
-				String node = rValues[i];
-				String value = rValues[i + 1];
-				out.write(node + "  "+value);
-				if(i != rValues.length-2) out.write(", ");
-			}
-		}
-
-		out.write("/\n");
-
-		idx=0;
-		out.write("\t"+"F_d(nodes,j) /");
-		for (Map.Entry<String, Double> entry : f_diameter.entrySet()) {
-			String str=entry.getKey();
-			String len[]=str.split("\\.");
-			if(idx == f_diameter.size()-1)
-				out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue());
-			else out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue()+",  ");
-			idx++;
-		}
-		out.write("/"+"\n");
-
-		// System.out.println("/");
-
-		idx=0;
-		out.write("\t"+"F_R(nodes,j) /");
-		for (Map.Entry<String, Double> entry : f_roughness.entrySet()) {
-			String str=entry.getKey();
-			String len[]=str.split("\\.");
-			if(idx == f_roughness.size()-1)
-				out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue());
-			else out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue()+",  ");
-			idx++;
-		}
-
-
-		out.write("/;\n");
-
-		out.write("\n");
-
-	}
-
-	void printModelm2(BufferedWriter out) throws IOException {
-		out.write("Scalar omega  /10.68/;\n");
-		out.write("Scalar bnd ;\n");
-		out.write("Scalar qm;\n");
-		out.write("Scalar q_M;\n");
-
-		out.write("\n");
-
-		out.write("bnd = sum(src,D(src));\n");
-		out.write("q_M=-bnd;\n");
-		out.write("qm=0;\n");
-
-		out.write("\n");
-
-		out.write("Variable l(nodes,j,pipes); \n");
-		out.write("l.lo(nodes,j,pipes)= 0;\n");
-
-		out.write("\n");
-
-		out.write("Variable q1(nodes,j);\n");
-		out.write("q1.lo(nodes,j)=qm;\n");
-		out.write("q1.up(nodes,j)=q_M;\n");
-
-		out.write("\n");
-
-		out.write("Variable q2(nodes,j);\n");
-		out.write("q2.lo(nodes,j)=qm;\n");
-		out.write("q2.up(nodes,j)=q_M;\n");
-
-		out.write("\n");
-
-		/**
-		 * Variable F_q1(nodes,j);
-		 * F_q1.lo(nodes,j)=qm;
-		 * F_q1.up(nodes,j)=q_M;
-		 *
-		 *
-		 * Variable F_q2(nodes,j);
-		 * F_q2.lo(nodes,j)=qm;
-		 * F_q2.up(nodes,j)=q_M;
-		 */
-		out.write("Variable F_q1(nodes,j);\n");
-		out.write("F_q1.lo(nodes,j)=qm;\n");
-		out.write("F_q1.lo(nodes,j)=qm;\n");
-
-		out.write("\n");
-
-		out.write("Variable F_q2(nodes,j);\n");
-		out.write("F_q2.lo(nodes,j)=qm;\n");
-		out.write("F_q2.up(nodes,j)=q_M;\n");
-
-		out.write("Variables z;\n");
-
-		out.write("\n");
-
-		out.write("Variable h(nodes);\n");
-
-		out.write("\n");
-
-		out.write("Equations cost \"objective function\",bound1(nodes,j,pipes),cons1(nodes),cons2(nodes),cons3(nodes,j),cons5(src), cons4(nodes,j), cons6(nodes,j), cons7(nodes,j) ;\n");
-
-		out.write("cost..  z=e=sum(arcs(nodes,j),sum(pipes,l(arcs,pipes)*c(pipes)));\n");
-
-		out.write("bound1(nodes,j,pipes)$arcs(nodes,j).. l(nodes,j,pipes) =l= Len(nodes,j);\n");
-		out.write("cons1(nodes).. sum(arcs(j,nodes),(q1(arcs)-q2(arcs))) + sum(F_arcs(j,nodes),(F_q1(F_arcs)-F_q2(F_arcs))) =e= sum(arcs(nodes,j),(q1(arcs)-q2(arcs))) + sum(F_arcs(nodes,j),(F_q1(F_arcs)-F_q2(F_arcs))) + D(nodes);\n");
-		out.write("cons2(nodes).. h(nodes) =g= E(nodes) + P(nodes);\n");
-		out.write("cons3(arcs(nodes,j)).. h(nodes)-h(j)=e=sum(pipes,(((q1(arcs)*0.001)**1.852 - (q2(arcs)*0.001)**1.852)*omega*l(arcs,pipes))/((R(pipes)**1.852)*(dia(pipes)/1000)**4.87));\n");
-		out.write("cons7(F_arcs(nodes,j)).. h(nodes)-h(j)=e=(((F_q1(F_arcs)*0.001)**1.852 - (F_q2(F_arcs)*0.001)**1.852)*omega*F_L(F_arcs))/((F_R(F_arcs)**1.852)*(F_d(F_arcs)/1000)**4.87);\n");
-		out.write("cons4(arcs(nodes,j)).. sum(pipes,l(arcs,pipes)) =e=Len(arcs);\n");
-		out.write("cons5(src)..  h(src)=e= sum(srcs,E(srcs));\n");
-		out.write("cons6(arcs(nodes,j)).. q1(arcs)*q2(arcs) =l= q_M*qm;\n");
-
-		out.write("\n");
-
-		out.write("model m2  /all/  ;\n");
-		// System.out.println("Option threads=4;\n");
-		// System.out.println("m2.optfile =1;\n");
-		out.write("solve m2 using minlp minimizing z ;\n");
-	}
-
-	private void printModelm1(BufferedWriter out) throws IOException {
-
-		out.write("Scalar omega  /10.68/;\n");
-		out.write("Scalar bnd ;\n");
-		out.write("Scalar qm;\n");
-		out.write("Scalar q_M;\n");
-
-		out.write("\n");
-
-		out.write("bnd = sum(src,D(src));\n");
-		out.write("q_M=-bnd;\n");
-		out.write("qm=bnd;\n");
-
-		out.write("\n");
-
-		out.write("Variable l(nodes,j,pipes);\n");
-		out.write("l.lo(nodes,j,pipes)= 0;\n");
-
-		out.write("\n");
-
-		out.write("Variable q(nodes,j);\n");
-		out.write("q.lo(nodes,j)=qm;\n");
-		out.write("q.up(nodes,j)=q_M;\n");
-
-		out.write("\n");
-
-		out.write("Variable F_q(nodes,j);\n");
-		out.write("F_q.lo(nodes,j)=qm;\n");
-		out.write("F_q.up(nodes,j)=q_M;\n");
-
-		out.write("\n");
-
-		out.write("Variables z;\n");
-
-		out.write("\n");
-
-		out.write("Variable h(nodes);\n");
-
-		out.write("\n");
-
-		out.write("Equations cost \"objective function\",bound1(nodes,j,pipes),cons1(nodes),cons2(nodes),cons3(nodes,j),cons5(src), cons4(nodes,j), cons6(nodes,j);\n");
-
-		out.write("cost..  z=e=sum(arcs(nodes,j),sum(pipes,l(arcs,pipes)*c(pipes)));\n");
-
-		out.write("bound1(nodes,j,pipes)$arcs(nodes,j).. l(nodes,j,pipes) =l= Len(nodes,j);\n");
-		out.write("cons1(nodes).. sum(arcs(j,nodes),q(arcs)) + sum(F_arcs(j,nodes),F_q(F_arcs)) =e= sum(arcs(nodes,j),q(arcs)) + sum(F_arcs(nodes,j),F_q(F_arcs))  + D(nodes);\n");
-		out.write("cons2(nodes).. h(nodes) =g= E(nodes) + P(nodes);\n");
-		out.write("cons3(arcs(nodes,j)).. h(nodes)-h(j)=e=sum(pipes,(signpower(q(arcs),1.852))*(0.001**1.852)*omega*l(arcs,pipes)/((R(pipes)**1.852)*(dia(pipes)/1000)**4.87));\n");
-		out.write("cons6(F_arcs(nodes,j)).. h(nodes)-h(j)=e=signpower(F_q(F_arcs),1.852)*(0.001**1.852)*omega*F_L(F_arcs)/((F_R(F_arcs)**1.852)*(F_d(F_arcs)/1000)**4.87);\n");
-		// out.write("cons6(F_arcs(nodes,j)).. h(nodes)-h(j)=e=(F_q(F_arcs)*(abs(F_q(F_arcs))**0.852))*(0.001**1.852)*(omega*F_L(F_arcs)/((F_R(F_arcs)**1.852)*(F_d(F_arcs)/1000)**4.87));\n");
-		out.write("cons4(arcs(nodes,j)).. sum(pipes,l(arcs,pipes)) =e=Len(arcs);\n");
-		out.write("cons5(src)..  h(src)=e= sum(srcs,E(srcs));\n");
-
-		out.write("\n");
-
-		out.write("model m1  /all/  ;\n");
-//			System.out.println("Option threads=4;");
-// 		out.write("m1.optfile =1;\n");
-		out.write("solve m1 using minlp minimizing z ;\n");
-
-	}
+	// public void createGamsModel(String amplFilePath,String gamsFilePath,String modelname) throws IOException {
+	// 	ArrayList<String> nodes=new ArrayList<>();
+	// 	ArrayList<String> pipes=new ArrayList<>();
+	// 	ArrayList<String> arcs=new ArrayList<>();
+	// 	ArrayList<String> F_arcs=new ArrayList<>();
+	// 	ArrayList<String> arcsLength=new ArrayList<>();
+	// 	ArrayList<String> elevation=new ArrayList<>();
+	// 	ArrayList<String> pressure=new ArrayList<>();
+	// 	ArrayList<String> demand=new ArrayList<>();
+	// 	ArrayList<String> diameter=new ArrayList<>();
+	// 	ArrayList<String> pipeCost=new ArrayList<>();
+	// 	ArrayList<String> pipeRoughness=new ArrayList<>();
+	// 	ArrayList<String> F_L=new ArrayList<>();
+	// 	ArrayList<String> F_d=new ArrayList<>();
+	// 	ArrayList<String> F_R=new ArrayList<>();
+	// 	Map<String, Double> arcsMap = new LinkedHashMap<>();
+	// 	Map<String, Double> F_arcsMap = new LinkedHashMap<>();
+	// 	Map<String, Double> F_diameter = new LinkedHashMap<>();
+	// 	Map<String, Double> F_roughness = new LinkedHashMap<>();
+	// 	String source="";
+
+	// 	File file = new File(amplFilePath);
+	// 	Scanner sc = new Scanner(file);
+
+	// 	String data="";
+	// 	while(sc.hasNext()){
+	// 		String input=sc.nextLine();
+	// 		data=data+input+"\n";
+	// 	}
+	// 	printSetsAndParametersAndModels(gamsFilePath,data,nodes,pipes,arcs,F_arcs,arcsLength,elevation,pressure,demand,diameter,pipeCost,pipeRoughness,F_L,F_d,F_R,arcsMap,F_arcsMap,F_diameter,F_roughness,source,modelname);
+	// 	sc.close();
+	// }
+
+	// private void printSetsAndParametersAndModels(String gamsFilePath,String data, ArrayList<String> nodes, ArrayList<String> pipes, ArrayList<String> arcs, ArrayList<String> f_arcs, ArrayList<String> arcsLength, ArrayList<String> elevation, ArrayList<String> pressure, ArrayList<String> demand, ArrayList<String> diameter, ArrayList<String> pipeCost, ArrayList<String> pipeRoughness, ArrayList<String> f_l, ArrayList<String> f_d, ArrayList<String> f_r, Map<String, Double> arcsMap, Map<String, Double> f_arcsMap, Map<String, Double> f_diameter, Map<String, Double> f_roughness, String source, String modelname) throws IOException {
+	// 	BufferedWriter out = null;
+
+	// 	try {
+	// 		FileWriter fstream = new FileWriter(gamsFilePath, true); //true tells to append data.
+	// 		out = new BufferedWriter(fstream);
+
+	// 		printSets(out,data,nodes,pipes,arcs,f_arcs,arcsMap,f_arcsMap,f_diameter,f_roughness,source);
+	// 		printParameters(out,data,arcsMap,f_arcsMap,f_diameter,f_roughness,arcsLength,diameter,elevation,pressure,demand,pipeCost,pipeRoughness,source);
+	// 		if(modelname.equals("m1")){
+	// 			printModelm1(out);
+	// 		}
+	// 		else printModelm2(out);
+	// 	}
+
+	// 	catch (IOException e) {
+	// 		System.err.println("Error: " + e.getMessage());
+	// 	}
+
+	// 	finally {
+	// 		if(out != null) {
+	// 			out.close();
+	// 		}
+	// 	}
+	// }
+
+	// private void printSets(BufferedWriter out, String data, ArrayList<String> nodes, ArrayList<String> pipes, ArrayList<String> arcs, ArrayList<String> f_arcs, Map<String, Double> arcsMap, Map<String, Double> f_arcsMap, Map<String, Double> f_diameter, Map<String, Double> f_roughness, String source) throws IOException {
+	// 	out.write("Sets\n");
+	// 	out.write("\t"+"nodes /");
+
+	// 	// Pattern for matching set nodes
+	// 	Pattern nodesPattern = Pattern.compile("set nodes :=\\s+(.*)\\s*;");
+	// 	// Pattern for matching set pipes
+	// 	Pattern pipesPattern = Pattern.compile("set pipes :=\\s+(.*)\\s*;");
+
+	// 	// Find and extract set nodes
+	// 	Matcher nodesMatcher = nodesPattern.matcher(data);
+	// 	if (nodesMatcher.find()) {
+	// 		String nodesStr = nodesMatcher.group(1);
+	// 		String[] nodesArr = nodesStr.split("\\s+");
+	// 		for (String node : nodesArr) {
+	// 			nodes.add(node);
+	// 		}
+	// 	}
+
+	// 	int idx=0;
+	// 	for(String str:nodes){
+	// 		if(idx == nodes.size()-1){
+	// 			out.write(str);
+	// 		}
+	// 		else{
+	// 			out.write(str+",\t");
+	// 		}
+	// 		idx++;
+	// 	}
+	// 	out.write(" /\n");
+
+	// 	// Find and extract set pipes
+	// 	Matcher pipesMatcher = pipesPattern.matcher(data);
+	// 	if (pipesMatcher.find()) {
+	// 		String pipesStr = pipesMatcher.group(1);
+	// 		String[] pipesArr = pipesStr.split("\\s+");
+	// 		for (String pipe : pipesArr) {
+	// 			pipes.add(pipe);
+	// 		}
+	// 	}
+
+	// 	idx=0;
+	// 	out.write("\t"+"pipes /");
+	// 	for(String str:pipes){
+	// 		if(idx == pipes.size()-1){
+	// 			out.write(str);
+	// 		}
+	// 		else out.write(str+",\t");
+	// 		idx++;
+	// 	}
+	// 	out.write(" /\n");
+
+	// 	Pattern patternSource = Pattern.compile("param Source :=\\s*(\\d+)\\s*;");
+	// 	Matcher matcherSource = patternSource.matcher(data);
+	// 	String paramSource="";
+	// 	if (matcherSource.find()) {
+	// 		paramSource = matcherSource.group(1);
+	// 	}
+	// 	out.write("\t"+"src(nodes) /"+paramSource+"/;");
+
+	// 	out.write("\n");
+	// 	out.write("alias (src,srcs);\n");
+	// 	out.write("alias (nodes,j) ;\n");
+
+	// 	out.write("Set "+"arcs(nodes,j) /");
+	// 	// Pattern for matching arcs: L
+	// 	Pattern arcsPattern = Pattern.compile("param : arcs : L :=\\s+([\\d\\s.]+)\\s*;");
+
+	// 	// Find and extract arcs: L values
+	// 	Matcher arcsMatcher = arcsPattern.matcher(data);
+	// 	if (arcsMatcher.find()) {
+	// 		String arcsData = arcsMatcher.group(1);
+	// 		String[] lines = arcsData.split("\\n");
+
+	// 		for (String line : lines) {
+	// 			String[] values = line.trim().split("\\s+");
+	// 			if (values.length == 3) {
+	// 				String arcKey = values[0] + "." + values[1];
+	// 				double arcValue = Double.parseDouble(values[2]);
+	// 				arcsMap.put(arcKey, arcValue);
+	// 			}
+	// 		}
+	// 	}
+
+	// 	// Print the extracted values
+	// 	idx=0;
+	// 	for (Map.Entry<String, Double> entry : arcsMap.entrySet()) {
+	// 		if(idx == arcsMap.size()-1)
+	// 			out.write(entry.getKey());
+	// 		else out.write(entry.getKey()+",  ");
+	// 		idx++;
+	// 	}
+	// 	out.write("/"+";\n");
+
+	// 	out.write("Set "+"F_arcs(nodes,j) /");
+
+	// 	// Pattern for matching arcs: L
+	// 	Pattern fixedArcsPattern = Pattern.compile("param : F_arcs : F_L :=\\s+([\\d\\s.]+)\\s*;");
+
+	// 	// Find and extract F_arcs: F_L values
+	// 	Matcher fixedArcsMatcher = fixedArcsPattern.matcher(data);
+	// 	if (fixedArcsMatcher.find()) {
+	// 		String fixedArcsData = fixedArcsMatcher.group(1);
+	// 		String[] lines = fixedArcsData.split("\\n");
+
+	// 		for (String line : lines) {
+	// 			String[] values = line.trim().split("\\s+");
+	// 			if (values.length == 3) {
+	// 				String arcKey = values[0] + "." + values[1];
+	// 				double arcValue = Double.parseDouble(values[2]);
+	// 				f_arcsMap.put(arcKey, arcValue);
+	// 			}
+	// 		}
+	// 	}
+
+	// 	// Print the extracted values of F_arcs: F_L
+	// 	idx = 0;
+	// 	for (Map.Entry<String, Double> entry : f_arcsMap.entrySet()) {
+	// 		if (idx == f_arcsMap.size() - 1)
+	// 			out.write(entry.getKey());
+	// 		else
+	// 			out.write(entry.getKey() + ",  ");
+	// 		idx++;
+	// 	}
+	// 	out.write("/" + ";\n");
+
+	// 	// Pattern for matching arcs: diameter
+	// 	Pattern fixed_diameterPattern = Pattern.compile("param F_d :=\\s+([\\d\\s.]+)\\s*;");
+
+	// 	// Find and extract F_d values
+	// 	Matcher fixed_diameterMatcher = fixed_diameterPattern.matcher(data);
+	// 	if (fixed_diameterMatcher.find()) {
+	// 		String fixed_diameterData = fixed_diameterMatcher.group(1);
+	// 		String[] lines = fixed_diameterData.split("\\n");
+
+	// 		for (String line : lines) {
+	// 			String[] values = line.trim().split("\\s+");
+	// 			if (values.length == 3) {
+	// 				String arcKey = values[0] + "." + values[1];
+	// 				double arcValue = Double.parseDouble(values[2]);
+	// 				f_diameter.put(arcKey, arcValue);
+	// 			}
+	// 		}
+	// 	}
+
+	// 	// Pattern for matching arcs: roughness
+	// 	Pattern fixed_roughnessPattern = Pattern.compile("param F_R :=\\s+([\\d\\s.]+)\\s*;");
+
+	// 	// Find and extract F_d values
+	// 	Matcher fixed_roughnessMatcher = fixed_roughnessPattern.matcher(data);
+	// 	if (fixed_roughnessMatcher.find()) {
+	// 		String fixed_roughnessData = fixed_roughnessMatcher.group(1);
+	// 		String[] lines = fixed_roughnessData.split("\\n");
+
+	// 		for (String line : lines) {
+	// 			String[] values = line.trim().split("\\s+");
+	// 			if (values.length == 3) {
+	// 				String arcKey = values[0] + "." + values[1];
+	// 				double arcValue = Double.parseDouble(values[2]);
+	// 				f_roughness.put(arcKey, arcValue);
+	// 			}
+	// 		}
+	// 	}
+
+	// 	out.write("\n");
+	// }
+
+// 	private void printParameters(BufferedWriter out, String data, Map<String, Double> arcsMap, Map<String, Double> f_arcsMap, Map<String, Double> f_diameter, Map<String, Double> f_roughness, ArrayList<String> arcsLength, ArrayList<String> diameter, ArrayList<String> elevation, ArrayList<String> pressure, ArrayList<String> demand, ArrayList<String> pipeCost, ArrayList<String> pipeRoughness, String source) throws IOException {
+
+// 		out.write("Parameters\n");
+// 		out.write("\t"+"Len(nodes,j) /");
+// 		int idx=0;
+// 		for (Map.Entry<String, Double> entry : arcsMap.entrySet()) {
+// 			String str=entry.getKey();
+// 			String len[]=str.split("\\.");
+// 			if(idx == arcsMap.size()-1)
+// 				out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue());
+// 			else out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue()+",  ");
+// 			idx++;
+// 		}
+// 		out.write("/"+"\n");
+
+// 		out.write("\t"+"F_L(nodes,j) /");
+// 		idx=0;
+// 		for (Map.Entry<String, Double> entry : f_arcsMap.entrySet()) {
+// 			String str=entry.getKey();
+// 			String len[]=str.split("\\.");
+// 			if(idx == f_arcsMap.size()-1)
+// 				out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue());
+// 			else out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue()+",  ");
+// 			idx++;
+// 		}
+// 		out.write("/"+"\n");
+
+// 		out.write("\t"+"E(nodes) /");
+// 		// Extract values of param E
+// 		String regexE = "param E :=\\s*((?:\\d+\\s+\\d+\\.\\d+\\s*)+);";
+// 		Pattern patternE = Pattern.compile(regexE);
+// 		Matcher matcherE = patternE.matcher(data);
+
+// 		if (matcherE.find()) {
+// 			String paramEValues = matcherE.group(1);
+// 			String[] eValues = paramEValues.split("\\s+");
+// 			for (int i = 0; i < eValues.length; i += 2) {
+// 				String node = eValues[i];
+// 				String value = eValues[i + 1];
+// 				out.write(node + "  " + value);
+// 				if(i != eValues.length-2) out.write(", ");
+// 			}
+// 		}
+// 		out.write("/\n");
+
+// 		out.write("\t"+"P(nodes) /");
+// 		String regexP = "param P :=\\s*([\\s\\S]*?);";
+// 		Pattern patternP = Pattern.compile(regexP);
+// 		Matcher matcherP = patternP.matcher(data);
+
+// 		if (matcherP.find()) {
+// 			String paramPValues = matcherP.group(1);
+// 			String[] pValues = paramPValues.split("\\s+");
+// 			for (int i = 0; i < pValues.length; i += 2) {
+// 				String node = pValues[i];
+// 				String value = pValues[i + 1];
+// 				out.write(node + "  "+value);
+// 				if(i != pValues.length-2) out.write(", ");
+// 			}
+// 		}
+// 		out.write("/\n");
+
+// 		out.write("\t"+"D(nodes) /");
+// 		// Extract values of param D
+// 		String regexD = "param D :=\\s*((?:\\d+\\s+-?\\d+\\.\\d+\\s*)+);";
+// 		Pattern patternD = Pattern.compile(regexD);
+// 		Matcher matcherD = patternD.matcher(data);
+
+// 		if (matcherD.find()) {
+// 			String paramDValues = matcherD.group(1);
+// 			String[] dValues = paramDValues.split("\\s+");
+// 			for (int i = 0; i < dValues.length; i += 2) {
+// 				String node = dValues[i];
+// 				String value = dValues[i + 1];
+// 				out.write(node + "  "+value);
+// 				if(i != dValues.length-2) out.write(", ");
+// 			}
+// 		}
+// 		out.write("/\n");
+
+// 		out.write("\t"+"dia(pipes) /");
+// 		// Extract values of param d
+// 		String regexd = "param d :=\\s*((?:\\d+\\s+\\d+\\.\\d+\\s*)+);";
+// 		Pattern patternd = Pattern.compile(regexd);
+// 		Matcher matcherd = patternd.matcher(data);
+
+// 		if (matcherd.find()) {
+// 			String paramDValues = matcherd.group(1);
+// 			String[] dValues = paramDValues.split("\\s+");
+// 			for (int i = 0; i < dValues.length; i += 2) {
+// 				String node = dValues[i];
+// 				String value = dValues[i + 1];
+// 				out.write(node + "  "+value);
+// 				if(i != dValues.length-2) out.write(", ");
+// 			}
+// 		}
+// 		out.write("/\n");
+
+// 		out.write("\t"+"C(pipes) /");
+// 		String regexC = "param C :=\\s*((?:\\d+\\s+\\d+\\.\\d+\\s*)+);";
+// 		Pattern patternC = Pattern.compile(regexC);
+// 		Matcher matcherC = patternC.matcher(data);
+
+// 		if (matcherC.find()) {
+// 			String paramCValues = matcherC.group(1);
+// 			String[] cValues = paramCValues.split("\\s+");
+// 			for (int i = 0; i < cValues.length; i += 2) {
+// 				String node = cValues[i];
+// 				String value = cValues[i + 1];
+// 				out.write(node + "  "+value);
+// 				if(i != cValues.length-2) out.write(", ");
+// 			}
+// 		}
+// 		out.write("/\n");
+
+// 		out.write("\t"+"R(pipes) /");
+// 		String regexR = "param R :=\\s*([\\s\\S]*?);";
+// 		Pattern patternR = Pattern.compile(regexR);
+// 		Matcher matcherR = patternR.matcher(data);
+
+// 		if (matcherR.find()) {
+// 			String paramRValues = matcherR.group(1);
+// 			String[] rValues = paramRValues.split("\\s+");
+// 			for (int i = 0; i < rValues.length; i += 2) {
+// 				String node = rValues[i];
+// 				String value = rValues[i + 1];
+// 				out.write(node + "  "+value);
+// 				if(i != rValues.length-2) out.write(", ");
+// 			}
+// 		}
+
+// 		out.write("/\n");
+
+// 		idx=0;
+// 		out.write("\t"+"F_d(nodes,j) /");
+// 		for (Map.Entry<String, Double> entry : f_diameter.entrySet()) {
+// 			String str=entry.getKey();
+// 			String len[]=str.split("\\.");
+// 			if(idx == f_diameter.size()-1)
+// 				out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue());
+// 			else out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue()+",  ");
+// 			idx++;
+// 		}
+// 		out.write("/"+"\n");
+
+// 		// System.out.println("/");
+
+// 		idx=0;
+// 		out.write("\t"+"F_R(nodes,j) /");
+// 		for (Map.Entry<String, Double> entry : f_roughness.entrySet()) {
+// 			String str=entry.getKey();
+// 			String len[]=str.split("\\.");
+// 			if(idx == f_roughness.size()-1)
+// 				out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue());
+// 			else out.write(len[0]+"\t."+len[1]+"\t"+entry.getValue()+",  ");
+// 			idx++;
+// 		}
+
+
+// 		out.write("/;\n");
+
+// 		out.write("\n");
+
+// 	}
+
+// 	void printModelm2(BufferedWriter out) throws IOException {
+// 		out.write("Scalar omega  /10.68/;\n");
+// 		out.write("Scalar bnd ;\n");
+// 		out.write("Scalar qm;\n");
+// 		out.write("Scalar q_M;\n");
+
+// 		out.write("\n");
+
+// 		out.write("bnd = sum(src,D(src));\n");
+// 		out.write("q_M=-bnd;\n");
+// 		out.write("qm=0;\n");
+
+// 		out.write("\n");
+
+// 		out.write("Variable l(nodes,j,pipes); \n");
+// 		out.write("l.lo(nodes,j,pipes)= 0;\n");
+
+// 		out.write("\n");
+
+// 		out.write("Variable q1(nodes,j);\n");
+// 		out.write("q1.lo(nodes,j)=qm;\n");
+// 		out.write("q1.up(nodes,j)=q_M;\n");
+
+// 		out.write("\n");
+
+// 		out.write("Variable q2(nodes,j);\n");
+// 		out.write("q2.lo(nodes,j)=qm;\n");
+// 		out.write("q2.up(nodes,j)=q_M;\n");
+
+// 		out.write("\n");
+
+// 		/**
+// 		 * Variable F_q1(nodes,j);
+// 		 * F_q1.lo(nodes,j)=qm;
+// 		 * F_q1.up(nodes,j)=q_M;
+// 		 *
+// 		 *
+// 		 * Variable F_q2(nodes,j);
+// 		 * F_q2.lo(nodes,j)=qm;
+// 		 * F_q2.up(nodes,j)=q_M;
+// 		 */
+// 		out.write("Variable F_q1(nodes,j);\n");
+// 		out.write("F_q1.lo(nodes,j)=qm;\n");
+// 		out.write("F_q1.lo(nodes,j)=qm;\n");
+
+// 		out.write("\n");
+
+// 		out.write("Variable F_q2(nodes,j);\n");
+// 		out.write("F_q2.lo(nodes,j)=qm;\n");
+// 		out.write("F_q2.up(nodes,j)=q_M;\n");
+
+// 		out.write("Variables z;\n");
+
+// 		out.write("\n");
+
+// 		out.write("Variable h(nodes);\n");
+
+// 		out.write("\n");
+
+// 		out.write("Equations cost \"objective function\",bound1(nodes,j,pipes),cons1(nodes),cons2(nodes),cons3(nodes,j),cons5(src), cons4(nodes,j), cons6(nodes,j), cons7(nodes,j) ;\n");
+
+// 		out.write("cost..  z=e=sum(arcs(nodes,j),sum(pipes,l(arcs,pipes)*c(pipes)));\n");
+
+// 		out.write("bound1(nodes,j,pipes)$arcs(nodes,j).. l(nodes,j,pipes) =l= Len(nodes,j);\n");
+// 		out.write("cons1(nodes).. sum(arcs(j,nodes),(q1(arcs)-q2(arcs))) + sum(F_arcs(j,nodes),(F_q1(F_arcs)-F_q2(F_arcs))) =e= sum(arcs(nodes,j),(q1(arcs)-q2(arcs))) + sum(F_arcs(nodes,j),(F_q1(F_arcs)-F_q2(F_arcs))) + D(nodes);\n");
+// 		out.write("cons2(nodes).. h(nodes) =g= E(nodes) + P(nodes);\n");
+// 		out.write("cons3(arcs(nodes,j)).. h(nodes)-h(j)=e=sum(pipes,(((q1(arcs)*0.001)**1.852 - (q2(arcs)*0.001)**1.852)*omega*l(arcs,pipes))/((R(pipes)**1.852)*(dia(pipes)/1000)**4.87));\n");
+// 		out.write("cons7(F_arcs(nodes,j)).. h(nodes)-h(j)=e=(((F_q1(F_arcs)*0.001)**1.852 - (F_q2(F_arcs)*0.001)**1.852)*omega*F_L(F_arcs))/((F_R(F_arcs)**1.852)*(F_d(F_arcs)/1000)**4.87);\n");
+// 		out.write("cons4(arcs(nodes,j)).. sum(pipes,l(arcs,pipes)) =e=Len(arcs);\n");
+// 		out.write("cons5(src)..  h(src)=e= sum(srcs,E(srcs));\n");
+// 		out.write("cons6(arcs(nodes,j)).. q1(arcs)*q2(arcs) =l= q_M*qm;\n");
+
+// 		out.write("\n");
+
+// 		out.write("model m2  /all/  ;\n");
+// 		// System.out.println("Option threads=4;\n");
+// 		// System.out.println("m2.optfile =1;\n");
+// 		out.write("solve m2 using minlp minimizing z ;\n");
+// 	}
+
+// 	private void printModelm1(BufferedWriter out) throws IOException {
+
+// 		out.write("Scalar omega  /10.68/;\n");
+// 		out.write("Scalar bnd ;\n");
+// 		out.write("Scalar qm;\n");
+// 		out.write("Scalar q_M;\n");
+
+// 		out.write("\n");
+
+// 		out.write("bnd = sum(src,D(src));\n");
+// 		out.write("q_M=-bnd;\n");
+// 		out.write("qm=bnd;\n");
+
+// 		out.write("\n");
+
+// 		out.write("Variable l(nodes,j,pipes);\n");
+// 		out.write("l.lo(nodes,j,pipes)= 0;\n");
+
+// 		out.write("\n");
+
+// 		out.write("Variable q(nodes,j);\n");
+// 		out.write("q.lo(nodes,j)=qm;\n");
+// 		out.write("q.up(nodes,j)=q_M;\n");
+
+// 		out.write("\n");
+
+// 		out.write("Variable F_q(nodes,j);\n");
+// 		out.write("F_q.lo(nodes,j)=qm;\n");
+// 		out.write("F_q.up(nodes,j)=q_M;\n");
+
+// 		out.write("\n");
+
+// 		out.write("Variables z;\n");
+
+// 		out.write("\n");
+
+// 		out.write("Variable h(nodes);\n");
+
+// 		out.write("\n");
+
+// 		out.write("Equations cost \"objective function\",bound1(nodes,j,pipes),cons1(nodes),cons2(nodes),cons3(nodes,j),cons5(src), cons4(nodes,j), cons6(nodes,j);\n");
+
+// 		out.write("cost..  z=e=sum(arcs(nodes,j),sum(pipes,l(arcs,pipes)*c(pipes)));\n");
+
+// 		out.write("bound1(nodes,j,pipes)$arcs(nodes,j).. l(nodes,j,pipes) =l= Len(nodes,j);\n");
+// 		out.write("cons1(nodes).. sum(arcs(j,nodes),q(arcs)) + sum(F_arcs(j,nodes),F_q(F_arcs)) =e= sum(arcs(nodes,j),q(arcs)) + sum(F_arcs(nodes,j),F_q(F_arcs))  + D(nodes);\n");
+// 		out.write("cons2(nodes).. h(nodes) =g= E(nodes) + P(nodes);\n");
+// 		out.write("cons3(arcs(nodes,j)).. h(nodes)-h(j)=e=sum(pipes,(signpower(q(arcs),1.852))*(0.001**1.852)*omega*l(arcs,pipes)/((R(pipes)**1.852)*(dia(pipes)/1000)**4.87));\n");
+// 		out.write("cons6(F_arcs(nodes,j)).. h(nodes)-h(j)=e=signpower(F_q(F_arcs),1.852)*(0.001**1.852)*omega*F_L(F_arcs)/((F_R(F_arcs)**1.852)*(F_d(F_arcs)/1000)**4.87);\n");
+// 		// out.write("cons6(F_arcs(nodes,j)).. h(nodes)-h(j)=e=(F_q(F_arcs)*(abs(F_q(F_arcs))**0.852))*(0.001**1.852)*(omega*F_L(F_arcs)/((F_R(F_arcs)**1.852)*(F_d(F_arcs)/1000)**4.87));\n");
+// 		out.write("cons4(arcs(nodes,j)).. sum(pipes,l(arcs,pipes)) =e=Len(arcs);\n");
+// 		out.write("cons5(src)..  h(src)=e= sum(srcs,E(srcs));\n");
+
+// 		out.write("\n");
+
+// 		out.write("model m1  /all/  ;\n");
+// //			System.out.println("Option threads=4;");
+// // 		out.write("m1.optfile =1;\n");
+// 		out.write("solve m1 using minlp minimizing z ;\n");
+
+// 	}
 
 
 

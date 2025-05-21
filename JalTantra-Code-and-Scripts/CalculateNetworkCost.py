@@ -158,17 +158,12 @@ def setup_database():
         )
     ''')
     cursor.execute('''
-            CREATE TABLE IF NOT EXISTS all_solves (
+            CREATE TABLE IF NOT EXISTS all_solve (
                 hash_id TEXT,
                 project_name TEXT,
                 version TEXT,
                 solve_time INTEGER,
-                knitro_m1_cost DECIMAL(10,2),
-                knitro_m2_cost DECIMAL(10,2), 
-                baron_m1_cost DECIMAL(10,2),
-                baron_m2_cost DECIMAL(10,2),
-                alphaecp_m1_cost DECIMAL(10,2),
-                alphaecp_m2_cost DECIMAL(10,2)
+                baron_m1_cost DECIMAL(10,2)
             )
         ''')
     # Commit the changes and close the connection
@@ -530,647 +525,646 @@ class SolverOutputAnalyzerBaron(SolverOutputAnalyzerParent):
         return False, file_to_parse, objective_value, 'FIXME: Unhandled unknown case'
 
 
-class SolverOutputAnalyzerKnitro(SolverOutputAnalyzerParent):
-    pass
-    def __init__(self, engine_path: str, engine_options: str, threads: int):
-        process_name_to_stop_using_ctrl_c = 'knitro'
-        super().__init__(engine_path, engine_options, process_name_to_stop_using_ctrl_c)
-    #
-    # def __knitro_extract_output_table(self, std_out_err_file_path: str) -> str:
-    #     return run_command_get_output(f"bash output_table_extractor_knitro.sh '{std_out_err_file_path}'", '')
+# class SolverOutputAnalyzerKnitro(SolverOutputAnalyzerParent):
+#     pass
+#     def __init__(self, engine_path: str, engine_options: str, threads: int):
+#         process_name_to_stop_using_ctrl_c = 'knitro'
+#         super().__init__(engine_path, engine_options, process_name_to_stop_using_ctrl_c)
+#     #
+#     # def __knitro_extract_output_table(self, std_out_err_file_path: str) -> str:
+#     #     return run_command_get_output(f"bash output_table_extractor_knitro.sh '{std_out_err_file_path}'", '')
 
-    def extract_best_solution(self, exec_info: 'NetworkExecutionInformation') -> Tuple[bool, float]:
-        # Extract the solution from the std_out_err file using the value printed by the AMPL commands:
-        #     option display_precision 0;
-        #     display total_cost;
-        try:
-            file_txt = open(exec_info.uniq_std_out_err_file_path, 'r').read()
-            best_solution = re.search(r'^total_cost\s*=\s*(.*)$', file_txt, re.M).group(1)
-            # Find if knitro returned correct output
-            # feasibility_error = re.search()
-            best_solution = float(best_solution)
-            infeasibility_found = bool(re.search(r'\binfeasible\b', file_txt))
-            ok = True
-            if best_solution > 1e40 or infeasibility_found:
-                g_logger.warning(f"Probably an infeasible solution found by Knitro: '{best_solution}'")
-                g_logger.info(f'Instance={exec_info}')
-                ok = False
-            return ok, best_solution
-        except Exception as e:
-            g_logger.error(f'CHECKME: {type(e)}, error:\n{e}')
-            g_logger.debug('Probably, Knitro did not terminate immediately even after receiving the appropriate signal')
-
-        
-
-    def check_solution_found(self, exec_info: 'NetworkExecutionInformation') -> bool:
-        return self.extract_best_solution(exec_info)[0]
-
-    def check_errors(self, exec_info: 'NetworkExecutionInformation') -> Tuple[bool, str]:
-        file_txt = open(exec_info.uniq_std_out_err_file_path, 'r').read()
-
-        ok, err_msg = self.ampl_check_errors(file_txt)
-        if not ok:
-            return ok, err_msg
-
-        try:
-            err_idx = file_txt.index('Sorry, a demo license is limited to 10 variables')
-            err_msg = file_txt[err_idx:file_txt.index('exit value 1', err_idx)].replace('\n', ' ').strip()
-            g_logger.debug(err_msg)
-            return False, err_msg
-        except ValueError:
-            pass  # substring not found
-
-        try:
-            err_idx = re.search(r'''Can't\s+find\s+file\s+['"]?.+['"]?''', file_txt).start()
-            g_logger.debug(file_txt[err_idx:])
-            return False, file_txt[err_idx:]
-        except AttributeError as e:
-            # re.search returned None
-            g_logger.debug(f'{type(e)}: {e}')
-            g_logger.debug(f'{exec_info.uniq_std_out_err_file_path=}')
-        except Exception as e:
-            g_logger.error(f'FIXME: {type(e)}:\n{e}')
-
-        # Checking if Knitro bugged :
-        try:
-            err_idx = re.search(r'''1\.8(?:0?)e\+308''', file_txt).start()
-            g_logger.debug("KNitro Bug found")
-            return False, file_txt[err_idx:]
-        except Exception as e:
-            # re.search returned None
-            g_logger.debug(f'{type(e)}: {e}')
-            g_logger.debug(f'{exec_info.uniq_std_out_err_file_path=}')
-
-        if 'No feasible solution was found' in file_txt or 'infeasible' in file_txt:
-            return False, 'No feasible solution was found'
-
-        return True, 'No Errors'
-
-
-
-class SolverOutputAnalyzerAlphaecp(SolverOutputAnalyzerParent):
-
-    def __init__(self, engine_path: str, engine_options: str, threads: int):
-        process_name_to_stop_using_ctrl_c = 'alphaecp'  # For 1 core and multi core, same process is to be stopped
-        super().__init__(engine_path, engine_options, process_name_to_stop_using_ctrl_c)
-
-    def __alphaecp_extract_output_table(self, std_out_err_file_path: str) -> str:
-        return run_command_get_output(f"bash output_table_extractor_baron.sh '{std_out_err_file_path}'", '')
-
-    def gams_to_ampl_parser_m1(self, gams_file_path, output_file_path):
-
-        try:
-            gams_file_text = open(gams_file_path, 'r').read()
-            output_file_txt = open(output_file_path, 'w')
-
-            g_logger.info(f'In the gams_to_ampl_parser {gams_file_path} {output_file_path}')
-
-
-            # READ FILE
-            df = open(gams_file_path)
-
-            # read file
-            read = df.read()
-
-            # return cursor to the beginning of the file.
-            df.seek(0)
-            read
-
-            arr = []  # will store all the lines
-
-            # count number of lines in the file
-            line = 1
-            for word in read:
-                if word == '\n':
-                    line += 1
-
-            for i in range(line):
-                # readline() method,
-                # reads one line at
-                # a time
-                arr.append(df.readline())
-
-            h_variable = "---- VAR h"
-            q_variable = "---- VAR q"
-            fq_variable = "---- VAR F_q"
-            l_variable = "---- VAR l"
-
-            h_variable_start = 0
-            h_variable_end = 0
-            q_variable_start = 0
-            q_variable_end = 0
-            fq_variable_start = 0
-            fq_variable_end = 0
-            l_variable_start = 0
-            l_variable_end = 0
-
-            q_variable_present = False
-            fq_variable_present = False
-
-            for i in range(len(arr)):
-                if fq_variable in arr[i]:
-                    fq_variable_present = True
-                if q_variable in arr[i]:
-                    q_variable_present = True
-
-            if not q_variable_present:
-                for i in range(len(arr)):
-
-                    if fq_variable in arr[i]:
-                        fq_variable_start = i + 4
-
-                    if h_variable in arr[i]:
-                        fq_variable_end = i - 4
-                        h_variable_start = i + 4
-
-                    if "**** REPORT SUMMARY" in arr[i]:
-                        h_variable_end = i - 1
-
-            elif fq_variable_present:
-                for i in range(len(arr)):
-
-                    if fq_variable in arr[i]:
-                        q_variable_end = i
-                        fq_variable_start = i + 4
-
-                    if h_variable in arr[i]:
-                        fq_variable_end = i - 4
-                        h_variable_start = i + 4
-
-                    if "**** REPORT SUMMARY" in arr[i]:
-                        h_variable_end = i - 1
-
-                    if q_variable in arr[i]:
-                        q_variable_start = i + 4
-                        l_variable_end = i - 1
-
-                    if l_variable in arr[i]:
-                        l_variable_start = i + 4
-
-            else:
-                for i in range(len(arr)):
-
-                    if h_variable in arr[i]:
-                        q_variable_end = i - 4
-                        h_variable_start = i + 4
-
-                    if "** REPORT SUMMARY" in arr[i]:
-                        h_variable_end = i - 1
-
-                    if q_variable in arr[i]:
-                        q_variable_start = i + 4
-                        l_variable_end = i - 1
-
-                    if l_variable in arr[i]:
-                        l_variable_start = i + 4
-
-            total_execution_time = re.search(r'EXECUTION TIME\s+=\s+(\d+\.\d+) SECONDS', gams_file_text, re.M).group(1)
-            output_file_txt.write(f'_total_solve_time = {total_execution_time}\n\n')
-
-            # printing head values
-            output_file_txt.write("h[i] [*] :=\n")
-            for i in range(h_variable_start, h_variable_end - 1):
-                line = arr[i].strip().split()
-                head_value = float(line[2])
-                output_file_txt.write(f'{line[0]}  {head_value}\n')
-            output_file_txt.write(';\n\n')
-
-            # printing flow values
-            if q_variable_present:
-                output_file_txt.write("q[i,j] :=\n")
-                min_length = 6
-                for i in range(q_variable_start, q_variable_end - 1):
-                    line = arr[i].strip().split()
-                    length = len(line)
-                    min_length = min(min_length, length)
-                for i in range(q_variable_start, q_variable_end - 1):
-                    line = arr[i].strip().split()
-                    srcToDest = ''
-                    for j in range(0, len(line) - min_length + 1):
-                        srcToDest += line[j]
-                    srcToDest = srcToDest.split('.')
-                    output_file_txt.write(f'{srcToDest[0]} {srcToDest[1]}\t{line[(len(line)) - 3]}\n')
-                output_file_txt.write(';\n\n')
-
-            else:
-                output_file_txt.write('q[i,j]; #empty\n\n')
-
-            # printing fixed flow values
-            if fq_variable_present:
-                output_file_txt.write("F_q[i,j] :=\n")
-                min_length = 6
-                for i in range(fq_variable_start, fq_variable_end - 1):
-                    line = arr[i].strip().split()
-                    length = len(line)
-                    min_length = min(min_length, length)
-                for i in range(fq_variable_start, fq_variable_end - 1):
-                    line = arr[i].strip().split()
-                    srcToDest = ''
-                    for j in range(0, len(line) - min_length + 1):
-                        srcToDest += line[j]
-                    srcToDest = srcToDest.split('.')
-                    output_file_txt.write(f'{srcToDest[0]} {srcToDest[1]}\t{line[(len(line)) - 3]}\n')
-                output_file_txt.write(';\n\n')
-
-            else:
-                output_file_txt.write("F_q[i,j] :=#empty;\n\n")
-
-            # printing length values
-            if q_variable_present:
-                output_file_txt.write("l[i,j,k] :=\n")
-                min_length = 7
-                # print(l_variable_start,l_variable_end)
-
-                for i in range(l_variable_start, l_variable_end):
-                    links = re.findall(r'(\d+)\s*\.(\d+)\s*\.(\d+)', arr[i])
-                    line = arr[i].strip().split()
-                    if line[len(line) - 3] == '.' or line[len(line) - 3] == 'EPS':
-                        continue
-                    length_value = float(line[len(line) - 3])
-                    output_file_txt.write(f'{links[0][0]}  {links[0][1]}  {links[0][2]}\t{length_value}\n')
-                output_file_txt.write(';\n\n')
-
-            else:
-                output_file_txt.write('l[i,j,k]; #empty\n\n')
-
-            output_file_txt.write(f'_total_solve_time = {total_execution_time}\n\n')
-
-            # **** OBJECTIVE VALUE
-            best_solution = re.search(r"\*\*\*\* OBJECTIVE VALUE\s+([0-9]+\.[0-9]+)", gams_file_text, re.M).group(
-                1)  # if there is no value then 'NoneType' object has no attribute 'group'
-            output_file_txt.write(f'total_cost = {best_solution}')
-
-            g_logger.info("gams_to_ampl parser finished")
-
-        except Exception as e:
-            g_logger.error(f'CHECKME: {type(e)}, error:\n{e}')
-            g_logger.info("There was some error while parsing the gams output file")
-
-    def gams_to_ampl_parser_m2(self, gams_file_path, output_file_path):
-        gams_file_text = open(gams_file_path, 'r').read()
-        output_file_txt = open(output_file_path, 'w')
+#     def extract_best_solution(self, exec_info: 'NetworkExecutionInformation') -> Tuple[bool, float]:
+#         # Extract the solution from the std_out_err file using the value printed by the AMPL commands:
+#         #     option display_precision 0;
+#         #     display total_cost;
+#         try:
+#             file_txt = open(exec_info.uniq_std_out_err_file_path, 'r').read()
+#             best_solution = re.search(r'^total_cost\s*=\s*(.*)$', file_txt, re.M).group(1)
+#             # Find if knitro returned correct output
+#             # feasibility_error = re.search()
+#             best_solution = float(best_solution)
+#             infeasibility_found = bool(re.search(r'\binfeasible\b', file_txt))
+#             ok = True
+#             if best_solution > 1e40 or infeasibility_found:
+#                 g_logger.warning(f"Probably an infeasible solution found by Knitro: '{best_solution}'")
+#                 g_logger.info(f'Instance={exec_info}')
+#                 ok = False
+#             return ok, best_solution
+#         except Exception as e:
+#             g_logger.error(f'CHECKME: {type(e)}, error:\n{e}')
+#             g_logger.debug('Probably, Knitro did not terminate immediately even after receiving the appropriate signal')
 
         
 
-        # READ FILE
-        df = open(gams_file_path)
-
-        # read file
-        read = df.read()
-
-        # return cursor to the beginning of the file.
-        df.seek(0)
-        read
-
-        arr = []  # will store all the lines
-
-        # count number of lines in the file
-        line = 1
-        for word in read:
-            if word == '\n':
-                line += 1
-
-        for i in range(line):
-            # readline() method,
-            # reads one line at
-            # a time
-            arr.append(df.readline())
-
-        h_variable = "---- VAR h"
-        q1_variable = "---- VAR q1"
-        q2_variable = "---- VAR q2"
-        l_variable = "---- VAR l"
-        fq1_variable = "---- VAR F_q1"
-        fq2_variable = "---- VAR F_q2"
-
-        h_variable_start = 0
-        h_variable_end = 0
-        q1_variable_start = 0
-        q1_variable_end = 0
-        q2_variable_start = 0
-        q2_variable_end = 0
-        fq1_variable_start = 0
-        fq1_variable_end = 0
-        fq2_variable_start = 0
-        fq2_variable_end = 0
-        l_variable_start = 0
-        l_variable_end = 0
-
-        q1_variable_present = False
-        fq1_variable_present = False
-
-        for i in range(len(arr)):
-            if fq1_variable in arr[i]:
-                fq1_variable_present = True
-            if q1_variable in arr[i]:
-                q1_variable_present = True
-
-        if not q1_variable_present:
-            for i in range(len(arr)):
-                if fq1_variable in arr[i]:
-                    fq1_variable_start = i + 4
-
-                if fq2_variable in arr[i]:
-                    fq2_variable_start = i + 4
-                    fq1_variable_end = i - 1
-
-                if h_variable in arr[i]:
-                    fq2_variable_end = i - 4
-                    h_variable_start = i + 4
-
-                if "**** REPORT SUMMARY" in arr[i]:
-                    h_variable_end = i - 1
-
-        elif fq1_variable_present:
-            for i in range(len(arr)):
-
-                if fq1_variable in arr[i]:
-                    fq1_variable_start = i + 4
-                    q2_variable_end = i - 1
-
-                if fq2_variable in arr[i]:
-                    fq2_variable_start = i + 4
-                    fq1_variable_end = i - 1
-
-                if h_variable in arr[i]:
-                    fq2_variable_end = i - 4
-                    h_variable_start = i + 4
-
-                if "**** REPORT SUMMARY" in arr[i]:
-                    h_variable_end = i - 1
-
-                if q2_variable in arr[i]:
-                    q2_variable_start = i + 4
-                    q1_variable_end = i - 1
-
-                if l_variable in arr[i]:
-                    l_variable_start = i + 4
-
-                if q1_variable in arr[i]:
-                    q1_variable_start = i + 4
-                    l_variable_end = i - 1
-
-        else:
-            for i in range(len(arr)):
-
-                if h_variable in arr[i]:
-                    q2_variable_end = i - 4
-                    h_variable_start = i + 4
-
-                if "** REPORT SUMMARY" in arr[i]:
-                    h_variable_end = i - 1
-
-                if q2_variable in arr[i]:
-                    q2_variable_start = i + 4
-                    q1_variable_end = i - 1
-
-                if l_variable in arr[i]:
-                    l_variable_start = i + 4
-
-                if q1_variable in arr[i]:
-                    q1_variable_start = i + 4
-                    l_variable_end = i - 1
-
-        # print(q1_variable_start, q1_variable_end)
-        # print(q2_variable_start, q2_variable_end)
-
-        total_execution_time = re.search(r'EXECUTION TIME\s+=\s+(\d+\.\d+) SECONDS', gams_file_text, re.M).group(1)
-        output_file_txt.write(f'_total_solve_time = {total_execution_time}\n\n')
-
-        # printing head values
-        output_file_txt.write("h[i] [*] :=\n")
-        for i in range(h_variable_start, h_variable_end - 1):
-            line = arr[i].strip().split()
-            head_value = float(line[2])
-            output_file_txt.write(f'{line[0]}  {head_value}\n')
-        output_file_txt.write(';\n\n')
-
-        # *************************printing flow values***************************
-        if q1_variable_present:
-            output_file_txt.write(":         q1[i,j]       q2[i,j]      :=\n")
-            flow_dict = {}
-            min_length = 6
-            for i in range(q1_variable_start, q1_variable_end):
-                line = arr[i].strip().split()
-                length = len(line)
-                min_length = min(min_length, length)
-
-            # print(min_length)
-
-            for i in range(q1_variable_start, q1_variable_end):
-                line = arr[i].strip().split()
-                srcToDest = ''
-                for j in range(0, len(line) - min_length + 1):
-                    srcToDest += line[j]
-                # print(srcToDest)
-                if line[(len(line)) - 3] != '.':
-                    flow_dict[srcToDest] = line[(len(line)) - 3]
-
-            # print(flow_dict)
-
-            for i in range(q2_variable_start, q2_variable_end - 1):
-                line = arr[i].strip().split()
-                srcToDest = ''
-                for j in range(0, len(line) - min_length + 1):
-                    srcToDest += line[j]
-                if srcToDest not in flow_dict.keys():
-                    srcToDest = srcToDest.split('.')
-                    output_file_txt.write(f'{srcToDest[0]} {srcToDest[1]}\t\t0\t\t{line[(len(line)) - 3]}\n')
-                else:
-                    flow_value = flow_dict[srcToDest]
-                    srcToDest = srcToDest.split('.')
-                    output_file_txt.write(f'{srcToDest[0]} {srcToDest[1]}\t\t{flow_value}\t\t0\n')
-
-            output_file_txt.write(';\n\n')
-
-        else:
-            output_file_txt.write(': q1[i,j] q2[i,j]    :=\n;\n\n')
-
-        # *********************printing fixed flow values*****************************
-        if fq1_variable_present:
-            output_file_txt.write(":   F_q1[i,j] F_q2[i,j]    :=\n")
-            fixed_flow_dict = {}
-
-            min_length = 6
-            for i in range(fq1_variable_start, fq1_variable_end):
-                line = arr[i].strip().split()
-                length = len(line)
-                min_length = min(min_length, length)
-
-            # print(min_length)
-
-            for i in range(fq1_variable_start, fq1_variable_end):
-                line = arr[i].strip().split()
-                srcToDest = ''
-                for j in range(0, len(line) - min_length + 1):
-                    srcToDest += line[j]
-                # print(srcToDest)
-                if line[(len(line)) - 3] != '.':
-                    fixed_flow_dict[srcToDest] = line[(len(line)) - 3]
-
-            # print(flow_dict)
-
-            for i in range(fq2_variable_start, fq2_variable_end - 1):
-                line = arr[i].strip().split()
-                srcToDest = ''
-                for j in range(0, len(line) - min_length + 1):
-                    srcToDest += line[j]
-                if srcToDest not in fixed_flow_dict.keys():
-                    srcToDest = srcToDest.split('.')
-                    output_file_txt.write(f'{srcToDest[0]} {srcToDest[1]}\t\t0\t\t{line[(len(line)) - 3]}\n')
-                else:
-                    flow_value = fixed_flow_dict[srcToDest]
-                    srcToDest = srcToDest.split('.')
-                    output_file_txt.write(f'{srcToDest[0]} {srcToDest[1]}\t\t{flow_value}\t\t0\n')
-
-            output_file_txt.write(';\n\n')
-        else:
-            output_file_txt.write(": F_q1[i,j] F_q2[i,j]    :=\n;\n\n")
-        # ************************************************************************************************************************
-
-        # printing length values
-        if q1_variable_present:
-            output_file_txt.write("l[i,j,k] :=\n")
-            min_length = 7
-            # print(l_variable_start,l_variable_end)
-
-            for i in range(l_variable_start, l_variable_end):
-                links = re.findall(r'(\d+)\s*\.(\d+)\s*\.(\d+)', arr[i])
-                line = arr[i].strip().split()
-                if line[len(line) - 3] == '.' or line[len(line) - 3] == 'EPS':
-                    continue
-                length_value = float(line[len(line) - 3])
-                output_file_txt.write(f'{links[0][0]}  {links[0][1]}  {links[0][2]}\t{length_value}\n')
-            output_file_txt.write(';\n\n')
-        else:
-            output_file_txt.write('l[i,j,k]; #empty\n\n')
-
-        output_file_txt.write(f'_total_solve_time = {total_execution_time}\n\n')
-
-        # **** OBJECTIVE VALUE
-        best_solution = re.search(r"\*\*\*\* OBJECTIVE VALUE\s+([0-9]+\.[0-9]+)", gams_file_text, re.M).group(
-            1)  # if there is no value then 'NoneType' object has no attribute 'group'
-        output_file_txt.write(f'total_cost = {best_solution}')
-
-    def check_errors(self, exec_info: 'NetworkExecutionInformation') -> Tuple[bool, str]:
-        """By default, it is assumed that everything is ok (i.e. error free)"""
-
-        try:
-            output_file_directory = exec_info.uniq_exec_output_dir  # move the output files in this directory
-            g_logger.info(f'gams output file {output_file_directory}')
-
-            model_name = exec_info.short_uniq_model_name
-            g_logger.info(model_name)
-
-            model_idx = exec_info.idx
-            g_logger.info(model_idx)
-
-            prefix = exec_info.prefix
-            g_logger.info(prefix)
-
-            data_file_hash = exec_info.data_file_hash
-
-            source_file = f'{data_file_hash}{model_name}.lst'
-            copy_source_file = f'{data_file_hash}{model_name}{prefix}.lst'
-            shutil.copy(source_file, copy_source_file)
-
-            destination_address = f'{output_file_directory}/{copy_source_file}'
-            os.replace(copy_source_file, destination_address)
-            g_logger.info(f'gams output has been moved. os.replace({copy_source_file}, {destination_address})')
-
-            gams_output_file = open(destination_address, 'r').read()
-
-            gams_licensing_error = re.search(r"Terminated due to a licensing error", gams_output_file)
-            if gams_licensing_error:
-                return False, "Terminated due to licensing error"
-
-            solver_status = re.search(r"SOLVER STATUS\s+(\d+)", gams_output_file).group(1)
-
-            model_status = re.search(r"MODEL STATUS\s+(\d+)", gams_output_file).group(1)
-
-            if model_status == 4:
-                return False, "Solution was infeasible"
-            if model_status == 13:
-                return False, "An error occurred and no solution has been returned"
-
-            g_logger.info(f'{destination_address} Solver status : {solver_status}')
-
-            g_logger.info("replacing current error file with desired format")
-
-            current_std_error = exec_info.uniq_std_out_err_file_path
-            rename_std_out_err = f'{output_file_directory}/gams_terminal_output.txt'
-            shutil.copy(current_std_error, rename_std_out_err)
-
-            g_logger.info("gams terminal output has been changed to std_err_out file and std_err_out has been deleted")
-
-            try:
-                os.remove(current_std_error)
-                g_logger.info("lst files has been deleted")
-            except OSError as e:
-                print("Error while deleting the gams output file. Erorr : %s - %s." % (e.filename, e.strerror))
-
-            copy_source_file_path = f'{output_file_directory}/{copy_source_file}'
-            if model_name == 'm1':
-                self.gams_to_ampl_parser_m1(copy_source_file_path, current_std_error)
-            else:
-                self.gams_to_ampl_parser_m2(copy_source_file_path, current_std_error)
-
-            #     delete the .lst file after processing for 1 hr
-            if prefix == '1hour':
-                try:
-                    os.remove(source_file)
-                except OSError as e:
-                    print("Error while deleting the gams output file. Erorr : %s - %s." % (e.filename, e.strerror))
-
-        except Exception as e:
-            g_logger.error(f'CHECKME: {type(e)}, error:\n{e}')
-            g_logger.info("There was some error while copying the gams output file")
-            return False, 'There are some errors'
-
-        g_logger.error(f"`No errors' for {self.engine_path=}")
-        return True, 'No errors'
-
-    def extract_best_solution(self, exec_info: 'NetworkExecutionInformation') -> Tuple[bool, float]:
-        # Extract the solution from the std_out_err file using the value printed by the AMPL commands:
-        #     option display_precision 0;
-        #     display total_cost;
-        try:
-            file_txt = open(exec_info.uniq_std_out_err_file_path, 'r').read()
-            best_solution = re.search(r'^total_cost\s*=\s*(.*)$', file_txt, re.M).group(1)
-            best_solution_string = str(best_solution)
-            best_solution = float(best_solution)
-            ok = True
-            if best_solution > 1e40 or len(best_solution_string) == 0:
-                g_logger.warning(f"Probably an infeasible solution found by alphaecp: '{best_solution}'")
-                g_logger.info(f'Instance={exec_info}')
-                ok = False
-            return ok, best_solution
-        except Exception as e:
-            g_logger.error(f'CHECKME: {type(e)}, error:\n{e}')
-            g_logger.debug(
-                'Probably, alphaecp did not terminate immediately even after receiving the appropriate signal')
-
-        g_logger.info('Using fallback mechanism to extract the best solution')
-
-        csv = self.__alphaecp_extract_output_table(exec_info.uniq_std_out_err_file_path)
-        if csv == '':
-            return False, 0.0
-        lines = csv.split('\n')
-        lines = [line for line in lines if line != ',' and (not line.startswith('Processing file'))]
-        g_logger.debug(f'{lines=}')
-
-        ok = len(lines) > 0
-        best_solution = 0.0
-        if len(lines) > 0:
-            best_solution = float(lines[-1].split(',')[1])
-        if best_solution > 1e40:
-            g_logger.warning(f"Probably an infeasible solution found by alphaecp: '{lines[-1]}'")
-            g_logger.info(f'Instance={exec_info}')
-            ok = False
-        return ok, best_solution
-
-    def check_solution_found(self, exec_info: 'NetworkExecutionInformation') -> bool:
-        return self.extract_best_solution(exec_info)[0]
+#     def check_solution_found(self, exec_info: 'NetworkExecutionInformation') -> bool:
+#         return self.extract_best_solution(exec_info)[0]
+
+#     def check_errors(self, exec_info: 'NetworkExecutionInformation') -> Tuple[bool, str]:
+#         file_txt = open(exec_info.uniq_std_out_err_file_path, 'r').read()
+
+#         ok, err_msg = self.ampl_check_errors(file_txt)
+#         if not ok:
+#             return ok, err_msg
+
+#         try:
+#             err_idx = file_txt.index('Sorry, a demo license is limited to 10 variables')
+#             err_msg = file_txt[err_idx:file_txt.index('exit value 1', err_idx)].replace('\n', ' ').strip()
+#             g_logger.debug(err_msg)
+#             return False, err_msg
+#         except ValueError:
+#             pass  # substring not found
+
+#         try:
+#             err_idx = re.search(r'''Can't\s+find\s+file\s+['"]?.+['"]?''', file_txt).start()
+#             g_logger.debug(file_txt[err_idx:])
+#             return False, file_txt[err_idx:]
+#         except AttributeError as e:
+#             # re.search returned None
+#             g_logger.debug(f'{type(e)}: {e}')
+#             g_logger.debug(f'{exec_info.uniq_std_out_err_file_path=}')
+#         except Exception as e:
+#             g_logger.error(f'FIXME: {type(e)}:\n{e}')
+
+#         # Checking if Knitro bugged :
+#         # try:
+#         #     err_idx = re.search(r'''1\.8(?:0?)e\+308''', file_txt).start()
+#         #     g_logger.debug("KNitro Bug found")
+#         #     return False, file_txt[err_idx:]
+#         # except Exception as e:
+#         #     # re.search returned None
+#         #     g_logger.debug(f'{type(e)}: {e}')
+#         #     g_logger.debug(f'{exec_info.uniq_std_out_err_file_path=}')
+
+#         if 'No feasible solution was found' in file_txt or 'infeasible' in file_txt:
+#             return False, 'No feasible solution was found'
+
+#         return True, 'No Errors'
+
+
+
+# class SolverOutputAnalyzerAlphaecp(SolverOutputAnalyzerParent):
+
+#     def __init__(self, engine_path: str, engine_options: str, threads: int):
+#         process_name_to_stop_using_ctrl_c = 'alphaecp'  # For 1 core and multi core, same process is to be stopped
+#         super().__init__(engine_path, engine_options, process_name_to_stop_using_ctrl_c)
+
+#     def __alphaecp_extract_output_table(self, std_out_err_file_path: str) -> str:
+#         return run_command_get_output(f"bash output_table_extractor_baron.sh '{std_out_err_file_path}'", '')
+
+#     def gams_to_ampl_parser_m1(self, gams_file_path, output_file_path):
+
+#         try:
+#             gams_file_text = open(gams_file_path, 'r').read()
+#             output_file_txt = open(output_file_path, 'w')
+
+#             g_logger.info(f'In the gams_to_ampl_parser {gams_file_path} {output_file_path}')
+
+
+#             # READ FILE
+#             df = open(gams_file_path)
+
+#             # read file
+#             read = df.read()
+
+#             # return cursor to the beginning of the file.
+#             df.seek(0)
+#             read
+
+#             arr = []  # will store all the lines
+
+#             # count number of lines in the file
+#             line = 1
+#             for word in read:
+#                 if word == '\n':
+#                     line += 1
+
+#             for i in range(line):
+#                 # readline() method,
+#                 # reads one line at
+#                 # a time
+#                 arr.append(df.readline())
+
+#             h_variable = "---- VAR h"
+#             q_variable = "---- VAR q"
+#             fq_variable = "---- VAR F_q"
+#             l_variable = "---- VAR l"
+
+#             h_variable_start = 0
+#             h_variable_end = 0
+#             q_variable_start = 0
+#             q_variable_end = 0
+#             fq_variable_start = 0
+#             fq_variable_end = 0
+#             l_variable_start = 0
+#             l_variable_end = 0
+
+#             q_variable_present = False
+#             fq_variable_present = False
+
+#             for i in range(len(arr)):
+#                 if fq_variable in arr[i]:
+#                     fq_variable_present = True
+#                 if q_variable in arr[i]:
+#                     q_variable_present = True
+
+#             if not q_variable_present:
+#                 for i in range(len(arr)):
+
+#                     if fq_variable in arr[i]:
+#                         fq_variable_start = i + 4
+
+#                     if h_variable in arr[i]:
+#                         fq_variable_end = i - 4
+#                         h_variable_start = i + 4
+
+#                     if "**** REPORT SUMMARY" in arr[i]:
+#                         h_variable_end = i - 1
+
+#             elif fq_variable_present:
+#                 for i in range(len(arr)):
+
+#                     if fq_variable in arr[i]:
+#                         q_variable_end = i
+#                         fq_variable_start = i + 4
+
+#                     if h_variable in arr[i]:
+#                         fq_variable_end = i - 4
+#                         h_variable_start = i + 4
+
+#                     if "**** REPORT SUMMARY" in arr[i]:
+#                         h_variable_end = i - 1
+
+#                     if q_variable in arr[i]:
+#                         q_variable_start = i + 4
+#                         l_variable_end = i - 1
+
+#                     if l_variable in arr[i]:
+#                         l_variable_start = i + 4
+
+#             else:
+#                 for i in range(len(arr)):
+
+#                     if h_variable in arr[i]:
+#                         q_variable_end = i - 4
+#                         h_variable_start = i + 4
+
+#                     if "** REPORT SUMMARY" in arr[i]:
+#                         h_variable_end = i - 1
+
+#                     if q_variable in arr[i]:
+#                         q_variable_start = i + 4
+#                         l_variable_end = i - 1
+
+#                     if l_variable in arr[i]:
+#                         l_variable_start = i + 4
+
+#             total_execution_time = re.search(r'EXECUTION TIME\s+=\s+(\d+\.\d+) SECONDS', gams_file_text, re.M).group(1)
+#             output_file_txt.write(f'_total_solve_time = {total_execution_time}\n\n')
+
+#             # printing head values
+#             output_file_txt.write("h[i] [*] :=\n")
+#             for i in range(h_variable_start, h_variable_end - 1):
+#                 line = arr[i].strip().split()
+#                 head_value = float(line[2])
+#                 output_file_txt.write(f'{line[0]}  {head_value}\n')
+#             output_file_txt.write(';\n\n')
+
+#             # printing flow values
+#             if q_variable_present:
+#                 output_file_txt.write("q[i,j] :=\n")
+#                 min_length = 6
+#                 for i in range(q_variable_start, q_variable_end - 1):
+#                     line = arr[i].strip().split()
+#                     length = len(line)
+#                     min_length = min(min_length, length)
+#                 for i in range(q_variable_start, q_variable_end - 1):
+#                     line = arr[i].strip().split()
+#                     srcToDest = ''
+#                     for j in range(0, len(line) - min_length + 1):
+#                         srcToDest += line[j]
+#                     srcToDest = srcToDest.split('.')
+#                     output_file_txt.write(f'{srcToDest[0]} {srcToDest[1]}\t{line[(len(line)) - 3]}\n')
+#                 output_file_txt.write(';\n\n')
+
+#             else:
+#                 output_file_txt.write('q[i,j]; #empty\n\n')
+
+#             # printing fixed flow values
+#             if fq_variable_present:
+#                 output_file_txt.write("F_q[i,j] :=\n")
+#                 min_length = 6
+#                 for i in range(fq_variable_start, fq_variable_end - 1):
+#                     line = arr[i].strip().split()
+#                     length = len(line)
+#                     min_length = min(min_length, length)
+#                 for i in range(fq_variable_start, fq_variable_end - 1):
+#                     line = arr[i].strip().split()
+#                     srcToDest = ''
+#                     for j in range(0, len(line) - min_length + 1):
+#                         srcToDest += line[j]
+#                     srcToDest = srcToDest.split('.')
+#                     output_file_txt.write(f'{srcToDest[0]} {srcToDest[1]}\t{line[(len(line)) - 3]}\n')
+#                 output_file_txt.write(';\n\n')
+
+#             else:
+#                 output_file_txt.write("F_q[i,j] :=#empty;\n\n")
+
+#             # printing length values
+#             if q_variable_present:
+#                 output_file_txt.write("l[i,j,k] :=\n")
+#                 min_length = 7
+#                 # print(l_variable_start,l_variable_end)
+
+#                 for i in range(l_variable_start, l_variable_end):
+#                     links = re.findall(r'(\d+)\s*\.(\d+)\s*\.(\d+)', arr[i])
+#                     line = arr[i].strip().split()
+#                     if line[len(line) - 3] == '.' or line[len(line) - 3] == 'EPS':
+#                         continue
+#                     length_value = float(line[len(line) - 3])
+#                     output_file_txt.write(f'{links[0][0]}  {links[0][1]}  {links[0][2]}\t{length_value}\n')
+#                 output_file_txt.write(';\n\n')
+
+#             else:
+#                 output_file_txt.write('l[i,j,k]; #empty\n\n')
+
+#             output_file_txt.write(f'_total_solve_time = {total_execution_time}\n\n')
+
+#             # **** OBJECTIVE VALUE
+#             best_solution = re.search(r"\*\*\*\* OBJECTIVE VALUE\s+([0-9]+\.[0-9]+)", gams_file_text, re.M).group(
+#                 1)  # if there is no value then 'NoneType' object has no attribute 'group'
+#             output_file_txt.write(f'total_cost = {best_solution}')
+
+#             g_logger.info("gams_to_ampl parser finished")
+
+#         except Exception as e:
+#             g_logger.error(f'CHECKME: {type(e)}, error:\n{e}')
+#             g_logger.info("There was some error while parsing the gams output file")
+
+#     def gams_to_ampl_parser_m2(self, gams_file_path, output_file_path):
+#         gams_file_text = open(gams_file_path, 'r').read()
+#         output_file_txt = open(output_file_path, 'w')
+        
+
+#         # READ FILE
+#         df = open(gams_file_path)
+
+#         # read file
+#         read = df.read()
+
+#         # return cursor to the beginning of the file.
+#         df.seek(0)
+#         read
+
+#         arr = []  # will store all the lines
+
+#         # count number of lines in the file
+#         line = 1
+#         for word in read:
+#             if word == '\n':
+#                 line += 1
+
+#         for i in range(line):
+#             # readline() method,
+#             # reads one line at
+#             # a time
+#             arr.append(df.readline())
+
+#         h_variable = "---- VAR h"
+#         q1_variable = "---- VAR q1"
+#         q2_variable = "---- VAR q2"
+#         l_variable = "---- VAR l"
+#         fq1_variable = "---- VAR F_q1"
+#         fq2_variable = "---- VAR F_q2"
+
+#         h_variable_start = 0
+#         h_variable_end = 0
+#         q1_variable_start = 0
+#         q1_variable_end = 0
+#         q2_variable_start = 0
+#         q2_variable_end = 0
+#         fq1_variable_start = 0
+#         fq1_variable_end = 0
+#         fq2_variable_start = 0
+#         fq2_variable_end = 0
+#         l_variable_start = 0
+#         l_variable_end = 0
+
+#         q1_variable_present = False
+#         fq1_variable_present = False
+
+#         for i in range(len(arr)):
+#             if fq1_variable in arr[i]:
+#                 fq1_variable_present = True
+#             if q1_variable in arr[i]:
+#                 q1_variable_present = True
+
+#         if not q1_variable_present:
+#             for i in range(len(arr)):
+#                 if fq1_variable in arr[i]:
+#                     fq1_variable_start = i + 4
+
+#                 if fq2_variable in arr[i]:
+#                     fq2_variable_start = i + 4
+#                     fq1_variable_end = i - 1
+
+#                 if h_variable in arr[i]:
+#                     fq2_variable_end = i - 4
+#                     h_variable_start = i + 4
+
+#                 if "**** REPORT SUMMARY" in arr[i]:
+#                     h_variable_end = i - 1
+
+#         elif fq1_variable_present:
+#             for i in range(len(arr)):
+
+#                 if fq1_variable in arr[i]:
+#                     fq1_variable_start = i + 4
+#                     q2_variable_end = i - 1
+
+#                 if fq2_variable in arr[i]:
+#                     fq2_variable_start = i + 4
+#                     fq1_variable_end = i - 1
+
+#                 if h_variable in arr[i]:
+#                     fq2_variable_end = i - 4
+#                     h_variable_start = i + 4
+
+#                 if "**** REPORT SUMMARY" in arr[i]:
+#                     h_variable_end = i - 1
+
+#                 if q2_variable in arr[i]:
+#                     q2_variable_start = i + 4
+#                     q1_variable_end = i - 1
+
+#                 if l_variable in arr[i]:
+#                     l_variable_start = i + 4
+
+#                 if q1_variable in arr[i]:
+#                     q1_variable_start = i + 4
+#                     l_variable_end = i - 1
+
+#         else:
+#             for i in range(len(arr)):
+
+#                 if h_variable in arr[i]:
+#                     q2_variable_end = i - 4
+#                     h_variable_start = i + 4
+
+#                 if "** REPORT SUMMARY" in arr[i]:
+#                     h_variable_end = i - 1
+
+#                 if q2_variable in arr[i]:
+#                     q2_variable_start = i + 4
+#                     q1_variable_end = i - 1
+
+#                 if l_variable in arr[i]:
+#                     l_variable_start = i + 4
+
+#                 if q1_variable in arr[i]:
+#                     q1_variable_start = i + 4
+#                     l_variable_end = i - 1
+
+#         # print(q1_variable_start, q1_variable_end)
+#         # print(q2_variable_start, q2_variable_end)
+
+#         total_execution_time = re.search(r'EXECUTION TIME\s+=\s+(\d+\.\d+) SECONDS', gams_file_text, re.M).group(1)
+#         output_file_txt.write(f'_total_solve_time = {total_execution_time}\n\n')
+
+#         # printing head values
+#         output_file_txt.write("h[i] [*] :=\n")
+#         for i in range(h_variable_start, h_variable_end - 1):
+#             line = arr[i].strip().split()
+#             head_value = float(line[2])
+#             output_file_txt.write(f'{line[0]}  {head_value}\n')
+#         output_file_txt.write(';\n\n')
+
+#         # *************************printing flow values***************************
+#         if q1_variable_present:
+#             output_file_txt.write(":         q1[i,j]       q2[i,j]      :=\n")
+#             flow_dict = {}
+#             min_length = 6
+#             for i in range(q1_variable_start, q1_variable_end):
+#                 line = arr[i].strip().split()
+#                 length = len(line)
+#                 min_length = min(min_length, length)
+
+#             # print(min_length)
+
+#             for i in range(q1_variable_start, q1_variable_end):
+#                 line = arr[i].strip().split()
+#                 srcToDest = ''
+#                 for j in range(0, len(line) - min_length + 1):
+#                     srcToDest += line[j]
+#                 # print(srcToDest)
+#                 if line[(len(line)) - 3] != '.':
+#                     flow_dict[srcToDest] = line[(len(line)) - 3]
+
+#             # print(flow_dict)
+
+#             for i in range(q2_variable_start, q2_variable_end - 1):
+#                 line = arr[i].strip().split()
+#                 srcToDest = ''
+#                 for j in range(0, len(line) - min_length + 1):
+#                     srcToDest += line[j]
+#                 if srcToDest not in flow_dict.keys():
+#                     srcToDest = srcToDest.split('.')
+#                     output_file_txt.write(f'{srcToDest[0]} {srcToDest[1]}\t\t0\t\t{line[(len(line)) - 3]}\n')
+#                 else:
+#                     flow_value = flow_dict[srcToDest]
+#                     srcToDest = srcToDest.split('.')
+#                     output_file_txt.write(f'{srcToDest[0]} {srcToDest[1]}\t\t{flow_value}\t\t0\n')
+
+#             output_file_txt.write(';\n\n')
+
+#         else:
+#             output_file_txt.write(': q1[i,j] q2[i,j]    :=\n;\n\n')
+
+#         # *********************printing fixed flow values*****************************
+#         if fq1_variable_present:
+#             output_file_txt.write(":   F_q1[i,j] F_q2[i,j]    :=\n")
+#             fixed_flow_dict = {}
+
+#             min_length = 6
+#             for i in range(fq1_variable_start, fq1_variable_end):
+#                 line = arr[i].strip().split()
+#                 length = len(line)
+#                 min_length = min(min_length, length)
+
+#             # print(min_length)
+
+#             for i in range(fq1_variable_start, fq1_variable_end):
+#                 line = arr[i].strip().split()
+#                 srcToDest = ''
+#                 for j in range(0, len(line) - min_length + 1):
+#                     srcToDest += line[j]
+#                 # print(srcToDest)
+#                 if line[(len(line)) - 3] != '.':
+#                     fixed_flow_dict[srcToDest] = line[(len(line)) - 3]
+
+#             # print(flow_dict)
+
+#             for i in range(fq2_variable_start, fq2_variable_end - 1):
+#                 line = arr[i].strip().split()
+#                 srcToDest = ''
+#                 for j in range(0, len(line) - min_length + 1):
+#                     srcToDest += line[j]
+#                 if srcToDest not in fixed_flow_dict.keys():
+#                     srcToDest = srcToDest.split('.')
+#                     output_file_txt.write(f'{srcToDest[0]} {srcToDest[1]}\t\t0\t\t{line[(len(line)) - 3]}\n')
+#                 else:
+#                     flow_value = fixed_flow_dict[srcToDest]
+#                     srcToDest = srcToDest.split('.')
+#                     output_file_txt.write(f'{srcToDest[0]} {srcToDest[1]}\t\t{flow_value}\t\t0\n')
+
+#             output_file_txt.write(';\n\n')
+#         else:
+#             output_file_txt.write(": F_q1[i,j] F_q2[i,j]    :=\n;\n\n")
+#         # ************************************************************************************************************************
+
+#         # printing length values
+#         if q1_variable_present:
+#             output_file_txt.write("l[i,j,k] :=\n")
+#             min_length = 7
+#             # print(l_variable_start,l_variable_end)
+
+#             for i in range(l_variable_start, l_variable_end):
+#                 links = re.findall(r'(\d+)\s*\.(\d+)\s*\.(\d+)', arr[i])
+#                 line = arr[i].strip().split()
+#                 if line[len(line) - 3] == '.' or line[len(line) - 3] == 'EPS':
+#                     continue
+#                 length_value = float(line[len(line) - 3])
+#                 output_file_txt.write(f'{links[0][0]}  {links[0][1]}  {links[0][2]}\t{length_value}\n')
+#             output_file_txt.write(';\n\n')
+#         else:
+#             output_file_txt.write('l[i,j,k]; #empty\n\n')
+
+#         output_file_txt.write(f'_total_solve_time = {total_execution_time}\n\n')
+
+#         # **** OBJECTIVE VALUE
+#         best_solution = re.search(r"\*\*\*\* OBJECTIVE VALUE\s+([0-9]+\.[0-9]+)", gams_file_text, re.M).group(
+#             1)  # if there is no value then 'NoneType' object has no attribute 'group'
+#         output_file_txt.write(f'total_cost = {best_solution}')
+
+#     def check_errors(self, exec_info: 'NetworkExecutionInformation') -> Tuple[bool, str]:
+#         """By default, it is assumed that everything is ok (i.e. error free)"""
+
+#         try:
+#             output_file_directory = exec_info.uniq_exec_output_dir  # move the output files in this directory
+#             g_logger.info(f'gams output file {output_file_directory}')
+
+#             model_name = exec_info.short_uniq_model_name
+#             g_logger.info(model_name)
+
+#             model_idx = exec_info.idx
+#             g_logger.info(model_idx)
+
+#             prefix = exec_info.prefix
+#             g_logger.info(prefix)
+
+#             data_file_hash = exec_info.data_file_hash
+
+#             source_file = f'{data_file_hash}{model_name}.lst'
+#             copy_source_file = f'{data_file_hash}{model_name}{prefix}.lst'
+#             shutil.copy(source_file, copy_source_file)
+
+#             destination_address = f'{output_file_directory}/{copy_source_file}'
+#             os.replace(copy_source_file, destination_address)
+#             g_logger.info(f'gams output has been moved. os.replace({copy_source_file}, {destination_address})')
+
+#             gams_output_file = open(destination_address, 'r').read()
+
+#             gams_licensing_error = re.search(r"Terminated due to a licensing error", gams_output_file)
+#             if gams_licensing_error:
+#                 return False, "Terminated due to licensing error"
+
+#             solver_status = re.search(r"SOLVER STATUS\s+(\d+)", gams_output_file).group(1)
+
+#             model_status = re.search(r"MODEL STATUS\s+(\d+)", gams_output_file).group(1)
+
+#             if model_status == 4:
+#                 return False, "Solution was infeasible"
+#             if model_status == 13:
+#                 return False, "An error occurred and no solution has been returned"
+
+#             g_logger.info(f'{destination_address} Solver status : {solver_status}')
+
+#             g_logger.info("replacing current error file with desired format")
+
+#             current_std_error = exec_info.uniq_std_out_err_file_path
+#             rename_std_out_err = f'{output_file_directory}/gams_terminal_output.txt'
+#             shutil.copy(current_std_error, rename_std_out_err)
+
+#             g_logger.info("gams terminal output has been changed to std_err_out file and std_err_out has been deleted")
+
+#             try:
+#                 os.remove(current_std_error)
+#                 g_logger.info("lst files has been deleted")
+#             except OSError as e:
+#                 print("Error while deleting the gams output file. Erorr : %s - %s." % (e.filename, e.strerror))
+
+#             copy_source_file_path = f'{output_file_directory}/{copy_source_file}'
+#             if model_name == 'm1':
+#                 self.gams_to_ampl_parser_m1(copy_source_file_path, current_std_error)
+#             else:
+#                 self.gams_to_ampl_parser_m2(copy_source_file_path, current_std_error)
+
+#             #     delete the .lst file after processing for 1 hr
+#             if prefix == '1hour':
+#                 try:
+#                     os.remove(source_file)
+#                 except OSError as e:
+#                     print("Error while deleting the gams output file. Erorr : %s - %s." % (e.filename, e.strerror))
+
+#         except Exception as e:
+#             g_logger.error(f'CHECKME: {type(e)}, error:\n{e}')
+#             g_logger.info("There was some error while copying the gams output file")
+#             return False, 'There are some errors'
+
+#         g_logger.error(f"`No errors' for {self.engine_path=}")
+#         return True, 'No errors'
+
+#     def extract_best_solution(self, exec_info: 'NetworkExecutionInformation') -> Tuple[bool, float]:
+#         # Extract the solution from the std_out_err file using the value printed by the AMPL commands:
+#         #     option display_precision 0;
+#         #     display total_cost;
+#         try:
+#             file_txt = open(exec_info.uniq_std_out_err_file_path, 'r').read()
+#             best_solution = re.search(r'^total_cost\s*=\s*(.*)$', file_txt, re.M).group(1)
+#             best_solution_string = str(best_solution)
+#             best_solution = float(best_solution)
+#             ok = True
+#             if best_solution > 1e40 or len(best_solution_string) == 0:
+#                 g_logger.warning(f"Probably an infeasible solution found by alphaecp: '{best_solution}'")
+#                 g_logger.info(f'Instance={exec_info}')
+#                 ok = False
+#             return ok, best_solution
+#         except Exception as e:
+#             g_logger.error(f'CHECKME: {type(e)}, error:\n{e}')
+#             g_logger.debug(
+#                 'Probably, alphaecp did not terminate immediately even after receiving the appropriate signal')
+
+#         g_logger.info('Using fallback mechanism to extract the best solution')
+
+#         csv = self.__alphaecp_extract_output_table(exec_info.uniq_std_out_err_file_path)
+#         if csv == '':
+#             return False, 0.0
+#         lines = csv.split('\n')
+#         lines = [line for line in lines if line != ',' and (not line.startswith('Processing file'))]
+#         g_logger.debug(f'{lines=}')
+
+#         ok = len(lines) > 0
+#         best_solution = 0.0
+#         if len(lines) > 0:
+#             best_solution = float(lines[-1].split(',')[1])
+#         if best_solution > 1e40:
+#             g_logger.warning(f"Probably an infeasible solution found by alphaecp: '{lines[-1]}'")
+#             g_logger.info(f'Instance={exec_info}')
+#             ok = False
+#         return ok, best_solution
+
+#     def check_solution_found(self, exec_info: 'NetworkExecutionInformation') -> bool:
+#         return self.extract_best_solution(exec_info)[0]
 
 
 
@@ -1238,15 +1232,15 @@ class AutoExecutorSettings:
     GAMS_PATH = '/opt/gams/gams43.1_linux_x64_64_sfx/gams'
     #GAMS_PATH = '/opt/gams/gams42.3_linux_x64_64_sfx/gams'
 
-    AVAILABLE_SOLVERS = ['alphaecp', 'baron',
-                          'knitro']  # NOTE: Also look at `__update_solver_dict()` method when updating this
+    AVAILABLE_SOLVERS = ['baron']
+                        #   'knitro']  # NOTE: Also look at `__update_solver_dict()` method when updating this
     
     AVAILABLE_MODELS = {1: 'm1_basic.R', 2: 'm2_basic2_v2.R', 3: 'm3_descrete_segment.R', 4: 'm4_parallel_links.R'}
     TMUX_UNIQUE_PREFIX = f'AR_NC_{os.getpid()}_'  # AR = Auto Run, NC = Network Cost
 
     def __init__(self):
         self.debug = False
-        self.r_cpu_cores_per_solver = 1
+        self.r_cpu_cores_per_solver =4
         # 48 core server is being used
         self.r_max_parallel_solvers = 44
         # Time is in seconds, set this to any value <= 0 to ignore this parameter
@@ -1268,7 +1262,7 @@ class AutoExecutorSettings:
         self.output_result_summary_file: str = ''
         self.version_number: str = ''
         self.project_name: str = ''
-        self.__update_solver_dict()
+        # self.__update_solver_dict()
 
     def __update_solver_dict(self):
         # NOTE: Update `AutoExecutorSettings.AVAILABLE_SOLVERS` if keys in below dictionary are updated
@@ -1277,26 +1271,26 @@ class AutoExecutorSettings:
 
         fileHash = self.data_file_hash
 
-        gams_output_file = self.output_dir_level_1_network_specific + "/alphaecp_m1_" + fileHash
+        # gams_output_file = self.output_dir_level_1_network_specific + "/alphaecp_m1_" + fileHash
         self.solvers = {
-            'alphaecp': SolverOutputAnalyzerAlphaecp(
-                engine_path=f'{gams_output_file}',
-                engine_options=f'"reslim={timeoption}"',
-                threads=self.r_cpu_cores_per_solver
-            ),
+            # 'alphaecp': SolverOutputAnalyzerAlphaecp(
+            #     engine_path=f'{gams_output_file}',
+            #     engine_options=f'"reslim={timeoption}"',
+            #     threads=self.r_cpu_cores_per_solver
+            # ),
             'baron': SolverOutputAnalyzerBaron(
                 engine_path='./ampl.linux-intel64/baron',
                 engine_options=f'option baron_options "threads={self.r_cpu_cores_per_solver} '
                                f'barstats keepsol lsolmsg outlev=1 prfreq=100 prtime=2 maxtime={timeoption} problem ";',
                 threads=self.r_cpu_cores_per_solver
             ),
-            'knitro': SolverOutputAnalyzerKnitro(
-                engine_path='./ampl.linux-intel64/knitro',
-                engine_options=f'option knitro_options "threads=4'
-                               f' feastol = 1.0e-7 feastol_abs = 1.0e-7 ms_enable = 1 ms_maxsolves = 100000 '
-                               f'ms_maxtime_real = {timeoption}";',
-                threads=self.r_cpu_cores_per_solver
-            ),
+            # 'knitro': SolverOutputAnalyzerKnitro(
+            # #     engine_path='./ampl.linux-intel64/knitro',
+            # #     engine_options=f'option knitro_options "threads=4'
+            # #                    f' feastol = 1.0e-7 feastol_abs = 1.0e-7 ms_enable = 1 ms_maxsolves = 100000 '
+            # #                    f'ms_maxtime_real = {timeoption}";',
+            # #     threads=self.r_cpu_cores_per_solver
+            # # ),
         }
 
     def set_execution_time_limit(self, hours: int = None, minutes: int = None, seconds: int = None) -> None:
@@ -1342,6 +1336,7 @@ class AutoExecutorSettings:
             `class NetworkExecutionInformation` object which has all the information regarding the execution
         """
         info = NetworkExecutionInformation(self, idx)
+        # g_logger.info("info : "+info)
 
         info.uniq_exec_output_dir.mkdir(exist_ok=True)
         if not info.uniq_exec_output_dir.exists():
@@ -1487,8 +1482,6 @@ echo $$ > "{info.uniq_pid_file_path}"
                 f"    version_number: {self.version_number}\n"
                 f"    project_name: {self.project_name}\n"
                 f"    solvers: {self.solvers}\n")
-
-
 # ---
 
 class MonitorAndStopper:
@@ -1596,12 +1589,12 @@ def extract_best_solution(
             solver_results[solver_name + "_" + model_name] = res
         else:
             solver_results[solver_name + "_" + model_name] = float('inf')
-    update_all_solves_table(my_settings, solver_results)
+    update_all_solve_table(my_settings, solver_results)
 
     return best_result_exec_info is not None, best_result_till_now, best_result_exec_info
 
 
-def update_all_solves_table(
+def update_all_solve_table(
         my_settings: AutoExecutorSettings,
         solver_results: dict()
 ) -> None:
@@ -1609,16 +1602,19 @@ def update_all_solves_table(
     project_name = my_settings.project_name
     version_id = my_settings.version_number
     time_limit = my_settings.r_execution_time_limit
-    knitro_m1_cost = solver_results.get("knitro_m1", None)
-    knitro_m2_cost = solver_results.get("knitro_m2", None)
+    # knitro_m1_cost = solver_results.get("knitro_m1", None)
+    # knitro_m2_cost = solver_results.get("knitro_m2", None)
     baron_m1_cost = solver_results.get("baron_m1", None)
-    baron_m2_cost = solver_results.get("baron_m2", None)
-    alphaecp_m1_cost = solver_results.get("alphaecp_m1", None)
-    alphaecp_m2_cost = solver_results.get("alphaecp_m2", None)
-    cursor.execute("INSERT OR REPLACE INTO all_solves (hash_id, project_name, version, solve_time,  knitro_m1_cost, knitro_m2_cost, "
-                   "baron_m1_cost, baron_m2_cost, alphaecp_m1_cost, alphaecp_m2_cost) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                   (hash_id, project_name, version_id, time_limit, knitro_m1_cost, knitro_m2_cost, baron_m1_cost, baron_m2_cost,
-                    alphaecp_m1_cost , alphaecp_m2_cost))
+    # baron_m2_cost = solver_results.get("baron_m2", None)
+    # alphaecp_m1_cost = solver_results.get("alphaecp_m1", None)
+    # alphaecp_m2_cost = solver_results.get("alphaecp_m2", None)
+    # cursor.execute("INSERT OR REPLACE INTO all_solve (hash_id, project_name, version, solve_time,  knitro_m1_cost, knitro_m2_cost, "
+    #                "baron_m1_cost, baron_m2_cost, alphaecp_m1_cost, alphaecp_m2_cost) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    #                (hash_id, project_name, version_id, time_limit, knitro_m1_cost, knitro_m2_cost, baron_m1_cost, baron_m2_cost,
+    #                 alphaecp_m1_cost , alphaecp_m2_cost))
+    cursor.execute("INSERT OR REPLACE INTO all_solve (hash_id, project_name, version, solve_time, "
+                   "baron_m1_cost) VALUES (?, ?, ?, ?, ?)",
+                   (hash_id, project_name, version_id, time_limit, baron_m1_cost))
     # Commit the changes
     cursor.connection.commit()
 
@@ -1974,16 +1970,14 @@ def main_error_checking_round_3(tmux_original_list: List[NetworkExecutionInforma
             g_logger.error(err_msg)
     del exec_info, ok, err_msg
     g_logger.info('FINISHED: Error checking - Round 3 (last round)')
-
-
 def main_copy_solver_files_from_tmp(my_settings: AutoExecutorSettings) -> None:
     # NOTE: We will not copy files with glob `/tmp/at*nl` because they
     #       are only used to pass information from AMPL to solver
     g_logger.info('START: Copying solution files from /tmp to `g_settings.OUTPUT_DIR_LEVEL_1_DATA`')
-    run_command_get_output(f"cp -r /tmp/at*octsol /tmp/baron_tmp* '{my_settings.OUTPUT_DIR_LEVEL_1_DATA}'")
+    # run_command_get_output(f"cp -r /tmp/at*octsol /tmp/baron_tmp* '{my_settings.OUTPUT_DIR_LEVEL_1_DATA}'")
+    run_command_get_output(f"cp -r /tmp/baron_tmp* '{my_settings.OUTPUT_DIR_LEVEL_1_DATA}'")
     g_logger.info('FINISHED: Copying solution files from /tmp to `g_settings.OUTPUT_DIR_LEVEL_1_DATA`')
-
-
+    
 def main_wait_for_solvers_to_end(my_settings: AutoExecutorSettings) -> None:
     # - Wait for the `tmux` sessions to truly end. This is required because, `MonitorAndStopper.mas_time`
     #   only sends the SIGINT signal to the solvers. The solvers start their stopping process after receiving
@@ -2414,7 +2408,7 @@ def parse_args() -> argparse.Namespace:
                            action='store',
                            # REFER: https://stackoverflow.com/questions/18700634/python-argparse-integer-condition-12
                            type=parser_check_threads_int_range,
-                           default=1,
+                           default=3,
                            help='Set the number of threads a solver instance can have [default: 1]'
                                 '\nRequirement: N >= 1')
 
@@ -2459,7 +2453,7 @@ def check_requirements():
 
 if __name__ == '__main__':
     check_requirements()
-
+    
     args: argparse.Namespace = parse_args()
     my_settings: AutoExecutorSettings = update_settings(args)
     setup_database()

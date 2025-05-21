@@ -10,7 +10,7 @@
 # NOTE: cd "$(dirname "$0")"    did worked
 
 
-# MINICONDA_HOME='/home/student/miniconda3'
+# MINICONDA_HOME='/home/utsav/miniconda'
 
 FILE_PATH=$(dirname "$0")
 cd "${FILE_PATH}"
@@ -18,7 +18,7 @@ cd "${FILE_PATH}"
 #LOG_FILE=$(jq -r '.LOG_FILE' config.json)
 LOG_FILE="log_jaltantra_CalculateNetworkCost_JaltantraLauncher.log"
 #MINICONDA_HOME=$(jq -r '.MINICONDA_HOME' config.json)
-#MINICONDA_HOME='/home/fenil/miniconda3'
+MINICONDA_HOME='/home/sayantan/miniconda'
 
 echo >> "${LOG_FILE}"
 echo "date    = '$(date)'" >> "${LOG_FILE}"
@@ -29,6 +29,7 @@ echo "\$1      = '${1}'" >> "${LOG_FILE}"
 echo "\$2      = '${2}'" >> "${LOG_FILE}"
 echo "python  = '$(which python)'" >> "${LOG_FILE}"
 echo "python3 = '$(which python3)'" >> "${LOG_FILE}"
+echo "miniconda = '${MINICONDA_HOME}'" >> ${LOG_FILE}
 dirname "${0}" >> "${LOG_FILE}"
 echo "$(dirname '$0')" >> "${LOG_FILE}"
 echo "${FILE_PATH}" >> "${LOG_FILE}"
@@ -53,7 +54,7 @@ if [[ -f "${1}" ]]; then
 
     # REFER: https://stackoverflow.com/questions/876239/how-to-redirect-and-append-both-standard-output-and-standard-error-to-a-file-wit
     # "${MINICONDA_HOME}/envs/dev/bin/python3" CalculateNetworkCost.py -p "${1}"  --solver-models 'alphaecp 1 2' --solver-models 'baron 1 2' --solver-models 'knitro 1 2' --time "${2}" --prefix "${3}" --versionNumber "${4}" --projectName "${5}" --debug > "${1}${3}.log" 2>&1
-    "${MINICONDA_HOME}/envs/dev/bin/python3" CalculateNetworkCost.py -p "${1}" --solver-models 'baron 1' --solver-models 'knitro 1' --time "${2}" --prefix "${3}" --versionNumber "${4}" --projectName "${5}" --debug > "${1}${3}.log" 2>&1
+    "${MINICONDA_HOME}/envs/dev/bin/python3" CalculateNetworkCost.py -p "${1}" --solver-models 'baron 1' --time "${2}" --prefix "${3}" --versionNumber "${4}" --projectName "${5}" --threads-per-solver-instance '3' --debug > "${1}${3}.log" 2>&1
 else
     echo "ERROR: either file does not exist or it is not a file: '${1}'" >> "${LOG_FILE}"
 fi
