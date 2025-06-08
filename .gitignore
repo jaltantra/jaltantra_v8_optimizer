@@ -18,6 +18,7 @@ target/
 *.iws
 *.iml
 *.ipr
+.vscode
 
 ### NetBeans ###
 /nbproject/private/
@@ -36,3 +37,9 @@ JalTantra-Code-and-Scripts/ampl.linux-intel64
 JalTantra-Code-and-Scripts/DataNetworkGraphInput_hashed
 JalTantra-Code-and-Scripts/NetworkResults
 JalTantra-Code-and-Scripts/octeract*
+
+#### Logs ####
+*.log
+logs/
+*.log
+*.gz
