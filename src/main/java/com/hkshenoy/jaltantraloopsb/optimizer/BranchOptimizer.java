@@ -1,6 +1,7 @@
 package com.hkshenoy.jaltantraloopsb.optimizer;
 
 import com.google.ortools.linearsolver.MPSolver.ResultStatus;
+import com.hkshenoy.jaltantraloopsb.helper.CustomLogger;
 import com.hkshenoy.jaltantraloopsb.optimizer.Pipe.FlowType;
 import com.hkshenoy.jaltantraloopsb.structs.*;
 
@@ -33,6 +34,8 @@ public class BranchOptimizer {
 	//helper strings for exporting the ILP model 
 	private StringBuilder lpmodelstring = new StringBuilder();
 	private StringBuilder lpmodelvar = new StringBuilder();
+	CustomLogger customLogger;
+	private HashSet<Integer> disconnectedNodes;
 	
 //	private static boolean esrCosting = true;
 //	private static boolean esrGen = true;
@@ -88,6 +91,7 @@ public class BranchOptimizer {
 		esrCost = new ArrayList<EsrCost>();
 		coordinatesString = "";
 		generalProperties = generalStruct;
+		customLogger=new CustomLogger();
 		
 		int[] a = {};
 		this.pumpGeneralProperties = new PumpGeneralStruct(false, 1, 100, 0, 0, 1, 0, 0, 1, a);
@@ -187,8 +191,75 @@ public class BranchOptimizer {
 	//validate network structure
 	//should not contain cycles
 	//every node should be connected
+
+	void dfs(Node current,HashMap<Node,ArrayList<Node> > undirectedNetwork,HashSet<Integer> visited){
+		// customLogger.logd("visited nodes: "+current.getNodeID());
+		visited.add(current.getNodeID());
+
+		for(Node nodes:undirectedNetwork.get(current)){
+			if(visited.contains(nodes.getNodeID())==false){
+				dfs(nodes,undirectedNetwork,visited);
+			}
+		}
+	}
+
+	//Function to check and populate the disconnected nodes in the network
+	private void PopulateDisconnectedNode(HashSet<Integer> seen){
+
+		disconnectedNodes=new HashSet<Integer>();
+		for (Map.Entry<Integer, Node> mapElement : nodes.entrySet()) {
+			Integer key = mapElement.getKey();
+			Node node = mapElement.getValue();
+			if(seen.contains(node.getNodeID()) == false){
+				disconnectedNodes.add(node.getNodeID());
+				customLogger.logd("diconnected nodes: "+node.getNodeID());
+			}
+		}
+		// for( int n: disconnectedNodes){
+		// 	customLogger.logd("seen:"+n);
+		// }
+	}
+
+	//creates the  undirected graph and checks the connectivity by dfs
+	private boolean checkConnectivity(){
+		//creating undirected graph
+		HashMap<Node,ArrayList<Node> > undirectedNetwork=new HashMap<Node,ArrayList<Node>>();
+		for(Map.Entry<Integer, Node> mapElement:nodes.entrySet()) {
+			Node node = mapElement.getValue();
+			undirectedNetwork.put(node, new ArrayList<Node>());
+		}
+
+		for(Map.Entry<Integer, Node> mapElement:nodes.entrySet()) {
+			Node node = mapElement.getValue();
+			for (Pipe pipe : node.getOutgoingPipes()) {
+
+				//Adding undirected edge between both the endpoint of pipe
+				Node endNode=pipe.getEndNode();
+				undirectedNetwork.get(node).add(endNode);
+				undirectedNetwork.get(endNode).add(node);
+
+			}
+		}
+		HashSet<Integer> visited=new HashSet<Integer>();
+		dfs(source,undirectedNetwork,visited);
+		// for( Node n: visited){
+		// 	customLogger.logd("visited:"+n.getNodeID());
+		// }
+
+		PopulateDisconnectedNode(visited);
+
+		if(disconnectedNodes.size()>0){
+			return false;
+		}
+
+		return true;
+	}
 	private int validateNetwork(){
 		Node root = source;
+
+		if(checkConnectivity()==false){
+			return 3;
+		}
 		Set<Node> seen = new HashSet<Node>();
 		Stack<Node> left = new Stack<Node>();
 		left.add(root);
@@ -200,16 +271,22 @@ public class BranchOptimizer {
 				return 2;//cycle
 			}
 			seen.add(top);
+
 			for(Pipe pipe : top.getOutgoingPipes())
 			{
 				left.push(pipe.getEndNode());
 			}
 		}
-		
-		if(seen.size()!=nodes.size()){
-			System.out.println(seen.size());
-			System.out.println(nodes.size());
-			return 3;//not fully connected
+		for(Node n: seen){
+			customLogger.logd("seennode="+n.getNodeID());
+		}
+		customLogger.logd("seen="+seen.size());
+		customLogger.logd("nodes="+nodes.size());
+		if (seen.size() != nodes.size()) {
+
+		// 	// PopulateDisconnectedNode(seen);
+
+			return 3;  // not fully connected
 		}
 		return 1;
 	}
@@ -5673,7 +5750,7 @@ public class BranchOptimizer {
 				throw new Exception("Input is not valid. Cycle in the network");
 				//return false;
 			case 3:
-				throw new Exception("Input is not valid. Nodes unconnected in the network");
+				throw new Exception("Input is not valid. Nodes unconnected in the network. Disconnected Nodes are"+disconnectedNodes.toString());
 				//return false;
 		}
 		

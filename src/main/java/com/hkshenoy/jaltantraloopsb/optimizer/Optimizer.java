@@ -283,27 +283,32 @@ public class Optimizer {
 	 * 5 => Invalid Input: Duplicate Links found
 	 */
 	//recursive dfs to check the connectivity of graph
-	void dfs(Node current,HashMap<Node,ArrayList<Node> > undirectedNetwork,HashSet<Node> visited){
-		visited.add(current);
+	void dfs(Node current,HashMap<Node,ArrayList<Node> > undirectedNetwork,HashSet<Integer> visited){
+		customLogger.logd("visited nodes: "+current.getNodeID());
+		visited.add(current.getNodeID());
 
 		for(Node nodes:undirectedNetwork.get(current)){
-			if(visited.contains(nodes)==false){
+			if(visited.contains(nodes.getNodeID())==false){
 				dfs(nodes,undirectedNetwork,visited);
 			}
 		}
 	}
 
 	//Function to check and populate the disconnected nodes in the network
-	private void PopulateDisconnectedNode(HashSet<Node> seen){
+	private void PopulateDisconnectedNode(HashSet<Integer> seen){
 
 		disconnectedNodes=new HashSet<Integer>();
 		for (Map.Entry<Integer, Node> mapElement : nodes.entrySet()) {
 			Integer key = mapElement.getKey();
 			Node node = mapElement.getValue();
-			if(seen.contains(node) == false){
+			if(seen.contains(node.getNodeID()) == false){
 				disconnectedNodes.add(node.getNodeID());
+				customLogger.logd("diconnected nodes: "+node.getNodeID());
 			}
 		}
+		// for( int n: disconnectedNodes){
+		// 	customLogger.logd("seen:"+n);
+		// }
 	}
 
 	//creates the  undirected graph and checks the connectivity by dfs
@@ -326,8 +331,11 @@ public class Optimizer {
 
 			}
 		}
-		HashSet<Node> visited=new HashSet<Node>();
+		HashSet<Integer> visited=new HashSet<Integer>();
 		dfs(source,undirectedNetwork,visited);
+		// for( Node n: visited){
+		// 	customLogger.logd("visited:"+n.getNodeID());
+		// }
 
 		PopulateDisconnectedNode(visited);
 
@@ -370,10 +378,10 @@ public class Optimizer {
 		}
 
 		if (seen.size() != nodes.size()) {
-			System.out.println(seen.size());
-			System.out.println(nodes.size());
+			customLogger.logd("seen="+seen.size());
+			customLogger.logd("nodes="+nodes.size());
 
-			PopulateDisconnectedNode(seen);
+		// 	// PopulateDisconnectedNode(seen);
 
 			return 3;  // not fully connected
 		}
