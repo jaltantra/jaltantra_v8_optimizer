@@ -1,6 +1,18 @@
 #!/bin/bash
 
-./mvnw clean
-./mvnw package
-# java -jar target/JaltantraLoopSB-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev  > /dev/null 2>&1
-java -jar target/JaltantraOptimizer-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
+echo "🚀 Building and running Optimizer Microservice..."
+
+# Build the Spring Boot project using Maven wrapper
+./mvnw clean package
+
+# Check if JAR file was created
+JAR_FILE=$(find target -name '*Optimizer-*.jar' | head -n 1)
+
+if [ -z "$JAR_FILE" ]; then
+    echo "❌ Build failed or JAR not found in target/. Aborting."
+    exit 1
+fi
+
+# Run the JAR with active profile = dev
+echo "▶️ Running $JAR_FILE with --spring.profiles.active=dev"
+java -jar "$JAR_FILE" --spring.profiles.active=dev

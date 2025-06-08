@@ -280,14 +280,14 @@ public class BranchOptimizer {
 		for(Node n: seen){
 			customLogger.logd("seennode="+n.getNodeID());
 		}
-		customLogger.logd("seen="+seen.size());
-		customLogger.logd("nodes="+nodes.size());
-		if (seen.size() != nodes.size()) {
+		// customLogger.logd("seen="+seen.size());
+		// customLogger.logd("nodes="+nodes.size());
+		// if (seen.size() != nodes.size()) {
 
-		// 	// PopulateDisconnectedNode(seen);
+		// // 	// PopulateDisconnectedNode(seen);
 
-			return 3;  // not fully connected
-		}
+		// 	return 3;  // not fully connected
+		// }
 		return 1;
 	}
 	

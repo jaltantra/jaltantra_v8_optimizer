@@ -377,14 +377,14 @@ public class Optimizer {
 			}
 		}
 
-		if (seen.size() != nodes.size()) {
-			customLogger.logd("seen="+seen.size());
-			customLogger.logd("nodes="+nodes.size());
+		// if (seen.size() != nodes.size()) {
+		// 	customLogger.logd("seen="+seen.size());
+		// 	customLogger.logd("nodes="+nodes.size());
 
-		// 	// PopulateDisconnectedNode(seen);
+		// // 	// PopulateDisconnectedNode(seen);
 
-			return 3;  // not fully connected
-		}
+		// 	return 3;  // not fully connected
+		// }
 		return 2;
 	}
 
