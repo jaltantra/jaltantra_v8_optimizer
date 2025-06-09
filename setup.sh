@@ -28,6 +28,7 @@ if [ ! -d "$AMPL_DIR" ]; then
     scp -r deploy@10.129.6.131:/home/deploy/ampl.linux-intel64/ JalTantra-Code-and-Scripts
     chmod -R 777 "$AMPL_DIR"
 else
+    chmod -R 777 "$AMPL_DIR"
     echo "✅ AMPL directory already exists. Skipping SCP."
 fi
 
@@ -71,5 +72,31 @@ pip show rich | grep -E 'Name|Version'
 
 echo "⚙️ Building Optimizer Microservice..."
 mvn clean install
+
+# ---------------------- Spring Config Patch -------------------------
+
+echo "🔧 Patching application-dev.properties..."
+
+current_dir=$(pwd)
+properties_file="$current_dir/src/main/resources/application-dev.properties"
+
+if [ ! -f "$properties_file" ]; then
+    echo "❌ ERROR: Cannot find application-dev.properties at $properties_file"
+    exit 1
+fi
+
+# Remove any old hardcoded entries for datasource credentials and solver path
+modified_contents=$(grep -v -E 'solver\.root\.dir' "$properties_file")
+
+# Append new dynamic values
+modified_contents+="
+solver.root.dir=$current_dir/JalTantra-Code-and-Scripts
+"
+
+# Write back to file
+echo -e "$modified_contents" > "$properties_file"
+
+echo "✅ application-dev.properties updated with environment-specific config."
+
 
 echo "✅ Setup Complete. Use './run.sh' to start the Optimizer service."
