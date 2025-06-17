@@ -109,6 +109,7 @@
     </dependencies>
 
     <build>
+    <finalName>jaltantra-optimizer-v8</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
